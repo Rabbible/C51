@@ -1,0 +1,182 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\Ð¡³µ¿âÎÄ¼þ\Ãð»ð.uvproj
+Project File Date:  08/25/2019
+
+<h2>Output:</h2>
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling Ãð»ð2.c...
+CHAOSHENGBO.H(7): error C231: 'trig': redefinition
+CHAOSHENGBO.H(8): error C231: 'echo': redefinition
+CHAOSHENGBO.H(9): error C231: 'tes': redefinition
+CHAOSHENGBO.H(28): error C237: 'T0_INIT': function already has a body
+CHAOSHENGBO.H(35): error C237: 'INT1_INIT': function already has a body
+CHAOSHENGBO.H(42): error C237: 'it_INT1': function already has a body
+CHAOSHENGBO.H(47): error C237: 'it_timer0': function already has a body
+CHAOSHENGBO.H(80): error C237: 'CSB': function already has a body
+DUOJI.H(3): error C231: 'P1_2': redefinition
+DUOJI.H(4): error C231: 'P1_3': redefinition
+DUOJI.H(10): error C237: '_delay_nus': function already has a body
+DUOJI.H(17): error C237: '_delay_nms': function already has a body
+DUOJI.H(32): error C237: '_Forward': function already has a body
+DUOJI.H(46): error C237: '_Right': function already has a body
+DUOJI.H(61): error C237: '_Left': function already has a body
+DUOJI.H(76): error C237: '_Backward': function already has a body
+DUOJI.H(91): error C237: '_R_F': function already has a body
+DUOJI.H(106): error C237: '_L_F': function already has a body
+DUOJI.H(115): error C237: 'Keep': function already has a body
+DUOJI.H(130): error C237: '_F_R': function already has a body
+DUOJI.H(145): error C237: '_F_L': function already has a body
+I2C.C(10): error C231: 'SCL': redefinition
+I2C.C(11): error C231: 'SDA': redefinition
+I2C.C(39): error C237: 'Start_I2c': function already has a body
+I2C.C(61): error C237: 'Stop_I2c': function already has a body
+I2C.C(102): error C237: '_SendByte': function already has a body
+I2C.C(138): error C237: 'RcvByte': function already has a body
+I2C.C(162): error C237: 'Ack_I2c': function already has a body
+AD.H(6): error C231: 'P2_0': redefinition
+AD.H(7): error C231: 'P2_1': redefinition
+AD.H(11): error C279: 'table': multiple initialization
+AD.H(19): error C237: '_delay': function already has a body
+AD.H(35): error C237: '_DACconversion': function already has a body
+AD.H(49): error C237: '_ISendByte': function already has a body
+AD.H(65): error C237: '_IRcvByte': function already has a body
+AD.H(83): error C237: 'Initial_com': function already has a body
+AD.H(91): error C237: '_send_char': function already has a body
+ZHIXIAN.H(31): error C187: not an lvalue
+ZHIXIAN.H(43): error C237: '_ZS': function already has a body
+ZHIXIAN.H(52): error C237: '_abs': function already has a body
+ZHIXIAN.H(63): error C237: 'DRZS': function already has a body
+ZHIXIAN.H(78): error C237: '_RZ': function already has a body
+ZHIXIAN.H(89): error C237: 'DLZS': function already has a body
+ZHIXIAN.H(104): error C237: '_LZ': function already has a body
+ZHIXIAN.H(145): error C237: '_YRQ': function already has a body
+ZHIXIAN.H(183): error C237: '_YLQ': function already has a body
+ZHIXIAN.H(259): error C237: '_YRC': function already has a body
+ZHIXIAN.H(294): error C237: '_YLC': function already has a body
+MIEHUO.H(5): error C141: syntax error near '1'
+MIEHUO.H(24): error C141: syntax error near '2'
+Ä¿±êÎ´´´½¨
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling Ãð»ð2.c...
+CHAOSHENGBO.H(7): error C231: 'trig': redefinition
+CHAOSHENGBO.H(8): error C231: 'echo': redefinition
+CHAOSHENGBO.H(9): error C231: 'tes': redefinition
+CHAOSHENGBO.H(28): error C237: 'T0_INIT': function already has a body
+CHAOSHENGBO.H(35): error C237: 'INT1_INIT': function already has a body
+CHAOSHENGBO.H(42): error C237: 'it_INT1': function already has a body
+CHAOSHENGBO.H(47): error C237: 'it_timer0': function already has a body
+CHAOSHENGBO.H(80): error C237: 'CSB': function already has a body
+DUOJI.H(3): error C231: 'P1_2': redefinition
+DUOJI.H(4): error C231: 'P1_3': redefinition
+DUOJI.H(10): error C237: '_delay_nus': function already has a body
+DUOJI.H(17): error C237: '_delay_nms': function already has a body
+DUOJI.H(32): error C237: '_Forward': function already has a body
+DUOJI.H(46): error C237: '_Right': function already has a body
+DUOJI.H(61): error C237: '_Left': function already has a body
+DUOJI.H(76): error C237: '_Backward': function already has a body
+DUOJI.H(91): error C237: '_R_F': function already has a body
+DUOJI.H(106): error C237: '_L_F': function already has a body
+DUOJI.H(115): error C237: 'Keep': function already has a body
+DUOJI.H(130): error C237: '_F_R': function already has a body
+DUOJI.H(145): error C237: '_F_L': function already has a body
+I2C.C(10): error C231: 'SCL': redefinition
+I2C.C(11): error C231: 'SDA': redefinition
+I2C.C(39): error C237: 'Start_I2c': function already has a body
+I2C.C(61): error C237: 'Stop_I2c': function already has a body
+I2C.C(102): error C237: '_SendByte': function already has a body
+I2C.C(138): error C237: 'RcvByte': function already has a body
+I2C.C(162): error C237: 'Ack_I2c': function already has a body
+AD.H(6): error C231: 'P2_0': redefinition
+AD.H(7): error C231: 'P2_1': redefinition
+AD.H(11): error C279: 'table': multiple initialization
+AD.H(19): error C237: '_delay': function already has a body
+AD.H(35): error C237: '_DACconversion': function already has a body
+AD.H(49): error C237: '_ISendByte': function already has a body
+AD.H(65): error C237: '_IRcvByte': function already has a body
+AD.H(83): error C237: 'Initial_com': function already has a body
+AD.H(91): error C237: '_send_char': function already has a body
+ZHIXIAN.H(31): error C187: not an lvalue
+ZHIXIAN.H(43): error C237: '_ZS': function already has a body
+ZHIXIAN.H(52): error C237: '_abs': function already has a body
+ZHIXIAN.H(63): error C237: 'DRZS': function already has a body
+ZHIXIAN.H(78): error C237: '_RZ': function already has a body
+ZHIXIAN.H(89): error C237: 'DLZS': function already has a body
+ZHIXIAN.H(104): error C237: '_LZ': function already has a body
+ZHIXIAN.H(145): error C237: '_YRQ': function already has a body
+ZHIXIAN.H(183): error C237: '_YLQ': function already has a body
+ZHIXIAN.H(259): error C237: '_YRC': function already has a body
+ZHIXIAN.H(294): error C237: '_YLC': function already has a body
+Ä¿±êÎ´´´½¨
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling Ãð»ð2.c...
+MIEHUO.H(26): warning C209: '_Left': too few actual parameters
+MIEHUO.H(27): error C141: syntax error near 'while'
+MIEHUO.H(34): error C141: syntax error near '||'
+MIEHUO.H(34): error C141: syntax error near '<'
+MIEHUO.H(38): error C202: 'x': undefined identifier
+MIEHUO.H(45): error C202: 'x': undefined identifier
+MIEHUO.H(52): error C202: 'x': undefined identifier
+MIEHUO.H(58): error C202: 'x': undefined identifier
+MIEHUO.H(61): error C202: 'x': undefined identifier
+MIEHUO.H(68): error C202: 'x': undefined identifier
+Ãð»ð2.C(9): error C141: syntax error near 'F1J'
+Ä¿±êÎ´´´½¨
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling Ãð»ð2.c...
+Ãð»ð2.C(43): warning C291: not every exit path returns a value
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?T0_INIT?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INT1_INIT?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_F_L?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DACCONVERSION?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITIAL_COM?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_CHAR?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_YLQ?Ãð»ð2
+Program Size: data=117.2 xdata=0 code=3608
+creating hex file from "Ãð»ð"...
+"Ãð»ð" - 0 Error(s), 10 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling Ãð»ð2.c...
+Ãð»ð2.C(43): warning C291: not every exit path returns a value
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?T0_INIT?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INT1_INIT?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_F_L?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DACCONVERSION?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITIAL_COM?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_CHAR?Ãð»ð2
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_YLQ?Ãð»ð2
+Program Size: data=117.2 xdata=0 code=3608
+creating hex file from "Ãð»ð"...
+"Ãð»ð" - 0 Error(s), 10 Warning(s).

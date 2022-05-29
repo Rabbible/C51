@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"子業.obj" 
+TO "子業" 
+RAMSIZE(256) 

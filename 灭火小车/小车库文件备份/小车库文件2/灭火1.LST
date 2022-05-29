@@ -1,0 +1,41 @@
+C51 COMPILER V9.00   Ãð»ð1                                                                 08/22/2019 13:16:23 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE Ãð»ð1
+OBJECT MODULE PLACED IN Ãð»ð1.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Ãð»ð1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>   
+   2          #include<duoji.h>
+   3          #include<fan.h>
+   4          
+   5          void main()
+   6          {
+   7   1              SIG=1;
+   8   1              SIG4=1;
+   9   1              SIG5=1;
+  10   1              while(1)
+  11   1              {
+  12   2                      if(SIG4==0&&SIG5==0) //QTI´«¸ÐÆ÷1¼ì²âµ½°×É«±ß½ç
+  13   2                      {       
+  14   3                              Left(10,200);
+  15   3                              SIG=0;
+  16   3                      }
+  17   2              }
+  18   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    437    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      20
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

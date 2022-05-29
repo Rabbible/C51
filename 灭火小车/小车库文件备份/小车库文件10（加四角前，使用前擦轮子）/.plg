@@ -1,0 +1,25 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: .dsp - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Windows\TEMP\RSP5606.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\用户目录\我的文档\WeChat Files\alwaysforgive123\Files\调试程序\灭火机器人\PCF8591模块 ADDA转换模块 模数数模转换送杜邦线\YL-40 AD模块资料\YL-40模块测试程序\四路采集串口显示\.c"
+]
+Creating command line "cl.exe @C:\Windows\TEMP\RSP5606.tmp" 
+<h3>Output Window</h3>
+Compiling...
+执行 cl.exe 时出错.
+
+
+
+<h3>Results</h3>
+.obj - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

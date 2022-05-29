@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"颜色识别.obj" 
+TO "颜色传感器" 
+RAMSIZE(256) 

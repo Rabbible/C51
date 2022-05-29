@@ -1,0 +1,82 @@
+C51 COMPILER V9.00   FAN                                                                   08/13/2019 16:12:48 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE FAN
+OBJECT MODULE PLACED IN fan.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE fan.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include< BoeBot.h>//包含舵机脉冲延时函数头文件
+   3          #define uint unsigned int //宏定义uint 为unsigned int类型
+   4          #define uchar unsigned char //宏定义uchar 为unsigned char 类型
+   5          sbit SIG = P1^0; //定义信号控制引脚
+   6          sbit SIG1 = P3^7; //定义信号1接收引脚
+   7          sbit SIG2 = P3^6; //定义信号2接收引脚
+   8          sbit P12 = P1^2;//定义舵机PWM控制端口
+   9          sbit P13 = P1^3;//定义舵机PWM控制端口
+  10          
+  11          void Right_Turn(void)//向右转
+  12          {
+  13   1          int i;
+  14   1          for(i=1;i<=55;i++)//右转脉冲计数循环
+  15   1              {
+  16   2                      P13=1;
+  17   2                      delay_nus(1450);
+  18   2               P13=0;
+  19   2                      P12=1;
+  20   2                      delay_nus(1450);
+  21   2                      P12=0;
+  22   2                      delay_nms(20);
+  23   2              }
+  24   1      }
+  25          void Left_Turn(void)//向左转
+  26          {
+  27   1          int i;
+  28   1          for(i=1;i<=25;i++)//左转脉冲计数循环
+  29   1              {
+  30   2                      P13=1;
+  31   2                      delay_nus(1550);
+  32   2              P13=0;
+  33   2                      P12=1;
+  34   2                      delay_nus(1550);
+  35   2                      P12=0;
+  36   2                      delay_nms(20);
+  37   2              }
+  38   1      }
+  39          
+  40          void main()
+  41          {
+  42   1               SIG=1;//先让电机静止
+  43   1               SIG1=1;
+  44   1               SIG2=1;
+  45   1              while(1)
+  46   1              {
+  47   2                      if((SIG1==0)&&(SIG2==0))//左右火焰传感器检测都检测到火焰                
+  48   2                       {
+  49   3                              SIG =0;  
+  50   3                              Left_Turn();
+  51   3                              Right_Turn();
+  52   3                       }
+  53   2                      else
+  54   2                      SIG=1;  //设置控制端口为低电平，电机运转起来                
+  55   2              }
+C51 COMPILER V9.00   FAN                                                                   08/13/2019 16:12:48 PAGE 2   
+
+  56   1      
+  57   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    146    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

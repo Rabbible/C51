@@ -1,0 +1,25 @@
+C51 COMPILER V9.00   ¶æ»_ÒÆ¶_º_Êý                                                          08/11/2019 20:01:44 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE ¶æ»_ÒÆ¶_º_Êý
+OBJECT MODULE PLACED IN ¶æ»úÒÆ¶¯º¯Êý.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE ¶æ»úÒÆ¶¯º¯Êý.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+*** WARNING C206 IN LINE 81 OF ¶æ»úÒÆ¶¯º¯Ê.C: 'P1_4state': missing function-prototype
+*** WARNING C290 IN LINE 94 OF ¶æ»úÒÆ¶¯º¯Ê.C: missing return value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    255    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,39 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\小车库文件\AD转换.uvproj
+Project File Date:  03/18/2019
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling DA-AD.C...
+compiling I2C.c...
+I2C.C(10): error C202: 'P2': undefined identifier
+I2C.C(11): error C202: 'P2': undefined identifier
+I2C.C(22): error C202: 'SDA': undefined identifier
+I2C.C(24): error C202: 'SCL': undefined identifier
+I2C.C(30): error C202: 'SDA': undefined identifier
+I2C.C(36): error C202: 'SCL': undefined identifier
+I2C.C(48): error C202: 'SDA': undefined identifier
+I2C.C(50): error C202: 'SCL': undefined identifier
+I2C.C(56): error C202: 'SDA': undefined identifier
+I2C.C(76): error C202: 'SDA': undefined identifier
+I2C.C(77): error C202: 'SDA': undefined identifier
+I2C.C(79): error C202: 'SCL': undefined identifier
+I2C.C(85): error C202: 'SCL': undefined identifier
+I2C.C(90): error C202: 'SDA': undefined identifier
+I2C.C(93): error C202: 'SCL': undefined identifier
+I2C.C(97): error C202: 'SDA': undefined identifier
+I2C.C(99): error C202: 'SCL': undefined identifier
+I2C.C(116): error C202: 'SDA': undefined identifier
+I2C.C(120): error C202: 'SCL': undefined identifier
+I2C.C(126): error C202: 'SCL': undefined identifier
+I2C.C(130): error C202: 'SDA': undefined identifier
+I2C.C(134): error C202: 'SCL': undefined identifier
+I2C.C(148): error C202: 'SDA': undefined identifier
+I2C.C(149): error C202: 'SDA': undefined identifier
+I2C.C(153): error C202: 'SCL': undefined identifier
+I2C.C(159): error C202: 'SCL': undefined identifier
+目标未创建

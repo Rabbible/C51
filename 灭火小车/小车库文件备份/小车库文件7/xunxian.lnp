@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"xunxian.obj" 
+TO "xunxian" 
+RAMSIZE(256) 

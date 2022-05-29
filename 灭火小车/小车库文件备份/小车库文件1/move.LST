@@ -1,0 +1,46 @@
+C51 COMPILER V9.00   MOVE                                                                  08/18/2019 10:02:17 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MOVE
+OBJECT MODULE PLACED IN move.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE move.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h> //包含单片机寄存器的定义头文件
+   2          #include<duoji.h>
+   3          #include<AD.h>
+   4          #define uint unsigned int //宏定义uint 为unsigned int类型
+   5          #define uchar unsigned char //宏定义uchar 为unsigned char 类型
+   6          
+   7          //主函数
+   8          void main(void)
+   9          {       
+  10   1              uint i;
+  11   1              Initial_com();
+  12   1                      Forward(6,200); 
+  13   1                      for(i=0;i<10;i++)
+  14   1                      {
+  15   2                      ISendByte(PCF8591,0x40);
+  16   2                      D[0]=IRcvByte(PCF8591);
+  17   2                      send_char(D[0]);
+  18   2                      }
+  19   1                      Keep();
+  20   1                      delay_nms(10000);
+  21   1      
+  22   1      
+  23   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    772    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =     32    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     70      20
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

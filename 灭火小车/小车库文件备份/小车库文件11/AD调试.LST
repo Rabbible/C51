@@ -1,0 +1,125 @@
+C51 COMPILER V9.00   AD调试                                                                09/20/2019 20:45:18 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE AD调试
+OBJECT MODULE PLACED IN AD调试.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE AD调试.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include<AD.h>
+   3          #define uint unsigned int //宏定义uint 为unsigned int类型
+   4          
+   5          // ----   求众数          -----
+   6          uint ZS(uint idata F[10])
+   7          {       
+   8   1              uint idata c[10], idata d[10],i,j,q;
+   9   1              for(i=0;i<9;i++)        //数组数据从小到大排列
+  10   1                      for(j=0;j<9-i;j++)    
+  11   1                      {
+  12   2                              if(F[j]>F[j+1])
+  13   2                              {
+  14   3                                      q=F[j];
+  15   3                                      F[j]=F[j+1];
+  16   3                                      F[j+1]=q;
+  17   3                              }
+  18   2                      }
+  19   1      
+  20   1              d[0]=F[0],c[0]=1,j=0;  //求众数
+  21   1              for(i=0;i<9;i++)
+  22   1              {
+  23   2                      if(F[i+1]!=F[i])
+  24   2                      {
+  25   3                              j++;
+  26   3                              c[j]=1;
+  27   3                              d[j]=F[i+1];
+  28   3                      }
+  29   2                      else c[j]++;
+  30   2              }
+  31   1              for(i=0;i<=j;i++)
+  32   1              {
+  33   2              for(q=0;i<=j;q++)
+  34   2                      {
+  35   3                      if(c[i]<c[q])
+  36   3                      break;
+  37   3                      else if(q==j)
+  38   3                      return d[i];
+  39   3                      }
+  40   2              }       
+  41   1      }
+  42          
+  43          // ----   求绝对值        -----
+  44          int abs(int t)
+  45          {
+  46   1              if(t>0)
+  47   1              return t;
+  48   1              else
+  49   1              return -t;
+  50   1      }
+  51          
+  52          //--   右边红外测距传感器读取十个数据并返回众数值         --
+  53          uint DRZS()                             
+  54          {       uint i,idata F[10]={0};
+  55   1              for(i=0;i<10;i++)
+C51 COMPILER V9.00   AD调试                                                                09/20/2019 20:45:18 PAGE 2   
+
+  56   1              {
+  57   2                      ISendByte(PCF8591,0x40);
+  58   2                      F[i]=IRcvByte(PCF8591);
+  59   2              }
+  60   1              return ZS(F);
+  61   1      }
+  62          
+  63          //--   左边红外测距传感器读取十个数据并返回众数值         --
+  64          uint DLZS()                             
+  65          {       uint i,idata F[10]={0};
+  66   1              for(i=0;i<10;i++)
+  67   1              {
+  68   2                      ISendByte(PCF8591,0x41);
+  69   2                      F[i]=IRcvByte(PCF8591);
+  70   2              }
+  71   1              return ZS(F);
+  72   1      }
+  73          
+  74          void main()
+  75          {       uint a;
+  76   1              Initial_com();
+  77   1              while(1)
+  78   1              {
+  79   2                      a=DLZS();
+  80   2                      send_char(a);
+  81   2              }
+  82   1      //      float m;
+  83   1      //      Initial_com();
+  84   1      //      m=DRPJ();
+  85   1      //      send_char(m);
+  86   1      
+  87   1      //      uint i;
+  88   1      //      uchar idata G[10]={0x2D};
+  89   1      //      float idata F[10]={0};
+  90   1      //      for(i=0;i<10;i++)
+  91   1      //      {
+  92   1      //              ISendByte(PCF8591,0x40);
+  93   1      //              G[i]=IRcvByte(PCF8591);
+  94   1      //      }
+  95   1      //      NBZ(G,&F);         //转float
+  96   1      //      return Average(F);
+  97   1      
+  98   1      //      YRQ(45.0);
+  99   1      }
+*** WARNING C291 IN LINE 41 OF AD调试.C: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    972    ----
+   CONSTANT SIZE    =     50    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----      86
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

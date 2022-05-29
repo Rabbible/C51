@@ -1,0 +1,104 @@
+C51 COMPILER V9.00   µ÷_Ð                                                                  08/16/2019 20:11:04 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE µ÷_Ð
+OBJECT MODULE PLACED IN µ÷ÖÐ.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE µ÷ÖÐ.c LARGE BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>    //°üº¬µ¥Æ¬»ú¼Ä´æÆ÷µÄÍ·ÎÄ¼þ
+   2          #include <I2C.H>
+   3          #include<duoji.h>
+   4          #include<AD.h>
+   5          
+   6          void main()
+   7          {
+   8   1      // -----  ×óÓÒ×ªÒ»¸ö½Ç¶È²¢»ñÈ¡¾àÇ½Ò»ÏµÁÐÊýÖµ   ------   
+   9   1              uint A[40],i;
+  10   1              uint B[40]={0xFF};
+  11   1              for(i=0;i<20;i++)                /* Ñ­»·Óë×ªµÄ½Ç¶ÈÏà¹Ø */
+  12   1              {
+  13   2                      Left(1,100);
+  14   2                      AD(); AD(); AD(); AD();   /* ËÄ´ÎAD-DA´¦ÀíÎªÒ»¸öÑ­»· */ 
+  15   2                      A[i]=D[0];
+  16   2              }
+  17   1              Right(20,100);          /* »Øµ½³õÊ¼×´Ì¬ ×¢ÒâÒª½«Ó²¼þºÍ¶æ»úº¯Êýµ÷ºÃ*/
+  18   1              for(i=0;i<20;i++)
+  19   1              {
+  20   2                      Right(1,100);
+  21   2                      AD(); AD(); AD(); AD();   /* ËÄ´ÎAD-DA´¦ÀíÎªÒ»¸öÑ­»· */ 
+  22   2                      A[i]=D[0];
+  23   2              } 
+  24   1      
+  25   1      // -----  ÕÒ¾àÀëµÄ×îÐ¡Öµ   ------
+  26   1              for(i=0;i<39;i++)
+  27   1              {
+  28   2                      if(A[i+1]>0x2D)
+  29   2                      {
+  30   3                              if(B[i]>A[i+1])
+  31   3                              B[i]=A[i+1];    /* B[i]¸³Óè×îÐ¡Öµ£¬¼´B[38] */
+  32   3                      }
+  33   2              }
+  34   1      
+  35   1      // -----  µ÷ÕûÎª¶Áµ½×îÐ¡¾àÀëÊ±µÄ×´Ì¬   ------   
+  36   1              for(i=0;i<40;i++)               /* Ñ°ÕÒ¸Ã×´Ì¬Ê±µÄA[i],²¢ÌáÈ¡i£¬µ÷Õû½Ç¶È */
+  37   1              {
+  38   2                      if(A[i]==B[38])
+  39   2                      {
+  40   3                              if(i<20)  Left(i,100);
+  41   3                              else  Right(i,100);
+  42   3                              break;
+  43   3                      }
+  44   2              }       
+  45   1      // -----  ¶æ»úÇ°½ø   ------
+  46   1                while(1)
+  47   1                {     
+  48   2                      AD();
+  49   2                      if(D[0]<0x2D||D[1]<0x2D) break;                           /*  Ìø³öÑ­»·   */
+  50   2                      if(D[0]>0x2D)    /*  ¸Õ¿ªÊ¼Ö»ÓÐÓÒ±ßÑØÇ½£¬µ÷Õû·½Ïò  */
+  51   2                              {
+  52   3                                      if(D[0]<B[38]+0x02)                      /*  Òªµ÷¿ØºÃ·¶Î§¡¢ºÍÑ­»·´ÎÊý   */
+  53   3                                      {
+  54   4                                               R_F(1);                        /******     ¶æ»ú  ************/
+  55   4                                      }
+C51 COMPILER V9.00   µ÷_Ð                                                                  08/16/2019 20:11:04 PAGE 2   
+
+  56   3                                      else if(D[0]>B[38]-0x02)
+  57   3                                      {
+  58   4                                               L_F(1);
+  59   4                                      }
+  60   3                                      else Forward(1,200);
+  61   3                              }
+  62   2                      else if(D[0]<0x2D&&D[1]>0x4F)                    /*  ÑØ×ó±ßÇ½×ßÍê   */
+  63   2                              {       
+  64   3                              
+  65   3                                       if(D[1]<B[38]+0x02)                     /*  Òªµ÷¿ØºÃ·¶Î§¡¢ºÍÑ­»·´ÎÊý   */
+  66   3                                      {
+  67   4                                               L_F(1);
+  68   4                                      }
+  69   3                                      else if(D[1]>B[38]-0x02)
+  70   3                                      {
+  71   4                                               R_F(1);
+  72   4                                      }
+  73   3                                      else Forward(1,200);
+  74   3                                              
+  75   3                              }
+  76   2                      }
+  77   1                      
+  78   1                      while(1);/* µÈ´ý */     
+  79   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1731    ----
+   CONSTANT SIZE    =     90    ----
+   XDATA SIZE       =    102     194
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

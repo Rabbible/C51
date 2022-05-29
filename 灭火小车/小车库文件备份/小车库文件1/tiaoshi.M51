@@ -1,0 +1,266 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/08/2019  15:23:47  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+E:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, tiaoshi.obj TO tiaoshi RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  tiaoshi.obj (TIAOSHI)
+  E:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  tiaoshi (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         ?DT?TIAOSHI
+            DATA    000CH     0004H     UNIT         _DATA_GROUP_
+            IDATA   0010H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0055H     UNIT         ?C?LIB_CODE
+            CODE    0855H     0041H     UNIT         ?PR?_RIGHT?TIAOSHI
+            CODE    0896H     0040H     UNIT         ?PR?_FORWARD?TIAOSHI
+            CODE    08D6H     003EH     UNIT         ?PR?_BACKWARD?TIAOSHI
+            CODE    0914H     003DH     UNIT         ?PR?_LEFT?TIAOSHI
+            CODE    0951H     002EH     UNIT         ?PR?MAIN?TIAOSHI
+            CODE    097FH     0028H     UNIT         ?PR?_DELAY_NMS?TIAOSHI
+            CODE    09A7H     0011H     UNIT         ?PR?_DELAY_NUS?TIAOSHI
+            CODE    09B8H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   tiaoshi (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?TIAOSHI
+
+?PR?MAIN?TIAOSHI               -----    -----
+  +--> ?PR?_FORWARD?TIAOSHI
+  +--> ?PR?_LEFT?TIAOSHI
+  +--> ?PR?_RIGHT?TIAOSHI
+  +--> ?PR?_BACKWARD?TIAOSHI
+
+?PR?_FORWARD?TIAOSHI           000CH    0004H
+  +--> ?PR?_DELAY_NUS?TIAOSHI
+  +--> ?PR?_DELAY_NMS?TIAOSHI
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/08/2019  15:23:47  PAGE 2
+
+
+
+?PR?_DELAY_NMS?TIAOSHI         -----    -----
+  +--> ?PR?_DELAY_NUS?TIAOSHI
+
+?PR?_LEFT?TIAOSHI              000CH    0004H
+  +--> ?PR?_DELAY_NUS?TIAOSHI
+  +--> ?PR?_DELAY_NMS?TIAOSHI
+
+?PR?_RIGHT?TIAOSHI             000CH    0004H
+  +--> ?PR?_DELAY_NUS?TIAOSHI
+  +--> ?PR?_DELAY_NMS?TIAOSHI
+
+?PR?_BACKWARD?TIAOSHI          000CH    0004H
+  +--> ?PR?_DELAY_NUS?TIAOSHI
+  +--> ?PR?_DELAY_NMS?TIAOSHI
+
+
+
+SYMBOL TABLE OF MODULE:  tiaoshi (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:09B8H         SEGMENT       ?C_C51STARTUP
+  I:0010H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:09BBH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:09B8H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:09B8H         LINE#         133
+  C:09BAH         LINE#         134
+  C:09BBH         LINE#         135
+  C:09BCH         LINE#         136
+  C:09BEH         LINE#         185
+  C:09C1H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/08/2019  15:23:47  PAGE 3
+
+
+  -------         MODULE        TIAOSHI
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0855H         PUBLIC        _Right
+  D:0090H         PUBLIC        P1
+  C:0914H         PUBLIC        _Left
+  B:0090H.2       PUBLIC        P1_2
+  B:0090H.3       PUBLIC        P1_3
+  D:0008H         PUBLIC        PulseCount
+  C:08D6H         PUBLIC        _Backward
+  C:0951H         PUBLIC        main
+  C:098BH         PUBLIC        _delay_nms
+  C:09A7H         PUBLIC        _delay_nus
+  D:000AH         PUBLIC        Velocity
+  C:0896H         PUBLIC        _Forward
+  -------         PROC          _DELAY_NUS
+  D:0006H         SYMBOL        i
+  C:09A7H         LINE#         8
+  C:09A7H         LINE#         9
+  C:09A7H         LINE#         10
+  C:09AEH         LINE#         11
+  C:09B7H         LINE#         12
+  -------         ENDPROC       _DELAY_NUS
+  C:0981H         SYMBOL        L?0030
+  -------         PROC          L?0029
+  -------         ENDPROC       L?0029
+  C:0981H         SYMBOL        L?0030
+  -------         PROC          _DELAY_NMS
+  D:0002H         SYMBOL        n
+  C:098BH         LINE#         14
+  C:098FH         LINE#         15
+  C:098FH         LINE#         16
+  C:0994H         LINE#         17
+  C:099DH         LINE#         18
+  C:09A6H         LINE#         19
+  -------         ENDPROC       _DELAY_NMS
+  -------         PROC          _FORWARD
+  D:000CH         SYMBOL        PulseCount
+  D:000EH         SYMBOL        Velocity
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:0896H         LINE#         9
+  C:089EH         LINE#         10
+  C:089EH         LINE#         12
+  C:08B2H         LINE#         13
+  C:08B2H         LINE#         14
+  C:08B4H         LINE#         15
+  C:08C1H         LINE#         16
+  C:08C3H         LINE#         17
+  C:08C5H         LINE#         18
+  C:08CFH         LINE#         19
+  C:08CFH         LINE#         20
+  C:08D2H         LINE#         21
+  C:08D5H         LINE#         22
+  -------         ENDPROC       _FORWARD
+  -------         PROC          _RIGHT
+  D:000CH         SYMBOL        PulseCount
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/08/2019  15:23:47  PAGE 4
+
+
+  D:000EH         SYMBOL        Velocity
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:0855H         LINE#         23
+  C:085DH         LINE#         24
+  C:085DH         LINE#         26
+  C:0871H         LINE#         27
+  C:0871H         LINE#         28
+  C:0873H         LINE#         29
+  C:0881H         LINE#         30
+  C:0883H         LINE#         31
+  C:0885H         LINE#         32
+  C:088FH         LINE#         33
+  C:088FH         LINE#         34
+  C:0892H         LINE#         35
+  C:0895H         LINE#         36
+  -------         ENDPROC       _RIGHT
+  -------         PROC          _LEFT
+  D:000CH         SYMBOL        PulseCount
+  D:000EH         SYMBOL        Velocity
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:0914H         LINE#         37
+  C:091CH         LINE#         38
+  C:091CH         LINE#         40
+  C:0930H         LINE#         41
+  C:0930H         LINE#         42
+  C:0932H         LINE#         43
+  C:093FH         LINE#         44
+  C:0941H         LINE#         45
+  C:0943H         LINE#         46
+  C:094AH         LINE#         47
+  C:094AH         LINE#         48
+  C:094DH         LINE#         49
+  C:0950H         LINE#         50
+  -------         ENDPROC       _LEFT
+  -------         PROC          _BACKWARD
+  D:000CH         SYMBOL        PulseCount
+  D:000EH         SYMBOL        Velocity
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:08D6H         LINE#         51
+  C:08DEH         LINE#         52
+  C:08DEH         LINE#         54
+  C:08F2H         LINE#         55
+  C:08F2H         LINE#         56
+  C:08F4H         LINE#         57
+  C:0902H         LINE#         58
+  C:0904H         LINE#         59
+  C:0906H         LINE#         60
+  C:090DH         LINE#         61
+  C:090DH         LINE#         62
+  C:0910H         LINE#         63
+  C:0913H         LINE#         64
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/08/2019  15:23:47  PAGE 5
+
+
+  -------         ENDPROC       _BACKWARD
+  -------         PROC          MAIN
+  C:0951H         LINE#         65
+  C:0951H         LINE#         66
+  C:0951H         LINE#         68
+  C:095CH         LINE#         69
+  C:0967H         LINE#         70
+  C:0972H         LINE#         71
+  C:097DH         LINE#         72
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        TIAOSHI
+
+  -------         MODULE        ?C?UIDIV
+  C:0800H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0172H BYTE (18%) *
+******************************************************************************
+
+Program Size: data=17.0 xdata=0 code=455
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

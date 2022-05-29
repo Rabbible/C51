@@ -1,0 +1,39 @@
+C51 COMPILER V9.00   超蒧波瞋距串口打印                                                    08/25/2019 13:15:31 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE 超蒧波瞋距串口打印
+OBJECT MODULE PLACED IN 超声波测距串口打印.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 超声波测距串口打印.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>  //包含51单片机寄存器定义的头文件
+   2          #include <chaoshengbo+.h>
+   3          
+   4          //主函数
+   5          void main(void)
+   6          {
+   7   1                      init_9600();
+   8   1                      T0_INIT();
+   9   1                      INT1_INIT();
+  10   1                      trig = 0;
+  11   1                      while(1)
+  12   1                      {
+  13   2                      CSB2();
+  14   2                      delaynms(500);
+  15   2                      }       
+  16   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    588    ----
+   CONSTANT SIZE    =     11    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     14       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,38 @@
+C51 COMPILER V9.00   灰度                                                                  08/22/2019 13:15:13 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE 灰度
+OBJECT MODULE PLACED IN 灰度.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 灰度.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>   
+   2          #include<duoji.h>
+   3          #include<fan.h>
+   4          
+   5          void main()
+   6          {
+   7   1              SIG=1;
+   8   1              SIG4=1;
+   9   1              SIG5=1;
+  10   1              if(SIG4==0&&SIG5==0) //QTI传感器1检测到白色边界
+  11   1              {       
+  12   2                      SIG=0;
+  13   2                      Left(10,200);
+  14   2              }
+  15   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    436    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      20
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

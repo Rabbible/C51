@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"tiaoshi.obj" 
+TO "tiaoshi" 
+RAMSIZE(256) 

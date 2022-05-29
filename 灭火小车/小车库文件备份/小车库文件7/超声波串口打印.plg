@@ -1,0 +1,72 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\Ð¡³µ¿âÎÄ¼þ\³¬Éù²¨´®¿Ú´òÓ¡.uvproj
+Project File Date:  08/25/2019
+
+<h2>Output:</h2>
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+CHAOSHENGBO+.H(167): error C136: 'CSB': 'void' on variable
+CHAOSHENGBO+.H(167): error C129: missing ';' before '+'
+Ä¿±êÎ´´´½¨
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_NMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1188
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 4 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_NMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1188
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 4 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_NMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1190
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 4 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_NMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1197
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 3 Warning(s).

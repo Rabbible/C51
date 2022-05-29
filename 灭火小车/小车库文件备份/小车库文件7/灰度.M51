@@ -1,0 +1,333 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/22/2019  13:15:13  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, 子業.obj TO 子業 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  子業.obj (子業)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  子業 (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         ?DT?_FORWARD?子業
+            DATA    000CH     0004H     UNIT         ?DT?_RIGHT?子業
+            DATA    0010H     0004H     UNIT         ?DT?_BACKWARD?子業
+            DATA    0014H     0004H     UNIT         _DATA_GROUP_
+            DATA    0018H     0002H     UNIT         ?DT?_R_F?子業
+            DATA    001AH     0002H     UNIT         ?DT?_L_F?子業
+            IDATA   001CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0055H     UNIT         ?C?LIB_CODE
+            CODE    0058H     0041H     UNIT         ?PR?_RIGHT?子業
+            CODE    0099H     0040H     UNIT         ?PR?_FORWARD?子業
+            CODE    00D9H     003EH     UNIT         ?PR?_BACKWARD?子業
+            CODE    0117H     003DH     UNIT         ?PR?_LEFT?子業
+            CODE    0154H     002AH     UNIT         ?PR?_R_F?子業
+            CODE    017EH     002AH     UNIT         ?PR?_L_F?子業
+            CODE    01A8H     0028H     UNIT         ?PR?_DELAY_NMS?子業
+            CODE    01D0H     001AH     UNIT         ?PR?MAIN?子業
+            CODE    01EAH     0017H     UNIT         ?PR?_DELAY_NUS?子業
+            CODE    0201H     000CH     UNIT         ?C_C51STARTUP
+            CODE    020DH     000BH     UNIT         ?PR?KEEP?子業
+
+
+
+OVERLAY MAP OF MODULE:   子業 (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?子業
+
+?PR?MAIN?子業                  -----    -----
+  +--> ?PR?_LEFT?子業
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/22/2019  13:15:13  PAGE 2
+
+
+?PR?_LEFT?子業                 0014H    0004H
+  +--> ?PR?_DELAY_NUS?子業
+  +--> ?PR?_DELAY_NMS?子業
+
+?PR?_DELAY_NMS?子業            -----    -----
+  +--> ?PR?_DELAY_NUS?子業
+
+
+
+SYMBOL TABLE OF MODULE:  子業 (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0201H         SEGMENT       ?C_C51STARTUP
+  I:001CH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0204H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0201H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0201H         LINE#         133
+  C:0203H         LINE#         134
+  C:0204H         LINE#         135
+  C:0205H         LINE#         136
+  C:0207H         LINE#         185
+  C:020AH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        子業
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  C:0058H         PUBLIC        _Right
+  D:0090H         PUBLIC        P1
+  C:020DH         PUBLIC        Keep
+  C:0117H         PUBLIC        _Left
+  B:0090H.2       PUBLIC        P1_2
+  B:0090H.3       PUBLIC        P1_3
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/22/2019  13:15:13  PAGE 3
+
+
+  B:0090H.4       PUBLIC        SIG4
+  B:0090H.5       PUBLIC        SIG5
+  C:00D9H         PUBLIC        _Backward
+  C:01D0H         PUBLIC        main
+  C:01B4H         PUBLIC        _delay_nms
+  C:01F0H         PUBLIC        _delay_nus
+  C:0099H         PUBLIC        _Forward
+  B:0090H.0       PUBLIC        SIG
+  C:017EH         PUBLIC        _L_F
+  C:0154H         PUBLIC        _R_F
+  -------         PROC          L?0040
+  -------         ENDPROC       L?0040
+  -------         PROC          _DELAY_NUS
+  D:0006H         SYMBOL        i
+  C:01F0H         LINE#         4
+  C:01F0H         LINE#         5
+  C:01F0H         LINE#         6
+  C:01F7H         LINE#         7
+  C:0200H         LINE#         8
+  -------         ENDPROC       _DELAY_NUS
+  C:01AAH         SYMBOL        L?0038
+  C:01ABH         SYMBOL        L?0039
+  -------         PROC          L?0037
+  -------         ENDPROC       L?0037
+  C:01AAH         SYMBOL        L?0038
+  C:01ABH         SYMBOL        L?0039
+  -------         PROC          _DELAY_NMS
+  D:0002H         SYMBOL        n
+  C:01B4H         LINE#         10
+  C:01B8H         LINE#         11
+  C:01B8H         LINE#         12
+  C:01BDH         LINE#         13
+  C:01C6H         LINE#         14
+  C:01CFH         LINE#         15
+  -------         ENDPROC       _DELAY_NMS
+  -------         PROC          _FORWARD
+  D:0008H         SYMBOL        PulseCount
+  D:000AH         SYMBOL        Velocity
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:0099H         LINE#         17
+  C:00A1H         LINE#         18
+  C:00A1H         LINE#         20
+  C:00B5H         LINE#         21
+  C:00B5H         LINE#         22
+  C:00B7H         LINE#         23
+  C:00C4H         LINE#         24
+  C:00C6H         LINE#         25
+  C:00C8H         LINE#         26
+  C:00D2H         LINE#         27
+  C:00D2H         LINE#         28
+  C:00D5H         LINE#         29
+  C:00D8H         LINE#         30
+  -------         ENDPROC       _FORWARD
+  -------         PROC          _RIGHT
+  D:000CH         SYMBOL        PulseCount
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/22/2019  13:15:13  PAGE 4
+
+
+  D:000EH         SYMBOL        Velocity
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:0058H         LINE#         31
+  C:0060H         LINE#         32
+  C:0060H         LINE#         34
+  C:0074H         LINE#         35
+  C:0074H         LINE#         36
+  C:0076H         LINE#         37
+  C:0084H         LINE#         38
+  C:0086H         LINE#         39
+  C:0088H         LINE#         40
+  C:0092H         LINE#         41
+  C:0092H         LINE#         42
+  C:0095H         LINE#         43
+  C:0098H         LINE#         44
+  -------         ENDPROC       _RIGHT
+  -------         PROC          _LEFT
+  D:0014H         SYMBOL        PulseCount
+  D:0016H         SYMBOL        Velocity
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:0117H         LINE#         45
+  C:011FH         LINE#         46
+  C:011FH         LINE#         48
+  C:0133H         LINE#         49
+  C:0133H         LINE#         50
+  C:0135H         LINE#         51
+  C:0142H         LINE#         52
+  C:0144H         LINE#         53
+  C:0146H         LINE#         54
+  C:014DH         LINE#         55
+  C:014DH         LINE#         56
+  C:0150H         LINE#         57
+  C:0153H         LINE#         58
+  -------         ENDPROC       _LEFT
+  -------         PROC          _BACKWARD
+  D:0010H         SYMBOL        PulseCount
+  D:0012H         SYMBOL        Velocity
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:00D9H         LINE#         59
+  C:00E1H         LINE#         60
+  C:00E1H         LINE#         62
+  C:00F5H         LINE#         63
+  C:00F5H         LINE#         64
+  C:00F7H         LINE#         65
+  C:0105H         LINE#         66
+  C:0107H         LINE#         67
+  C:0109H         LINE#         68
+  C:0110H         LINE#         69
+  C:0110H         LINE#         70
+  C:0113H         LINE#         71
+  C:0116H         LINE#         72
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/22/2019  13:15:13  PAGE 5
+
+
+  -------         ENDPROC       _BACKWARD
+  -------         PROC          _R_F
+  D:0018H         SYMBOL        PulseCount
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:0154H         LINE#         74
+  C:0158H         LINE#         75
+  C:0158H         LINE#         77
+  C:016CH         LINE#         78
+  C:016CH         LINE#         79
+  C:016CH         LINE#         80
+  C:016FH         LINE#         81
+  C:0171H         LINE#         82
+  C:0173H         LINE#         83
+  C:0177H         LINE#         84
+  C:0177H         LINE#         85
+  C:017AH         LINE#         86
+  C:017DH         LINE#         87
+  -------         ENDPROC       _R_F
+  -------         PROC          _L_F
+  D:001AH         SYMBOL        PulseCount
+  -------         DO            
+  D:0082H         SYMBOL        i
+  -------         ENDDO         
+  C:017EH         LINE#         89
+  C:0182H         LINE#         90
+  C:0182H         LINE#         92
+  C:0196H         LINE#         93
+  C:0196H         LINE#         94
+  C:0196H         LINE#         95
+  C:0199H         LINE#         96
+  C:019BH         LINE#         97
+  C:019DH         LINE#         98
+  C:01A1H         LINE#         99
+  C:01A1H         LINE#         100
+  C:01A4H         LINE#         101
+  C:01A7H         LINE#         102
+  -------         ENDPROC       _L_F
+  -------         PROC          KEEP
+  C:020DH         LINE#         104
+  C:020DH         LINE#         105
+  C:020DH         LINE#         106
+  C:020DH         LINE#         107
+  C:020FH         LINE#         108
+  C:0211H         LINE#         109
+  -------         ENDPROC       KEEP
+  -------         PROC          MAIN
+  C:01D0H         LINE#         5
+  C:01D0H         LINE#         6
+  C:01D0H         LINE#         7
+  C:01D2H         LINE#         8
+  C:01D4H         LINE#         9
+  C:01D6H         LINE#         10
+  C:01DCH         LINE#         11
+  C:01DCH         LINE#         12
+  C:01DEH         LINE#         13
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/22/2019  13:15:13  PAGE 6
+
+
+  C:01E9H         LINE#         14
+  C:01E9H         LINE#         15
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        子業
+
+  -------         MODULE        ?C?UIDIV
+  C:0003H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FORWARD?子業
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RIGHT?子業
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?子業
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?子業
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?子業
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?子業
+
+Program Size: data=29.0 xdata=0 code=536
+LINK/LOCATE RUN COMPLETE.  6 WARNING(S),  0 ERROR(S)

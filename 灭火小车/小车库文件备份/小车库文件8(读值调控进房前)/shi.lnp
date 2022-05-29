@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"move.obj" 
+TO "shi" 
+RAMSIZE(256) 

@@ -1,0 +1,390 @@
+C51 COMPILER V9.00   颜色识别                                                              08/23/2019 17:37:20 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE 颜色识别
+OBJECT MODULE PLACED IN 颜色识别.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 颜色识别.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>  //包含51单片机寄存器定义的头文件
+   2          
+   3          #define uint unsigned int 
+   4          #define uchar unsigned char 
+   5          
+   6          #define true  1 
+   7          #define false 0 
+   8                  
+   9          uchar datah,datal;
+  10          uint int_count=0;//中断计数
+  11          uint int_count_r=0;//红色滤波器中断计数
+  12          uint int_count_b=0;//蓝色滤波器中断计数
+  13          uint int_count_g=0;//绿色滤波器中断计数
+  14          uint t0_count=0;//定时溢出计数
+  15          uint t0_count_r=0;//红色滤波器溢出计数
+  16          uint t0_count_b=0;//蓝色滤波器溢出计数
+  17          uint t0_count_g=0;//绿色滤波器溢出计数
+  18          
+  19          char flag_white_balance = false;//白平衡操作标志
+  20          char flag_check_r = false;//红色滤波器操作标志
+  21          char flag_check_b = false;//蓝色滤波器操作标志
+  22          char flag_check_g = false;//绿色滤波器操作标志
+  23          
+  24          sbit S0=P0^3;
+  25          sbit S1=P1^1;
+  26          sbit LED=P3^7;
+  27          sbit OUT=P2^5;
+  28          sbit tes=P2^7;
+  29          sbit S2=P0^7;
+  30          sbit S3=P2^3;
+  31          sbit ss=P2^6;
+  32          
+  33          //串口初始化
+  34          void init_9600(void)
+  35          {
+  36   1                      TMOD = 0x20;                    
+  37   1                      TH1 = 0xFD;             
+  38   1                      TL1 = 0xFD;
+  39   1                      SCON = 0x50;                    
+  40   1                      PCON &= 0xef;           
+  41   1                      TR1 = 1;                                
+  42   1              
+  43   1                      IE = 0x0;               
+  44   1      
+  45   1      }
+  46          //发送一个字节
+  47          void send_char(unsigned char txd)
+  48          {
+  49   1                      SBUF = txd;
+  50   1                      while(!TI);                     
+  51   1                      TI = 0;                                 
+  52   1      }
+  53          //定时器0初始化
+  54          T0_INIT()
+  55          {
+C51 COMPILER V9.00   颜色识别                                                              08/23/2019 17:37:20 PAGE 2   
+
+  56   1                      TMOD &= 0xF0; /* Timer 0 mode 1 with software gate */ 
+  57   1                      TMOD |= 0x01; /* GATE0=0; C/T0#=0; M10=0; M00=1; */ 
+  58   1                      TH0 = 0x00; /* init values */ 
+  59   1                      TL0 = 0x00; 
+  60   1                      ET0=1; /* enable timer0 interrupt */ 
+  61   1                      //EA=1; /* enable interrupts */ 
+  62   1                      //TR0=1; /* timer0 run */
+  63   1      }
+  64          //外部中断1初始化
+  65          INT1_INIT()
+  66          {
+  67   1              
+  68   1              IT1=1;//负跳变中断产生
+  69   1              EX1=1;//启动外部0中断
+  70   1              //EA=1;
+  71   1      }
+  72           
+  73          //延时函数1毫秒
+  74          void delay1ms()
+  75          {
+  76   1         unsigned char i,j;   
+  77   1               for(i=0;i<10;i++)
+  78   1                for(j=0;j<33;j++)
+  79   1                 ;             
+  80   1       }
+  81          
+  82          //延时函数，n毫秒
+  83           void delaynms(unsigned int n)
+  84           {
+  85   1         unsigned int i;
+  86   1              for(i=0;i<n;i++)
+  87   1                 delay1ms();
+  88   1       }
+  89          
+  90          //颜色检测
+  91          void color_check()
+  92          {
+  93   1                      T0_INIT();
+  94   1                      INT1_INIT();
+  95   1              
+  96   1                      //选定输出比例因子为1 ：1
+  97   1                      S0=1;
+  98   1                      S1=1;
+  99   1                      //点亮LED灯
+ 100   1                      LED=1;
+ 101   1              
+ 102   1                      //选通红色滤波器
+ 103   1                      S2=0;
+ 104   1                      S3=0;
+ 105   1                      //其他数据量的设定
+ 106   1                      flag_white_balance = false;
+ 107   1                      flag_check_r = true;
+ 108   1                      flag_check_b = false;
+ 109   1                      flag_check_g = false;
+ 110   1                      int_count=0;//计数255
+ 111   1                      t0_count=0;//计数red滤波器时定时器溢出数
+ 112   1                      TH0 = 0x0ff; //定时器时间初值,溢出时间为0.1ms
+ 113   1                      TL0 = 0x0a3;
+ 114   1                      ss=1;//P2.6信号测试口
+ 115   1                      //开启中断和计数
+ 116   1                      EX1=1;//外部0中断开启
+ 117   1                      EA=1;//总中断开启
+C51 COMPILER V9.00   颜色识别                                                              08/23/2019 17:37:20 PAGE 3   
+
+ 118   1                      TR0=1;//定时器0启动定时
+ 119   1                      while(t0_count_r!=t0_count);//等待红色滤波器时间基准到
+ 120   1                      
+ 121   1                      int_count_r = int_count;//时间基准到脉冲数计数值
+ 122   1                      datal = int_count_r;
+ 123   1                      datah = int_count_r>>8;
+ 124   1                      
+ 125   1                      send_char(datah);
+ 126   1                      send_char(datal);
+ 127   1      
+ 128   1                      //选通蓝色滤波器
+ 129   1                      S2=0;
+ 130   1                      S3=1;
+ 131   1                      //其他数据量的设定
+ 132   1                      flag_white_balance = false;
+ 133   1                      flag_check_r = false;
+ 134   1                      flag_check_b = true;
+ 135   1                      flag_check_g = false;
+ 136   1                      int_count=0;//计数255
+ 137   1                      t0_count=0;//计数red滤波器时定时器溢出数
+ 138   1                      TH0 = 0x0ff; //定时器时间初值,溢出时间为0.1ms
+ 139   1                      TL0 = 0x0a3;
+ 140   1                      ss=1;//P2.6信号测试口
+ 141   1                      //开启中断和计数
+ 142   1                      EX1=1;//外部0中断开启
+ 143   1                      //EA=1;//总中断开启
+ 144   1                      TR0=1;//定时器0启动定时
+ 145   1                      while(t0_count_b!=t0_count);//等待蓝色滤波器时间基准到
+ 146   1                      
+ 147   1                      int_count_b = int_count;//时间基准到脉冲数计数值
+ 148   1                      datal = int_count_b;
+ 149   1                      datah = int_count_b>>8;
+ 150   1                      
+ 151   1                      send_char(datah);
+ 152   1                      send_char(datal);
+ 153   1                      
+ 154   1                      //选通绿色滤波器
+ 155   1                      S2=1;
+ 156   1                      S3=1;
+ 157   1                      //其他数据量的设定
+ 158   1                      flag_white_balance = false;
+ 159   1                      flag_check_r = false;
+ 160   1                      flag_check_b = false;
+ 161   1                      flag_check_g = true;
+ 162   1                      int_count=0;//计数255
+ 163   1                      t0_count=0;//计数red滤波器时定时器溢出数
+ 164   1                      TH0 = 0x0ff; //定时器时间初值,溢出时间为0.1ms
+ 165   1                      TL0 = 0x0a3;
+ 166   1                      ss=1;//P2.6信号测试口
+ 167   1                      //开启中断和计数
+ 168   1                      EX1=1;//外部0中断开启
+ 169   1                      //EA=1;//总中断开启
+ 170   1                      TR0=1;//定时器0启动定时
+ 171   1                      while(t0_count_g!=t0_count);//等待绿色滤波器时间基准到
+ 172   1                      
+ 173   1                      int_count_g = int_count;//时间基准到脉冲数计数值
+ 174   1                      datal = int_count_g;
+ 175   1                      datah = int_count_g>>8;
+ 176   1                      
+ 177   1                      send_char(datah);
+ 178   1                      send_char(datal);
+ 179   1                      
+C51 COMPILER V9.00   颜色识别                                                              08/23/2019 17:37:20 PAGE 4   
+
+ 180   1                      //关闭电源
+ 181   1                      S0=0;
+ 182   1                      S1=0;
+ 183   1                      //关闭LED灯
+ 184   1                      LED = 0;
+ 185   1                      //关总中断
+ 186   1                      EA=0;
+ 187   1                      //while(1);
+ 188   1                      
+ 189   1      }
+ 190          //白平衡
+ 191          void color_white_balance()
+ 192          {
+ 193   1                      T0_INIT();
+ 194   1                      INT1_INIT();
+ 195   1                      flag_white_balance = true;
+ 196   1                      flag_check_r = false;
+ 197   1                      flag_check_b = false;
+ 198   1                      flag_check_g = false;
+ 199   1                      //选定输出比例因子为1 ：1
+ 200   1                      S0=1;
+ 201   1                      S1=1;
+ 202   1                      //点亮LED灯
+ 203   1                      LED=1;
+ 204   1              
+ 205   1                      //选通红色滤波器
+ 206   1                      S2=0;
+ 207   1                      S3=0;
+ 208   1                      //其他数据量的设定
+ 209   1                      int_count=0;//计数255
+ 210   1                      t0_count=0;//计数red滤波器时定时器溢出数
+ 211   1                      TH0 = 0x0ff; //定时器时间初值,溢出时间为0.1ms
+ 212   1                      TL0 = 0x0a3;
+ 213   1                      ss=1;//P2.6信号测试口
+ 214   1                      //开启中断和计数
+ 215   1                      EX1=1;//外部0中断开启
+ 216   1                      EA=1;//总中断开启
+ 217   1                      TR0=1;//定时器0启动定时
+ 218   1                      while(255!=int_count);//计数255到
+ 219   1                      
+ 220   1                      t0_count_r = t0_count;
+ 221   1                      datal = t0_count_r;
+ 222   1                      datah = t0_count_r>>8;
+ 223   1                      
+ 224   1                      send_char(datah);
+ 225   1                      send_char(datal);
+ 226   1                      
+ 227   1                      //选通蓝色滤波器
+ 228   1                      S2=0;
+ 229   1                      S3=1;
+ 230   1                      //其他数据量的设定
+ 231   1                      int_count=0;//计数255
+ 232   1                      t0_count=0;//计数red滤波器时定时器溢出数
+ 233   1                      TH0 = 0x0ff; //定时器时间初值,溢出时间为0.1ms
+ 234   1                      TL0 = 0x0a3;
+ 235   1                      ss=1;//P2.6信号测试口
+ 236   1                      //开启中断和计数
+ 237   1                      EX1=1;//外部0中断开启
+ 238   1                      //EA=1;//总中断开启
+ 239   1                      TR0=1;//定时器0启动定时
+ 240   1                      while(255!=int_count);//计数255到
+ 241   1                      
+C51 COMPILER V9.00   颜色识别                                                              08/23/2019 17:37:20 PAGE 5   
+
+ 242   1                      t0_count_b = t0_count;
+ 243   1                      datal = t0_count_b;
+ 244   1                      datah = t0_count_b>>8;
+ 245   1                      
+ 246   1                      send_char(datah);
+ 247   1                      send_char(datal);
+ 248   1                      
+ 249   1                      //选通绿色滤波器
+ 250   1                      S2=1;
+ 251   1                      S3=1;
+ 252   1                      //其他数据量的设定
+ 253   1                      int_count=0;//计数255
+ 254   1                      t0_count=0;//计数red滤波器时定时器溢出数
+ 255   1                      TH0 = 0x0ff; //定时器时间初值,溢出时间为0.1ms
+ 256   1                      TL0 = 0x0a3;
+ 257   1                      ss=1;//P2.6信号测试口
+ 258   1                      //开启中断和计数
+ 259   1                      EX1=1;//外部0中断开启
+ 260   1                      //EA=1;//总中断开启
+ 261   1                      TR0=1;//定时器0启动定时
+ 262   1                      while(255!=int_count);//计数255到
+ 263   1                      
+ 264   1                      t0_count_g = t0_count;
+ 265   1                      datal = t0_count_g;
+ 266   1                      datah = t0_count_g>>8;
+ 267   1                      
+ 268   1                      send_char(datah);
+ 269   1                      send_char(datal);
+ 270   1                      
+ 271   1                      //关闭电源
+ 272   1                      S0=0;
+ 273   1                      S1=0;
+ 274   1                      //关闭LED灯
+ 275   1                      LED = 0;
+ 276   1                      //关总中断
+ 277   1                      EA=0;
+ 278   1                      //while(1);
+ 279   1      
+ 280   1      }
+ 281          //外部中断1中断服务函数
+ 282          void it_INT1(void) interrupt 2 
+ 283          { 
+ 284   1              IE1 = 0; 
+ 285   1              int_count++;//脉冲数计数
+ 286   1              if(flag_white_balance == true)
+ 287   1              {
+ 288   2                              if(255==int_count)
+ 289   2                              {
+ 290   3                                      EX1=0;
+ 291   3                                      TR0=0;
+ 292   3                                      ss=0;//P2.6信号测试口
+ 293   3                              }
+ 294   2              }
+ 295   1              
+ 296   1              tes = ~tes;
+ 297   1              
+ 298   1      }
+ 299          //定时器0中断服务函数
+ 300          void it_timer0(void) interrupt 1 
+ 301          { 
+ 302   1              TF0 = 0; 
+ 303   1      
+C51 COMPILER V9.00   颜色识别                                                              08/23/2019 17:37:20 PAGE 6   
+
+ 304   1              TH0 = 0x0ff; 
+ 305   1              TL0 = 0x0a3;
+ 306   1              t0_count++;//定时器溢出数计数
+ 307   1              if(flag_check_r == true)
+ 308   1              {
+ 309   2                              if(t0_count_r==t0_count)//与白平衡基准时间一致
+ 310   2                              {
+ 311   3                                      EX1=0;
+ 312   3                                      TR0=0;
+ 313   3                                      ss=0;//P2.6信号测试口
+ 314   3                              }
+ 315   2              }
+ 316   1              if(flag_check_b == true)
+ 317   1              {
+ 318   2                              if(t0_count_b==t0_count)//与白平衡基准时间一致
+ 319   2                              {
+ 320   3                                      EX1=0;
+ 321   3                                      TR0=0;
+ 322   3                                      ss=0;//P2.6信号测试口
+ 323   3                              }
+ 324   2              }
+ 325   1              if(flag_check_g == true)
+ 326   1              {
+ 327   2                              if(t0_count_g==t0_count)//与白平衡基准时间一致
+ 328   2                              {
+ 329   3                                      EX1=0;
+ 330   3                                      TR0=0;
+ 331   3                                      ss=0;//P2.6信号测试口
+ 332   3                              }
+ 333   2              }
+ 334   1                      
+ 335   1      }
+ 336          
+ 337          //主函数
+ 338          void main(void)
+ 339          {
+ 340   1                      init_9600();
+ 341   1                      tes=0;
+ 342   1                      ss=0;
+ 343   1                      delaynms(1000);
+ 344   1                      color_white_balance();//白平衡
+ 345   1                      delaynms(1000);
+ 346   1                      while(1)
+ 347   1                      {
+ 348   2                              color_check();//颜色检测
+ 349   2                              send_char(0xff);
+ 350   2                              delaynms(3000);
+ 351   2                              //while(1);
+ 352   2                      }
+ 353   1      }
+*** WARNING C290 IN LINE 63 OF 颜色识别.C: missing return value
+*** WARNING C290 IN LINE 71 OF 颜色识别.C: missing return value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    630    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     22    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.00   颜色识别                                                              08/23/2019 17:37:20 PAGE 7   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

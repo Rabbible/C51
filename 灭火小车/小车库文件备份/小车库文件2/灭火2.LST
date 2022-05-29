@@ -1,0 +1,51 @@
+C51 COMPILER V9.00   灭火2                                                                 08/25/2019 14:18:24 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE 灭火2
+OBJECT MODULE PLACED IN 灭火2.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 灭火2.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>    //包含单片机寄存器的头文件
+   2          #include<zhixian.h>
+   3          #include<miehuo.h>
+   4          #define uint unsigned int //宏定义uint 为unsigned int类型
+   5          
+   6          void main()
+   7          { 
+   8   1              if((SIG1==0)&&(SIG2==0))        //第一个角落前进灭火并回家(最后是死循环)
+   9   1              OF1J();                                 
+  10   1              while(1);
+  11   1      //      Right(11,200);                          /* 19 ！ */
+  12   1      //      if((SIG1==0)&&(SIG2==0))        
+  13   1      //      2F2J();                                 
+  14   1      //
+  15   1      //      Right(11,200);                          /* 20 ！ */
+  16   1      //      if((SIG1==0)&&(SIG2==0))        
+  17   1      //      3F3J();                                 
+  18   1      //      
+  19   1      //      Right(33,200);
+  20   1      //      YRC(x);                 /* 15 ! */
+  21   1      //      Left(33,200);   //进房间的相反量
+  22   1      //      YRQ(0x28);
+  23   1      //      Forward(48,200); /* 16 !确认 */
+  24   1      //      Right(33,200);
+  25   1      //      //进第二个房间
+  26   1      
+  27   1      }
+*** WARNING C291 IN LINE 43 OF 灭火2.C: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2564    ----
+   CONSTANT SIZE    =     50    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15     100
+   IDATA SIZE       =   ----      44
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"huoyan.obj" 
+TO "huoyan" 
+RAMSIZE(256) 

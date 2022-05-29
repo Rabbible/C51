@@ -1,0 +1,77 @@
+C51 COMPILER V9.00   房糭1                                                                 08/24/2019 15:57:40 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE 房糭1
+OBJECT MODULE PLACED IN 房间1.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 房间1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>    //包含单片机寄存器的头文件
+   2          #include<zhixian.h>
+   3          #include<fan.h>
+   4          
+   5          void main()
+   6          {       
+   7   1              uint x=0x32,i=0;         /* x是沿墙走跳出循环的距离 */
+   8   1              SIG=1;                  //先让电机静止
+   9   1              SIG1=1;
+  10   1              SIG2=1;
+  11   1              T0_INIT();              /*超声波的定义*/
+  12   1              INT1_INIT();
+  13   1              trig = 0;
+  14   1              
+  15   1      //      YRQ(x);                   // 沿右墙走循环函数
+  16   1      //      Forward(48,200);
+  17   1      //      Right(33,200);          
+  18   1      //      while((DRZS()<0x30)||(DLZS()<0x30))                     //直走直到右边感应到墙，考虑上微偏距离
+  19   1      //      Forward(3,200);
+  20   1      
+  21   1                                              /* 房间第一个角落的墙 */
+  22   1              YLC(162);       
+  23   1              Right(33,200);                  //直走直到右边感应到墙，考虑上微偏距离
+  24   1              Forward(130,200);
+  25   1      
+  26   1              for(i=0;i<3;i++)
+  27   1              {
+  28   2              if((SIG1==0)&&(SIG2==0)) break;
+  29   2              delay_nms(2000);
+  30   2              Right(11,200);
+  31   2              }
+  32   1      
+  33   1              if(i=0) YLC(122);
+*** WARNING C276 IN LINE 33 OF 房间1.C: constant in condition expression
+  34   1              SIG=0;
+  35   1      //      YLC(x);                         /* 房间第二个角落的墙 */
+  36   1      //      Right(35,200);
+  37   1      //
+  38   1      //      x=145;                          /* 房间第三个角落的墙 */
+  39   1      //      YLC(x);
+  40   1      //      Right(33,200);                           // 145 ??
+  41   1      //      YLC(x);                         /* 房间第四个角落的墙 */
+  42   1      //      Right(35,200);
+  43   1      //
+  44   1      //      YLC(x);
+  45   1      //      Left(35,200);
+  46   1      //      YRC(x);
+  47   1      //      Left(35,200);
+  48   1      //      YRQ(x);
+  49   1              while(1);
+  50   1      }
+*** WARNING C291 IN LINE 43 OF 房间1.C: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+C51 COMPILER V9.00   房糭1                                                                 08/24/2019 15:57:40 PAGE 2   
+
+   CODE SIZE        =   2536    ----
+   CONSTANT SIZE    =     50    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15     104
+   IDATA SIZE       =   ----      44
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

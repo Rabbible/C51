@@ -1,0 +1,40 @@
+C51 COMPILER V9.00   SHI                                                                   08/17/2019 15:55:26 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE SHI
+OBJECT MODULE PLACED IN shi.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE shi.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>    //包含单片机寄存器的头文件
+   2          #include<duoji.h>
+   3          #include<AD.h>
+   4          
+   5          void main()
+   6          {
+   7   1      // -----  直走一段距离存距离数据   ------       
+   8   1              Forward(20,200);
+   9   1      //      ISendByte(PCF8591,0x41);
+  10   1      //      D[0]=IRcvByte(PCF8591);
+  11   1      //      send_char(D[0]);
+  12   1              while(1);
+  13   1      
+  14   1      // -----  比较知趋势（小车偏移状态）   ------
+  15   1              
+  16   1      // -----  舵机反应趋势   ------ 
+  17   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    727    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =     32    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     70      20
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

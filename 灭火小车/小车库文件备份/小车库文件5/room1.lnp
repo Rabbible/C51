@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"room1.obj" 
+TO "room1" 
+RAMSIZE(256) 

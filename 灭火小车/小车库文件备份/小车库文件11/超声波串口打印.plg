@@ -1,0 +1,138 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\Ð¡³µ¿âÎÄ¼þ\³¬Éù²¨´®¿Ú´òÓ¡.uvproj
+Project File Date:  08/25/2019
+
+<h2>Output:</h2>
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+CHAOSHENGBO+.H(36): warning C206: 'send_char': missing function-prototype
+CHAOSHENGBO+.H(36): error C267: 'send_char': requires ANSI-style prototype
+Ä¿±êÎ´´´½¨
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+³¬Éù²¨²â¾à´®¿Ú´òÓ¡.C(13): error C193: '=': illegal type conversion from/to 'void'
+Ä¿±êÎ´´´½¨
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+³¬Éù²¨²â¾à´®¿Ú´òÓ¡.C(6): warning C280: 'a': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CSB?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=29.0 xdata=0 code=1232
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 4 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CSB?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1232
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 3 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_NMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1264
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 3 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_NMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1195
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 3 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_NMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1195
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 3 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_NMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1195
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 3 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_NMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1195
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 3 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_NMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1195
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 3 Warning(s).
+Build target 'Ä¿±ê 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨²â¾à´®¿Ú´òÓ¡.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_NMS?³¬É_²¨²_¾à´®¿Ú´òÓ¡
+Program Size: data=27.0 xdata=0 code=1195
+creating hex file from "³¬Éù²¨´®¿Ú´òÓ¡"...
+"³¬Éù²¨´®¿Ú´òÓ¡" - 0 Error(s), 3 Warning(s).

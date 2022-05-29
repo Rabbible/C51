@@ -1,0 +1,101 @@
+C51 COMPILER V9.00   房糭1                                                                 08/10/2019 13:48:32 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE 房糭1
+OBJECT MODULE PLACED IN 房间1.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE 房间1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<DA-AD.C>
+   2          #define uint unsigned int //宏定义uint 为unsigned int类型
+   3          #define uchar unsigned char //宏定义uchar 为unsigned char 类型
+   4          sbit P1_2 = P1^2;//定义舵机PWM控制端口
+   5          sbit P1_3 = P1^3;//定义舵机PWM控制端口
+   6          
+   7          void delay_nus(unsigned int i)  //延时:i>=12 ,i的最小延时单12 us
+   8          { 
+   9   1        i=i/10;
+  10   1        while(--i);
+  11   1      }   
+  12          
+  13          void delay_nms(unsigned int n)  //延时n ms
+  14          { 
+  15   1        n=n+1;
+  16   1        while(--n)  
+  17   1        delay_nus(900);         //延时 1ms,同时进行补偿
+  18   1      }
+  19          void Forward(void)//向前行走
+  20          {       int i;
+  21   1          for(i=1;i<=65;i++)
+  22   1              {
+  23   2          P1_3=1;
+  24   2              delay_nus(1700);
+  25   2          P1_3=0;
+  26   2              P1_2=1;
+  27   2              delay_nus(1300);
+  28   2              P1_2=0;
+  29   2              delay_nms(20);
+  30   2              }
+  31   1      }
+  32          void Right_Turn(void)//向右转
+  33          {
+  34   1          int i;
+  35   1          for(i=1;i<=26;i++)//右转脉冲计数循环
+  36   1              {
+  37   2                      P1_3=1;
+  38   2                      delay_nus(1300);
+  39   2               P1_3=0;
+  40   2                      P1_2=1;
+  41   2                      delay_nus(1300);
+  42   2                      P1_2=0;
+  43   2                      delay_nms(20);
+  44   2              }
+  45   1      }
+  46          void Left_Turn(void)//向左转
+  47          {
+  48   1          int i;
+  49   1          for(i=1;i<=26;i++)//左转脉冲计数循环
+  50   1              {
+  51   2                      P1_3=1;
+  52   2                      delay_nus(1700);
+  53   2              P1_3=0;
+  54   2                      P1_2=1;
+  55   2                      delay_nus(1700);
+C51 COMPILER V9.00   房糭1                                                                 08/10/2019 13:48:32 PAGE 2   
+
+  56   2                      P1_2=0;
+  57   2                      delay_nms(20);
+  58   2              }
+  59   1      }
+  60          void Backward(void)//后退
+  61          {
+  62   1          int i;
+  63   1          for(i=1;i<=65;i++)//后退脉冲计数循环
+  64   1              {
+  65   2                      P1_3=1;
+  66   2                      delay_nus(1300);
+  67   2               P1_3=0;
+  68   2                      P1_2=1;
+  69   2                      delay_nus(1700);
+  70   2                      P1_2=0;
+  71   2                      delay_nms(20);
+  72   2              }
+  73   1      }
+  74          
+  75            
+  76          
+  77          main()
+  78          {  
+*** ERROR C231 IN LINE 78 OF 房间1.C: 'main': redefinition
+  79   1          asd();
+  80   1              while(1)
+  81   1              {       
+  82   2              if(D[0]>55) Right_Turn(); 
+  83   2              else  Forward();
+  84   2              }
+  85   1      }
+  86          
+  87          
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
