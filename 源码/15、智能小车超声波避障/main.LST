@@ -1,0 +1,384 @@
+C51 COMPILER V8.08   MAIN                                                                  06/11/2017 15:19:10 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*
+   2          * 【编写时间】： 2016年12月9日
+   3          * 【作    者】： 清翔电子:03
+   4          * 【版    本】： 1.6
+   5          * 【网    站】： http://www.qxmcu.com/ 
+   6          * 【淘宝店铺】： http://qxmcu.taobao.com/ (直销店)
+   7          * 【实验平台】： QX-MCS51 单片机开发板 & QX-A51智能小车
+   8          * 【外部晶振】： 11.0592mhz     
+   9          * 【主控芯片】： STC89C52
+  10          * 【编译环境】： Keil μVisio4
+  11          * ********************************【接线说明】********************************
+  12                       以下"A_"表示智能小车底板~~~"B_"表示开发板     
+  13          *开发板供电线  ：A_J5-VCC~~~B_VCC或5V0    A_J6-GND~~~B_GND （一共使用2根杜邦线）
+  14          *电机控制线    ：A_J10-P1.2至P1.7 对应接到B_P1.2至P1.7 （一共使用6根杜邦线）
+  15          *超声波模块反馈线：A_J2-P20~~~B_P20    A_J2-P21~~~B_P21 （一共使用2根杜邦线）
+  16                                  使用前请先以正确方式接上超声波模块与1602液晶
+  17          ******************************************************************************
+  18          * 【程序功能】：QX-A51智能小车超声波避障实验                                                                        
+  19          * 【使用说明】：接线无误后，烧写程序打开电源开、按下S2按键后蜂鸣器发出提示音1秒后启动小车
+  20          * 【注意事项】：避免小车撞向障碍物或小车轮子堵转，小车电压不能低于6V
+  21                                          此程序只做参考，实际运行效果需根据不同实验场地进行不同调试
+  22                                          使用前请插接上1602液晶。如果液晶上无显示字符，请顺时针调节液晶对比度电位器。
+  23                                          如果显示字符过浓，请逆时针调节液晶对比度电位器
+  24                                          ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
+  25                  ☆☆☆☆☆☆☆☆☆☆    如果没有使用1602液晶，请把P07接到GND上，否则无法运行☆☆☆☆☆☆☆☆☆☆
+  26                                          ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
+  27          **********************************************************************************/
+  28          #include <reg52.h> //51头文件
+  29          #include <intrins.h>   //包含nop等系统函数
+  30          #include <..\CONFIG\QXA51.h>//QX-A51智能小车配置文件
+  31          
+  32          sbit DU = P2^6;//数码管段选
+  33          sbit RX = P2^0;//ECHO超声波模块回响端
+  34          sbit TX = P2^1;//TRIG超声波模块触发端
+  35          sbit LCM_RW = P3^6;     //定义LCD引脚
+  36          sbit LCM_RS = P3^5;
+  37          sbit LCM_E = P3^4;
+  38          #define LCM_Data  P0   //定义液晶屏数据口
+  39          #define Busy    0x80   //用于检测LCM状态字中的Busy标识
+  40          
+  41          unsigned char pwm_left_val = 100;//左电机占空比值 取值范围0-170，0最快
+  42          unsigned char pwm_right_val = 110;//右电机占空比值取值范围0-170 ,0最快
+  43          unsigned char pwm_t;//周期
+  44          unsigned int  time = 0;//传输时间
+  45          unsigned long S = 0;//距离
+  46          bit      flag = 0;//超出测量范围标志位
+  47          
+  48          unsigned char code Range[] ="==Range Finder==";//LCD1602显示格式
+  49          unsigned char code ASCII[13] = "0123456789.-M";
+  50          unsigned char code table[]="Distance:000.0cm";
+  51          unsigned char code table1[]="!!! Out of range";
+  52          unsigned char disbuff[4] = { 0,0,0,0};//距离显示缓存
+  53          
+  54          void delay(unsigned int z)//毫秒级延时
+  55          {
+C51 COMPILER V8.08   MAIN                                                                  06/11/2017 15:19:10 PAGE 2   
+
+  56   1              unsigned int x,y;
+  57   1              for(x = z; x > 0; x--)
+  58   1                      for(y = 114; y > 0 ; y--);
+  59   1      }
+  60          
+  61          void Delay10us(unsigned char i)         //10us延时函数 启动超声波模块时使用
+  62          { 
+  63   1         unsigned char j; 
+  64   1              do{ 
+  65   2                      j = 10; 
+  66   2                      do{ 
+  67   3                              _nop_(); 
+  68   3                      }while(--j); 
+  69   2              }while(--i); 
+  70   1      }
+  71           
+  72          void cmg88()//关数共阴极码管
+  73          {
+  74   1          DU=1;         
+  75   1          P0=0X00;//共阴极数码管阳极给低电平，全部熄灭
+  76   1          DU=0;
+  77   1      } 
+  78          
+  79          /************************************LCD1602液晶屏驱动函数************************************************
+             -/
+  80          //*******************读状态*************************//
+  81          unsigned char ReadStatusLCM(void)
+  82          {
+  83   1              LCM_Data = 0xFF; 
+  84   1              LCM_RS = 0;
+  85   1              Delay10us(1); 
+  86   1              LCM_RW = 1;
+  87   1              Delay10us(1); 
+  88   1              do{
+  89   2              LCM_E = 0;
+  90   2              Delay10us(1); 
+  91   2              LCM_E = 0;
+  92   2              Delay10us(1); 
+  93   2              LCM_E = 1;
+  94   2              Delay10us(1); 
+  95   2              }
+  96   1              while (LCM_Data & Busy); //检测忙信号
+  97   1              return(LCM_Data);
+  98   1      }
+  99          
+ 100          /****************写数据************************/
+ 101          void WriteDataLCM(unsigned char WDLCM) 
+ 102          {
+ 103   1              ReadStatusLCM(); //检测忙
+ 104   1              LCM_Data = WDLCM;
+ 105   1              LCM_RS = 1;
+ 106   1              Delay10us(1); 
+ 107   1              LCM_RW = 0;
+ 108   1              Delay10us(1); 
+ 109   1              LCM_E = 0; //若晶振速度太高可以在这后加小的延时
+ 110   1              Delay10us(1); 
+ 111   1              LCM_E = 0; //延时
+ 112   1              Delay10us(1); 
+ 113   1              LCM_E = 1;
+ 114   1              Delay10us(1); 
+ 115   1      }
+ 116          
+C51 COMPILER V8.08   MAIN                                                                  06/11/2017 15:19:10 PAGE 3   
+
+ 117          //****************写指令*************************//
+ 118          void WriteCommandLCM(unsigned char WCLCM,BuysC) //BuysC为0时忽略忙检测
+ 119          {
+ 120   1              if (BuysC) ReadStatusLCM(); //根据需要检测忙
+ 121   1              LCM_Data = WCLCM;
+ 122   1              LCM_RS = 0;
+ 123   1              Delay10us(1); 
+ 124   1              LCM_RW = 0;     
+ 125   1              Delay10us(1); 
+ 126   1              LCM_E = 0;
+ 127   1              Delay10us(1); 
+ 128   1              LCM_E = 0;
+ 129   1              Delay10us(1); 
+ 130   1              LCM_E = 1;
+ 131   1              Delay10us(1); 
+ 132   1      }
+ 133          
+ 134          
+ 135          
+ 136          //*******************LCM初始化**********************//
+ 137          void LCMInit(void) 
+ 138          {
+ 139   1              LCM_Data = 0;
+ 140   1              WriteCommandLCM(0x38,0); //三次显示模式设置，不检测忙信号
+ 141   1              delay(5); 
+ 142   1              WriteCommandLCM(0x38,0);
+ 143   1              delay(5); 
+ 144   1              WriteCommandLCM(0x38,0);
+ 145   1              delay(5); 
+ 146   1      
+ 147   1              WriteCommandLCM(0x38,1); //显示模式设置,开始要求每次检测忙信号
+ 148   1              WriteCommandLCM(0x08,1); //关闭显示
+ 149   1              WriteCommandLCM(0x01,1); //显示清屏
+ 150   1              WriteCommandLCM(0x06,1); // 显示光标移动设置
+ 151   1              WriteCommandLCM(0x0c,1); // 显示开及光标设置
+ 152   1      }
+ 153          
+ 154          //*********************按指定位置显示一个字符***********************//
+ 155          void DisplayOneChar(unsigned char X, unsigned char Y, unsigned char DData)
+ 156          {
+ 157   1              Y &= 0x1;
+ 158   1              X &= 0xF; //限制X不能大于15，Y不能大于1
+ 159   1              if (Y) X |= 0x40; //当要显示第二行时地址码+0x40;
+ 160   1              X |= 0x80; //算出指令码
+ 161   1              WriteCommandLCM(X, 1); //发命令字
+ 162   1              WriteDataLCM(DData); //发数据
+ 163   1      }
+ 164          
+ 165          //**********************按指定位置显示一串字符*************************//
+ 166          void DisplayListChar(unsigned char X, unsigned char Y, unsigned char code *DData)
+ 167          {
+ 168   1              unsigned char ListLength;
+ 169   1      
+ 170   1        ListLength = 0;
+ 171   1              Y &= 0x1;
+ 172   1              X &= 0xF; //限制X不能大于15，Y不能大于1
+ 173   1              while (DData[ListLength]>0x19) //若到达字串尾则退出
+ 174   1                      {
+ 175   2                              if (X <= 0xF) //X坐标应小于0xF
+ 176   2                                      {
+ 177   3                                              DisplayOneChar(X, Y, DData[ListLength]); //显示单个字符
+ 178   3                                              ListLength++;
+C51 COMPILER V8.08   MAIN                                                                  06/11/2017 15:19:10 PAGE 4   
+
+ 179   3                                              X++;
+ 180   3                                      }
+ 181   2                      }
+ 182   1      }
+ 183          
+ 184          
+ 185          /***************************************************************************/
+ 186          
+ 187          /*定时器0中断*/
+ 188          void timer0() interrupt 1       //T0中断用来计数器溢出,超过测距范围
+ 189          {
+ 190   1              flag=1;                                                  //中断溢出标志                  
+ 191   1      }
+ 192          void  StartModule()                      //启动超声波模块
+ 193          {
+ 194   1                TX=1;                                      //启动一次模块
+ 195   1            Delay10us(2);
+ 196   1                TX=0;
+ 197   1      }
+ 198                  
+ 199          /*小车前进*/
+ 200          void forward()
+ 201          {
+ 202   1              left_motor_go; //左电机前进
+ 203   1              right_motor_go; //右电机前进
+ 204   1      }
+ 205          
+ 206          /*PWM控制使能 小车后退*/
+ 207          void backward()
+ 208          {
+ 209   1              left_motor_back; //左电机后退
+ 210   1              right_motor_back; //右电机后退  
+ 211   1      }
+ 212          
+ 213          /*小车停止*/
+ 214          void stop()
+ 215          {
+ 216   1              right_motor_stops;//右电机停止
+ 217   1              left_motor_stops; //左电机停止  
+ 218   1      }
+ 219          
+ 220          /*PWM控制使能 小车高速左转*/
+ 221          void left_rapidly()
+ 222          {
+ 223   1              left_motor_back;
+ 224   1              right_motor_go; 
+ 225   1      }
+ 226          
+ 227          /*定时器1中断输出PWM信号*/
+ 228          void timer1() interrupt 3
+ 229          {
+ 230   1              pwm_t++;//周期计时加
+ 231   1              if(pwm_t == 255)
+ 232   1                      pwm_t = EN1 = EN2 = 0;
+ 233   1              if(pwm_left_val == pwm_t)//左电机占空比 
+ 234   1                      EN1 = 1;                
+ 235   1              if(pwm_right_val == pwm_t)//右电机占空比
+ 236   1                      EN2 = 1;                         
+ 237   1      }
+ 238          /*判断S2是否被按下*/
+ 239          void keyscan()
+ 240          {
+C51 COMPILER V8.08   MAIN                                                                  06/11/2017 15:19:10 PAGE 5   
+
+ 241   1              for(;;) //死循环
+ 242   1              {
+ 243   2                      if(key_s2 == 0)// 实时检测S2按键是否被按下
+ 244   2                      {
+ 245   3                              delay(5); //软件消抖
+ 246   3                              if(key_s2 == 0)//再检测S2是否被按下
+ 247   3                              {
+ 248   4                                      while(!key_s2);//松手检测
+ 249   4                                      beep = 0;       //使能有源蜂鸣器
+ 250   4                                      delay(200);//200毫秒延时
+ 251   4                                      beep = 1;       //关闭有源蜂鸣器
+ 252   4                                      break;          //退出FOR死循环
+ 253   4                              }
+ 254   3                      }
+ 255   2              }       
+ 256   1      }
+ 257          
+ 258          /*计算超声波所测距离并显示*/
+ 259          void Conut(void)
+ 260          {
+ 261   1              time=TH0*256+TL0;
+ 262   1              TH0=0;
+ 263   1              TL0=0;
+ 264   1              
+ 265   1              S=(float)(time*1.085)*0.17;     //算出来是MM
+ 266   1              if((S>=7000)||flag==1) //超出测量范围
+ 267   1              {        
+ 268   2                      flag=0;
+ 269   2                      DisplayListChar(0, 1, table1);//1602显示数组table1
+ 270   2              }
+ 271   1              else
+ 272   1              {
+ 273   2                      disbuff[0]=S/1000; //距离数值千位
+ 274   2                      disbuff[1]=S%1000/100;//距离数值百位
+ 275   2                      disbuff[2]=S%100/10;//距离数值十位
+ 276   2                      disbuff[3]=S%10; //距离数值个位
+ 277   2                  DisplayListChar(0, 1, table); //显示：Distance:000.0cm
+ 278   2                  DisplayOneChar(9, 1, ASCII[disbuff[0]]); //显示千位
+ 279   2                  DisplayOneChar(10, 1, ASCII[disbuff[1]]);   
+ 280   2                  DisplayOneChar(11, 1, ASCII[disbuff[2]]);
+ 281   2              DisplayOneChar(12, 1, ASCII[10]);               //显示 .        
+ 282   2                  DisplayOneChar(13, 1, ASCII[disbuff[3]]);
+ 283   2              }
+ 284   1      }
+ 285          
+ 286          /*超声波避障*/
+ 287          void    Avoid()
+ 288          {
+ 289   1              if(S < 400)//设置避障距离 ，单位毫米    刹车距离
+ 290   1              {
+ 291   2                      beep = 0;//使能蜂鸣器
+ 292   2                      stop();//停车
+ 293   2                      backward();//后退
+ 294   2                      delay(100);//后退时间越长、距离越远。后退是为了留出车辆转向的空间
+ 295   2                      do{
+ 296   3                              left_rapidly();//高速左转
+ 297   3                              delay(90);//时间越长 转向角度越大，与实际行驶环境有关
+ 298   3                              stop();//停车
+ 299   3                              delay(100);//时间越长 停止时间越久长
+ 300   3      
+ 301   3                              StartModule();  //启动模块测距，再次判断是否
+ 302   3                              while(!RX);             //当RX（ECHO信号回响）为零时等待
+C51 COMPILER V8.08   MAIN                                                                  06/11/2017 15:19:10 PAGE 6   
+
+ 303   3                              TR0=1;                      //开启计数
+ 304   3                              while(RX);                      //当RX为1计数并等待
+ 305   3                              TR0=0;                          //关闭计数
+ 306   3                              Conut();                        //计算距离
+ 307   3                              }while(S < 280);//判断前面障碍物距离
+ 308   2                      beep = 1;//关闭蜂鸣器
+ 309   2              }
+ 310   1              else
+ 311   1              {
+ 312   2                      forward();//前进
+ 313   2              }       
+ 314   1      }
+ 315          
+ 316          void main()
+ 317          {
+ 318   1      
+ 319   1              
+ 320   1              cmg88();//关数码管
+ 321   1              LCMInit(); //LCM初始化
+ 322   1              delay(5);//延时片刻
+ 323   1      
+ 324   1              DisplayListChar(0, 0, Range);//1602第一行显示Range数组内容
+ 325   1              DisplayListChar(0, 1, table);//1602第二行显示table数组内容
+ 326   1              keyscan();//等待按下S2启动小车
+ 327   1              delay(1000);//延时1秒
+ 328   1              TMOD |= 0x20;//定时器1工作模式2,8位自动重装。用于产生PWM
+ 329   1              TMOD |= 0x01;//定时器0工作模块1,16位定时模式。T0用测ECH0脉冲长度
+ 330   1              TH1 = 220; //
+ 331   1              TL1 = 220; //100HZ T1
+ 332   1              TH0     = 0;
+ 333   1          TL0 = 0;//T0,16位定时计数用于记录ECHO高电平时间         
+ 334   1          ET1 = 1;//允许T1中断
+ 335   1              ET0 = 1;//允许T0中断
+ 336   1              TR1 = 1;//启动定时器1
+ 337   1              EA  = 1;//启动总中断
+ 338   1              
+ 339   1              while(1)
+ 340   1              {
+ 341   2                       StartModule(); //启动模块测距
+ 342   2                       while(!RX);            //当RX（ECHO信号回响）为零时等待
+ 343   2                       TR0=1;                     //开启计数
+ 344   2                       while(RX);                     //当RX为1计数并等待
+ 345   2                       TR0=0;                         //关闭计数
+ 346   2                   Conut();                   //计算距离
+ 347   2                       Avoid();                       //避障
+ 348   2                       delay(65);                     //测试周期不低于60MS              
+ 349   2              }
+ 350   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    851    ----
+   CONSTANT SIZE    =     64    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     13       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

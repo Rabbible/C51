@@ -1,0 +1,6 @@
+void delay(unsigned int z)//ºÁÃë¼¶ÑÓÊ±
+{
+	unsigned int x,y;
+	for(x = z; x > 0; x--)
+		for(y = 114; y > 0 ; y--);
+}

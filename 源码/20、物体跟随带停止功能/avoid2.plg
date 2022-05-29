@@ -1,0 +1,15 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+G:\公司产品资料\智能小车资料\A51_2WD\清翔电子_智能小车\5、小车程序源码\20、物体跟随带停止功能\avoid2.uvproj
+Project File Date:  12/13/2016
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=20.1 xdata=0 code=1062
+creating hex file from "avoid2"...
+"avoid2" - 0 Error(s), 0 Warning(s).

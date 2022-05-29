@@ -1,0 +1,17 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+G:\公司产品资料\智能小车资料\A51_2WD\清翔电子_智能小车\5、小车程序源码\19、寻迹避障二合一（遇障碍物停车）\QX_A51.uvproj
+Project File Date:  06/11/2017
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.C...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?BACKWARD?MAIN
+Program Size: data=20.1 xdata=0 code=1075
+creating hex file from "QX_A51"...
+"QX_A51" - 0 Error(s), 1 Warning(s).

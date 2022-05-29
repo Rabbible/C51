@@ -1,0 +1,170 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/11/2016  18:02:18  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE main.obj TO tracking1 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  tracking1 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         ?DT?MAIN
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     07F2H                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     002EH     UNIT         ?PR?MAIN?MAIN
+            CODE    08BAH     0025H     UNIT         ?PR?TIMER0?MAIN
+            CODE    08DFH     0009H     UNIT         ?PR?FORWARD?MAIN
+            CODE    08E8H     0007H     UNIT         ?PR?LEFT_RUN?MAIN
+            CODE    08EFH     0007H     UNIT         ?PR?RIGHT_RUN?MAIN
+            CODE    08F6H     0007H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   tracking1 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?FORWARD?MAIN
+  +--> ?PR?LEFT_RUN?MAIN
+  +--> ?PR?RIGHT_RUN?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  tracking1 (MAIN)
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/11/2016  18:02:18  PAGE 2
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:0008H         PUBLIC        pwm_left_val
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:088CH         PUBLIC        main
+  D:0009H         PUBLIC        pwm_t
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  B:0090H.4       PUBLIC        EN1
+  B:0090H.5       PUBLIC        EN2
+  B:0090H.2       PUBLIC        IN1
+  B:0090H.3       PUBLIC        IN2
+  B:00A8H.1       PUBLIC        ET0
+  B:0090H.6       PUBLIC        IN3
+  B:0090H.7       PUBLIC        IN4
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  C:08BAH         PUBLIC        timer0
+  B:0088H.4       PUBLIC        TR0
+  C:08EFH         PUBLIC        right_run
+  C:08E8H         PUBLIC        left_run
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.2       PUBLIC        right_led1
+  B:00B0H.3       PUBLIC        left_led1
+  C:08DFH         PUBLIC        forward
+  D:00D0H         PUBLIC        PSW
+  D:000AH         PUBLIC        pwm_right_val
+  -------         PROC          FORWARD
+  C:08DFH         LINE#         31
+  C:08DFH         LINE#         32
+  C:08DFH         LINE#         33
+  C:08E3H         LINE#         34
+  C:08E7H         LINE#         35
+  -------         ENDPROC       FORWARD
+  -------         PROC          LEFT_RUN
+  C:08E8H         LINE#         37
+  C:08E8H         LINE#         38
+  C:08E8H         LINE#         39
+  C:08EAH         LINE#         40
+  C:08EEH         LINE#         41
+  -------         ENDPROC       LEFT_RUN
+  -------         PROC          RIGHT_RUN
+  C:08EFH         LINE#         43
+  C:08EFH         LINE#         44
+  C:08EFH         LINE#         45
+  C:08F1H         LINE#         46
+  C:08F5H         LINE#         47
+  -------         ENDPROC       RIGHT_RUN
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/11/2016  18:02:18  PAGE 3
+
+
+  -------         PROC          TIMER0
+  C:08BAH         LINE#         51
+  C:08BEH         LINE#         53
+  C:08C0H         LINE#         54
+  C:08C5H         LINE#         55
+  C:08CCH         LINE#         56
+  C:08D1H         LINE#         57
+  C:08D3H         LINE#         58
+  C:08D8H         LINE#         59
+  C:08DAH         LINE#         60
+  -------         ENDPROC       TIMER0
+  -------         PROC          MAIN
+  C:088CH         LINE#         61
+  C:088CH         LINE#         62
+  C:088CH         LINE#         63
+  C:088FH         LINE#         64
+  C:0892H         LINE#         65
+  C:0895H         LINE#         66
+  C:0897H         LINE#         67
+  C:0899H         LINE#         68
+  C:089BH         LINE#         69
+  C:089BH         LINE#         70
+  C:089BH         LINE#         72
+  C:08A1H         LINE#         73
+  C:08A1H         LINE#         74
+  C:08A4H         LINE#         75
+  C:08A6H         LINE#         77
+  C:08A6H         LINE#         78
+  C:08ACH         LINE#         79
+  C:08ACH         LINE#         80
+  C:08AFH         LINE#         81
+  C:08AFH         LINE#         82
+  C:08B5H         LINE#         83
+  C:08B5H         LINE#         84
+  C:08B8H         LINE#         85
+  C:08B8H         LINE#         86
+  C:08B8H         LINE#         87
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0073H BYTE ( 5%) *
+******************************************************************************
+
+Program Size: data=12.0 xdata=0 code=259
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

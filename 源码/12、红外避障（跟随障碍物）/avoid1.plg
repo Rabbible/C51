@@ -1,0 +1,15 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+D:\清翔电子_智能小车\4、小车视频教程\智能小车课程程序\12、红外避障（跟随障碍物）\avoid2.uvproj
+Project File Date:  12/11/2016
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=12.0 xdata=0 code=321
+creating hex file from "avoid2"...
+"avoid2" - 0 Error(s), 0 Warning(s).

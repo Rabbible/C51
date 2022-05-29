@@ -1,0 +1,204 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/13/2016  11:06:34  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE main.obj TO avoid2 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  avoid2 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         ?DT?MAIN
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     07F2H                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     004EH     UNIT         ?PR?MAIN?MAIN
+            CODE    08DAH     0025H     UNIT         ?PR?TIMER0?MAIN
+            CODE    08FFH     001EH     UNIT         ?PR?_DELAY?MAIN
+            CODE    091DH     0009H     UNIT         ?PR?FORWARD?MAIN
+            CODE    0926H     0007H     UNIT         ?PR?LEFT_RUN?MAIN
+            CODE    092DH     0007H     UNIT         ?PR?RIGHT_RUN?MAIN
+            CODE    0934H     0007H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   avoid2 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?_DELAY?MAIN
+  +--> ?PR?FORWARD?MAIN
+  +--> ?PR?RIGHT_RUN?MAIN
+  +--> ?PR?LEFT_RUN?MAIN
+
+
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/13/2016  11:06:34  PAGE 2
+
+
+SYMBOL TABLE OF MODULE:  avoid2 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:0008H         PUBLIC        pwm_left_val
+  D:00A8H         PUBLIC        IE
+  C:08FFH         PUBLIC        _delay
+  D:00B8H         PUBLIC        IP
+  B:00A0H.3       PUBLIC        beep
+  C:088CH         PUBLIC        main
+  D:0009H         PUBLIC        pwm_t
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  B:0090H.4       PUBLIC        EN1
+  B:0090H.5       PUBLIC        EN2
+  B:0090H.2       PUBLIC        IN1
+  B:0090H.3       PUBLIC        IN2
+  B:00A8H.1       PUBLIC        ET0
+  B:0090H.6       PUBLIC        IN3
+  B:0090H.7       PUBLIC        IN4
+  D:008CH         PUBLIC        TH0
+  B:00B0H.0       PUBLIC        key_s2
+  D:008AH         PUBLIC        TL0
+  C:08DAH         PUBLIC        timer0
+  B:0088H.4       PUBLIC        TR0
+  C:092DH         PUBLIC        right_run
+  C:0926H         PUBLIC        left_run
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.5       PUBLIC        right_led2
+  B:00B0H.4       PUBLIC        left_led2
+  C:091DH         PUBLIC        forward
+  D:00D0H         PUBLIC        PSW
+  D:000AH         PUBLIC        pwm_right_val
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        z
+  -------         DO            
+  D:0006H         SYMBOL        x
+  D:0004H         SYMBOL        y
+  -------         ENDDO         
+  C:08FFH         LINE#         31
+  C:08FFH         LINE#         32
+  C:08FFH         LINE#         34
+  C:0908H         LINE#         35
+  C:091CH         LINE#         36
+  -------         ENDPROC       _DELAY
+  -------         PROC          FORWARD
+  C:091DH         LINE#         38
+  C:091DH         LINE#         39
+  C:091DH         LINE#         40
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/13/2016  11:06:34  PAGE 3
+
+
+  C:0921H         LINE#         41
+  C:0925H         LINE#         42
+  -------         ENDPROC       FORWARD
+  -------         PROC          LEFT_RUN
+  C:0926H         LINE#         44
+  C:0926H         LINE#         45
+  C:0926H         LINE#         46
+  C:0928H         LINE#         47
+  C:092CH         LINE#         48
+  -------         ENDPROC       LEFT_RUN
+  -------         PROC          RIGHT_RUN
+  C:092DH         LINE#         50
+  C:092DH         LINE#         51
+  C:092DH         LINE#         52
+  C:092FH         LINE#         53
+  C:0933H         LINE#         54
+  -------         ENDPROC       RIGHT_RUN
+  -------         PROC          TIMER0
+  C:08DAH         LINE#         57
+  C:08DEH         LINE#         59
+  C:08E0H         LINE#         60
+  C:08E5H         LINE#         61
+  C:08ECH         LINE#         62
+  C:08F1H         LINE#         63
+  C:08F3H         LINE#         64
+  C:08F8H         LINE#         65
+  C:08FAH         LINE#         66
+  -------         ENDPROC       TIMER0
+  -------         PROC          MAIN
+  C:088CH         LINE#         67
+  C:088CH         LINE#         68
+  C:088CH         LINE#         69
+  C:088CH         LINE#         70
+  C:088CH         LINE#         71
+  C:088FH         LINE#         72
+  C:088FH         LINE#         73
+  C:0896H         LINE#         74
+  C:0899H         LINE#         75
+  C:0899H         LINE#         76
+  C:089CH         LINE#         77
+  C:089EH         LINE#         78
+  C:08A5H         LINE#         79
+  C:08A7H         LINE#         80
+  C:08A7H         LINE#         81
+  C:08A7H         LINE#         82
+  C:08A7H         LINE#         83
+  C:08A7H         LINE#         84
+  C:08AEH         LINE#         85
+  C:08B1H         LINE#         86
+  C:08B4H         LINE#         87
+  C:08B7H         LINE#         88
+  C:08B9H         LINE#         89
+  C:08BBH         LINE#         90
+  C:08BDH         LINE#         91
+  C:08BDH         LINE#         92
+  C:08BDH         LINE#         94
+  C:08C3H         LINE#         95
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/13/2016  11:06:34  PAGE 4
+
+
+  C:08C3H         LINE#         96
+  C:08C6H         LINE#         97
+  C:08C6H         LINE#         98
+  C:08CCH         LINE#         99
+  C:08CCH         LINE#         100
+  C:08CFH         LINE#         101
+  C:08CFH         LINE#         102
+  C:08D5H         LINE#         103
+  C:08D5H         LINE#         104
+  C:08D8H         LINE#         105
+  C:08D8H         LINE#         107
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00B1H BYTE ( 8%) *
+******************************************************************************
+
+Program Size: data=12.0 xdata=0 code=321
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

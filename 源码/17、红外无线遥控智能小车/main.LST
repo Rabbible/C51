@@ -1,0 +1,214 @@
+C51 COMPILER V9.00   MAIN                                                                  12/17/2016 20:02:12 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*********************************************************************************
+   2          * ¡¾±àÐ´Ê±¼ä¡¿£º 2016Äê12ÔÂ9ÈÕ
+   3          * ¡¾×÷    Õß¡¿£º ÇåÏèµç×Ó:03
+   4          * ¡¾°æ    ±¾¡¿£º 1.0
+   5          * ¡¾Íø    Õ¾¡¿£º http://www.qxmcu.com/ 
+   6          * ¡¾ÌÔ±¦µêÆÌ¡¿£º http://qxmcu.taobao.com/ (Ö±Ïúµê)
+   7          * ¡¾ÊµÑéÆ½Ì¨¡¿£º QX-MCS51 µ¥Æ¬»ú¿ª·¢°å & QX-A51ÖÇÄÜÐ¡³µ
+   8          * ¡¾Íâ²¿¾§Õñ¡¿£º 11.0592mhz     
+   9          * ¡¾Ö÷¿ØÐ¾Æ¬¡¿£º STC89C52
+  10          * ¡¾±àÒë»·¾³¡¿£º Keil ¦ÌVisio4
+  11          * ********************************¡¾½ÓÏßËµÃ÷¡¿********************************
+  12                       ÒÔÏÂ"A_"±íÊ¾ÖÇÄÜÐ¡³µµ×°å~~~"B_"±íÊ¾¿ª·¢°å     
+  13          *¿ª·¢°å¹©µçÏß  £ºA_J5-VCC~~~B_VCC»ò5V0    A_J6-GND~~~B_GND £¨Ò»¹²Ê¹ÓÃ2¸ù¶Å°îÏß£©
+  14          *µç»ú¿ØÖÆÏß    £ºA_J10-P1.2ÖÁP1.7 ¶ÔÓ¦½Óµ½B_P1.2ÖÁP1.7 £¨Ò»¹²Ê¹ÓÃ6¸ù¶Å°îÏß£©
+  15          ******************************************************************************
+  16          * ¡¾³ÌÐò¹¦ÄÜ¡¿£ºQX-A51ÖÇÄÜÐ¡³µºìÍâÎÞÏßÒ£¿Ø                                                                          
+  17          * ¡¾Ê¹ÓÃËµÃ÷¡¿£ºÐ¡³µÉÏµçºó°´Ò£¿ØÆ÷¡°2¡±¼üÖ´ÐÐÇ°½ø¡¢°´¡°8¡±¼üÖ´ÐÐºóÍË
+  18                                          °´¡°4¡±¼üÖ´ÐÐ×ó×ª¡¢°´¡°6¡±¼üÓÒ×ª¡¢°´¡°5¡±¼üÍ£Ö¹
+  19          * ¡¾×¢ÒâÊÂÏî¡¿£º±ÜÃâÐ¡³µ×²ÏòÕÏ°­Îï»òÐ¡³µÂÖ×Ó¶Â×ª£¬Ð¡³µµçÑ¹²»ÄÜµÍÓÚ6V
+  20                                          1¡¢¿ª·¢°åP32¶Ë¿Ú²»ÄÜ½Ó¶Å°îÏß£¬·ñÔòÎÞ·¨Ò£¿Ø¡£
+  21                                          2¡¢Ò£¿ØÊ±Ò£¿ØÆ÷¾¡Á¿¶Ô×¼¿ª·¢°åÉÏºìÍâ½ÓÊÕÍ·¡£
+  22                                          3¡¢Èç²»»áºìÍâ½âÂëµÄÍ¬Ñ§£¬Çë¿´¿ª·¢°åÅäÌ×ÊÓÆµÖÐµÄºìÍâ½âÂëÕÂ½Ú£¬Ò»¹²2Ð¡Ê±¿Î³Ì¡£
+  23          **********************************************************************************/
+  24          #include <reg52.h> //51Í·ÎÄ¼þ
+  25          #include <..\CONFIG\QXA51.h>//QX-A51ÖÇÄÜÐ¡³µÅäÖÃÎÄ¼þ
+  26          
+  27          /*====================================
+  28           ×Ô¶¨ÒåÀàÐÍÃû
+  29          ====================================*/
+  30          typedef unsigned char INT8U;
+  31          typedef unsigned char uchar;
+  32          
+  33          typedef unsigned int INT16U;
+  34          typedef unsigned int uint;
+  35          
+  36          /*====================================
+  37           Ó²¼þ½Ó¿ÚÎ»ÉùÃ÷
+  38          ====================================*/
+  39          sbit IR  = P3^2;     //¶¨ÒåºìÍâÂö³åÊý¾Ý½Ó¿Ú     Íâ²¿ÖÐ¶ÏOÊäÈë¿Ú
+  40          
+  41          uchar IRtime;           //¼ì²âºìÍâ¸ßµçÆ½³ÖÐøÊ±¼ä£¨Âö¿í£©
+  42          uchar IRcord[4];    //´ËÊý×éÓÃÓÚ´¢´æ·ÖÀë³öÀ´µÄ4¸ö×Ö½ÚµÄÊý¾Ý£¨ÓÃ»§Âë2¸ö×Ö½Ú+¼üÖµÂë2¸ö×Ö½Ú£©
+  43          uchar IRdata[33];   //´ËÊý×éÓÃÓÚ´¢´æºìÍâµÄ33Î»Êý¾Ý£¨µÚÒ»Î»ÎªÒýµ¼ÂëÓÃ»§Âë16+¼üÖµÂë16£©
+  44          bit IRpro_ok, IRok;  //µÚÒ»¸öÓÃÓÚºìÍâ½ÓÊÕ4¸ö×Ö½ÚÍê±Ï¡£IRokÓÃÎª¼ì²âÂö¿íÍê±Ï
+  45          
+  46          void init()        //³õÊ¼»¯¶¨Ê±Æ÷0 ºÍÍâ²¿ÖÐ¶Ï0
+  47          {
+  48   1              TMOD = 0x02; //¶¨Ê±Æ÷0¹¤×÷·½Ê½2£¬8Î»×Ô¶¯ÖØ×°
+  49   1              TH0 = 0x00;  //¸ß8Î»×°Èë0ÄÇÃ´¶¨Ê±Æ÷Òç³öÒ»´ÎµÄÊ±¼äÊÇ256¸ö»úÆ÷ÖÜÆÚ
+  50   1              TL0 = 0x00;
+  51   1              EA = 1;      //×ÜÖÐ¶Ï
+  52   1              ET0 = 1;           //¶¨Ê±Æ÷0ÖÐ¶Ï
+  53   1              TR0 = 1;     //Æô¶¯¶¨Ê±Æ÷0
+  54   1      
+  55   1              IT0 = 1;           //ÉèÖÃÍâ²¿ÖÐ¶Ï0ÎªÌøÑØ´¥·¢·½Ê½£¬À´Ò»¸öÏÂ½µÑØ´¥·¢Ò»´Î
+C51 COMPILER V9.00   MAIN                                                                  12/17/2016 20:02:12 PAGE 2   
+
+  56   1              EX0 = 1;           //Æô¶¯Íâ²¿ÖÐ¶Ï0
+  57   1      }
+  58          
+  59          void time0() interrupt 1   //¶¨Òå¶¨Ê±Æ÷0
+  60          {
+  61   1              IRtime++;                          //¼ì²âÂö¿í£¬1´ÎÎª278us
+  62   1      }
+  63          
+  64          void int0() interrupt 0                 //¶¨ÒåÍâ²¿ÖÐ¶Ï0
+  65          {
+  66   1              static uchar i;                         //      ÉùÃ÷¾²Ì¬±äÁ¿£¨ÔÚÌø³öº¯ÊýºóÔÚ»ØÀ´Ö´ÐÐµÄÊ±ºò²»»á¶ªÊ§ÊýÖµ£©iÓÃÓÚ°Ñ33´Î¸ßµçÆ½µÄ³ÖÐøÊ±¼
+             -ä´æÈëIRdata
+  67   1              static bit startflag;           //¿ªÊ¼´¢´æÂö¿í±êÖ¾Î»
+  68   1              if(startflag)                           //¿ªÊ¼½ÓÊÕÂö¿í¼ì²â
+  69   1              {
+  70   2                      if( (IRtime < 53) && (IRtime >= 32) ) /*ÅÐ¶ÏÊÇ·ñÊÇÒýµ¼Âë£¬µ×µçÆ½9000us+¸ß4500us 
+  71   2                      Õâ¸ö×Ô¼º¿ÉÒÔËãÎÒÒÔ11.0592À´ËãÁËNECÐ­ÒéµÄÒýµ¼ÂëµÍ8000-10000+¸ß4000-5000 
+  72   2                      Èç¹ûÒÑ¾­½ÓÊÕÁËÒýµ¼ÂëÄÇÃ´i²»»á±»ÖÃ0¾Í»á¿ªÊ¼ÒÀ´Î´æÈëÂö¿í*/
+  73   2                              i = 0;                           //Èç¹ûÊÇÒýµ¼ÂëÄÇÃ´Ö´ÐÐi=0°ÑËû´æµ½IRdataµÄµÚÒ»¸öÎ»
+  74   2                      IRdata[i] = IRtime;              //ÒÔT0µÄÒç³ö´ÎÊýÀ´¼ÆËãÂö¿í£¬°ÑÕâ¸öÊ±¼ä´æµ½Êý×éÀïÃæµ½ºóÃæÅÐ¶Ï
+  75   2                      IRtime = 0;                              //¼ÆÊýÇåÁã£¬ÏÂÒ»¸öÏÂ½µÑØµÄÊ±ºòÔÚ´æÈëÂö¿í
+  76   2                      i++;                                     //¼ÆÊýÂö¿í´æÈëµÄ´ÎÊý
+  77   2                      if(i == 33)                              //Èç¹û´æÈë34´Î Êý×éµÄÏÂ±êÊÇ´Ó0¿ªÊ¼iµÈÓÚ33±íÊ¾Ö´ÐÐÁË34´Î
+  78   2                      {
+  79   3                              IRok = 1;                                //ÄÇÃ´±íÊ¾Âö¿í¼ì²âÍê±Ï
+  80   3                              i = 0;                           //°ÑÂö¿í¼ÆÊýÇåÁã×¼±¸ÏÂ´Î´æÈë
+  81   3                      }
+  82   2              }
+  83   1              else              
+  84   1              {
+  85   2                      IRtime = 0;                              //Òýµ¼Âë¿ªÊ¼½øÈë°ÑÂö¿í¼ÆÊýÇåÁã¿ªÊ¼¼ÆÊý
+  86   2                      startflag = 1;                   //¿ªÊ¼´¦Àí±êÖ¾Î»ÖÃ1
+  87   2              }
+  88   1      }
+  89          
+  90          void IRcordpro()                                 //ÌáÈ¡ËüµÄ33´ÎÂö¿í½øÐÐÊý¾Ý½âÂë
+  91          {
+  92   1              uchar i, j, k, cord, value;     /*iÓÃÓÚ´¦Àí4¸ö×Ö½Ú£¬jÓÃÓÚ´¦ÀíÒ»¸ö×Ö½ÚÖÐÃ¿Ò»Î»£¬kÓÃÓÚ33´ÎÂö¿íÖÐµÄÄÄÒ»Î»
+  93   1              cordÓÃÓÚÈ¡³öÂö¿íµÄÊ±¼äÅÐ¶ÏÊÇ·ñ·ûºÏ1µÄÂö¿íÊ±¼ä*/
+  94   1              k = 1;                                          //´ÓµÚÒ»Î»Âö¿í¿ªÊ¼È¡£¬¶ªÆúÒýµ¼ÂëÂö¿í
+  95   1              for(i = 0; i < 4; i++)
+  96   1              {
+  97   2                      for(j = 0; j < 8; j++)
+  98   2                      {
+  99   3                              cord = IRdata[k];           //°ÑÂö¿í´æÈëcord
+ 100   3                              if(cord > 5)                    //Èç¹ûÂö¿í´óÓÚÎÒ11.0592µÄt0Òç³öÂÊÎªÔ¼278us*5=1390ÄÇÃ´ÅÐ¶ÏÎª1
+ 101   3                              value = value | 0x80;   /*½ÓÊÕµÄÊ±ºòÊÇÏÈ½ÓÊÕ×îµÍÎ»£¬
+ 102   3                              °Ñ×îµÍÎ»ÏÈ·Åµ½valueµÄ×î¸ßÎ»ÔÚºÍ0x08°´Î»»òÒ»ÏÂ
+ 103   3                              ÕâÑù²»»á¸Ä±ävaluaµÄÆäËûÎ»µÄÊýÖµÖ»»áÈÃËû×î¸ßÎ»Îª1*/
+ 104   3                              if(j < 7)
+ 105   3                              {
+ 106   4                                      value = value >> 1;     //valueÎ»×óÒÆÒÀ´Î½ÓÊÕ8Î»Êý¾Ý¡£
+ 107   4                              }
+ 108   3                              k++;                            //Ã¿Ö´ÐÐÒ»´ÎÂö¿íÎ»¼Ó1
+ 109   3                      }
+ 110   2                      IRcord[i] = value;         //Ã¿´¦ÀíÍêÒ»¸ö×Ö½Ú°ÑËü·ÅÈëIRcordÊý×éÖÐ¡£
+ 111   2                      value = 0;                         //ÇåÁãvalue·½±ãÏÂ´ÎÔÚ´æÈëÊý¾Ý
+ 112   2              }
+ 113   1              IRpro_ok = 1;                              //½ÓÊÕÍê4¸ö×Ö½ÚºóIRpro okÖÃ1±íÊ¾ºìÍâ½âÂëÍê³É 
+ 114   1      }
+ 115          /*PWM¿ØÖÆÊ¹ÄÜ Ð¡³µÇ°½ø*/
+ 116          void forward()
+C51 COMPILER V9.00   MAIN                                                                  12/17/2016 20:02:12 PAGE 3   
+
+ 117          {
+ 118   1              left_motor_go; //×óµç»úÇ°½ø
+ 119   1              right_motor_go; //ÓÒµç»úÇ°½ø
+ 120   1      }
+ 121          
+ 122                  
+ 123          /*PWM¿ØÖÆÊ¹ÄÜ Ð¡³µºóÍË*/
+ 124          void backward()
+ 125          {
+ 126   1              left_motor_back; //×óµç»úºóÍË
+ 127   1              right_motor_back; //ÓÒµç»úºóÍË  
+ 128   1      }
+ 129          
+ 130          
+ 131          /*PWM¿ØÖÆÊ¹ÄÜ Ð¡³µ×ó×ª*/
+ 132          void left_run()
+ 133          {
+ 134   1              left_motor_stops; //×óµç»úÍ£Ö¹
+ 135   1              right_motor_go; //ÓÒµç»úÇ°½ø    
+ 136   1      }
+ 137          
+ 138          
+ 139          /*PWM¿ØÖÆÊ¹ÄÜ Ð¡³µÓÒ×ª*/
+ 140          void right_run()
+ 141          {
+ 142   1              right_motor_stops;//ÓÒµç»úÍ£Ö¹
+ 143   1              left_motor_go;    //×óµç»úÇ°½ø
+ 144   1      }
+ 145          
+ 146          
+ 147          /*Ð¡³µÍ£Ö¹*/
+ 148          void stop()
+ 149          {
+ 150   1              right_motor_stops;//ÓÒµç»úÍ£Ö¹
+ 151   1              left_motor_stops; //×óµç»úÍ£Ö¹  
+ 152   1      }
+ 153          
+ 154          void main()
+ 155          {
+ 156   1              init(); //Ö´ÐÐ³õÊ¼»¯¶¨Ê±Æ÷0ºÍÍâ²¿ÖÐ¶Ï0
+ 157   1              EN1 = EN2 = 1;//Ê¹ÄÜ×óÓÒµç»ú
+ 158   1              while(1)        //´óÑ­»·
+ 159   1              {
+ 160   2                      if(IRok)    //ÅÐ¶ÏÂö¿íÊÇ·ñ¼ì²âÍê±Ï                    
+ 161   2                      {   
+ 162   3                              IRcordpro();//¸ù¾ÝÂö¿í½âÂë³ö4¸ö×Ö½ÚµÄÊý¾Ý
+ 163   3                              IRok = 0;       //ÖØÐÂµÈ´ýÂö¿í¼ì²â
+ 164   3                              if(IRpro_ok) //ÅÐ¶ÏÊÇ·ñ½âÂëÍê±Ï  
+ 165   3                              {
+ 166   4                              switch(IRcord[2])
+ 167   4                                      {
+ 168   5                                           case 0x18:  forward();                      //Ç°½ø
+ 169   5                                                   break;
+ 170   5                                           case 0x52:  backward();                     //ºóÍË  
+ 171   5                                                   break;
+ 172   5                                           case 0x08:  left_run();                     //×ó×ª
+ 173   5                                                   break;
+ 174   5                                               case 0x5A:  right_run();                        //ÓÒ×ª
+ 175   5                                                   break;
+ 176   5                                               case 0x1C:  stop();                         //Í£Ö¹
+ 177   5                                                   break;
+ 178   5                                               default:break;
+C51 COMPILER V9.00   MAIN                                                                  12/17/2016 20:02:12 PAGE 4   
+
+ 179   5                                      }
+ 180   4                                      IRpro_ok = 0;
+ 181   4                              }
+ 182   3                      }       
+ 183   2              }
+ 184   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    248    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     39    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      3    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,220 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/13/2016  11:32:48  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE main.obj TO KeyStratTracking RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  KeyStratTracking (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         ?DT?MAIN
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     07F2H                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     0059H     UNIT         ?PR?MAIN?MAIN
+            CODE    08E5H     0025H     UNIT         ?PR?TIMER0?MAIN
+            CODE    090AH     001EH     UNIT         ?PR?_DELAY?MAIN
+            CODE    0928H     0009H     UNIT         ?PR?FORWARD?MAIN
+            CODE    0931H     0009H     UNIT         ?PR?LEFT_RUN?MAIN
+            CODE    093AH     0009H     UNIT         ?PR?RIGHT_RUN?MAIN
+            CODE    0943H     0009H     UNIT         ?PR?BACKWARD?MAIN
+            CODE    094CH     0007H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   KeyStratTracking (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?_DELAY?MAIN
+  +--> ?PR?FORWARD?MAIN
+  +--> ?PR?LEFT_RUN?MAIN
+  +--> ?PR?RIGHT_RUN?MAIN
+  +--> ?PR?BACKWARD?MAIN
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/13/2016  11:32:48  PAGE 2
+
+
+
+
+SYMBOL TABLE OF MODULE:  KeyStratTracking (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:0008H         PUBLIC        pwm_left_val
+  D:00A8H         PUBLIC        IE
+  C:090AH         PUBLIC        _delay
+  D:00B8H         PUBLIC        IP
+  B:00A0H.3       PUBLIC        beep
+  C:088CH         PUBLIC        main
+  D:0009H         PUBLIC        pwm_t
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  C:0943H         PUBLIC        backward
+  B:0090H.4       PUBLIC        EN1
+  B:0090H.5       PUBLIC        EN2
+  B:0090H.2       PUBLIC        IN1
+  B:0090H.3       PUBLIC        IN2
+  B:00A8H.1       PUBLIC        ET0
+  B:0090H.6       PUBLIC        IN3
+  B:0090H.7       PUBLIC        IN4
+  D:008CH         PUBLIC        TH0
+  B:00B0H.0       PUBLIC        key_s2
+  D:008AH         PUBLIC        TL0
+  C:08E5H         PUBLIC        timer0
+  B:0088H.4       PUBLIC        TR0
+  C:093AH         PUBLIC        right_run
+  C:0931H         PUBLIC        left_run
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.2       PUBLIC        right_led1
+  B:00B0H.3       PUBLIC        left_led1
+  C:0928H         PUBLIC        forward
+  D:00D0H         PUBLIC        PSW
+  D:000AH         PUBLIC        pwm_right_val
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        z
+  -------         DO            
+  D:0006H         SYMBOL        x
+  D:0004H         SYMBOL        y
+  -------         ENDDO         
+  C:090AH         LINE#         32
+  C:090AH         LINE#         33
+  C:090AH         LINE#         35
+  C:0913H         LINE#         36
+  C:0927H         LINE#         37
+  -------         ENDPROC       _DELAY
+  -------         PROC          FORWARD
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/13/2016  11:32:48  PAGE 3
+
+
+  C:0928H         LINE#         39
+  C:0928H         LINE#         40
+  C:0928H         LINE#         41
+  C:092CH         LINE#         42
+  C:0930H         LINE#         43
+  -------         ENDPROC       FORWARD
+  -------         PROC          LEFT_RUN
+  C:0931H         LINE#         45
+  C:0931H         LINE#         46
+  C:0931H         LINE#         47
+  C:0935H         LINE#         48
+  C:0939H         LINE#         49
+  -------         ENDPROC       LEFT_RUN
+  -------         PROC          RIGHT_RUN
+  C:093AH         LINE#         51
+  C:093AH         LINE#         52
+  C:093AH         LINE#         53
+  C:093EH         LINE#         54
+  C:0942H         LINE#         55
+  -------         ENDPROC       RIGHT_RUN
+  -------         PROC          BACKWARD
+  C:0943H         LINE#         57
+  C:0943H         LINE#         58
+  C:0943H         LINE#         59
+  C:0947H         LINE#         60
+  C:094BH         LINE#         61
+  -------         ENDPROC       BACKWARD
+  -------         PROC          TIMER0
+  C:08E5H         LINE#         64
+  C:08E9H         LINE#         66
+  C:08EBH         LINE#         67
+  C:08F0H         LINE#         68
+  C:08F7H         LINE#         69
+  C:08FCH         LINE#         70
+  C:08FEH         LINE#         71
+  C:0903H         LINE#         72
+  C:0905H         LINE#         73
+  -------         ENDPROC       TIMER0
+  -------         PROC          MAIN
+  C:088CH         LINE#         74
+  C:088CH         LINE#         75
+  C:088CH         LINE#         76
+  C:088CH         LINE#         77
+  C:088CH         LINE#         78
+  C:088FH         LINE#         79
+  C:088FH         LINE#         80
+  C:0896H         LINE#         81
+  C:0899H         LINE#         82
+  C:0899H         LINE#         83
+  C:089CH         LINE#         84
+  C:089EH         LINE#         85
+  C:08A5H         LINE#         86
+  C:08A7H         LINE#         87
+  C:08A7H         LINE#         88
+  C:08A7H         LINE#         89
+  C:08A7H         LINE#         90
+  C:08A7H         LINE#         91
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/13/2016  11:32:48  PAGE 4
+
+
+  C:08AEH         LINE#         92
+  C:08B1H         LINE#         93
+  C:08B4H         LINE#         94
+  C:08B7H         LINE#         95
+  C:08B9H         LINE#         96
+  C:08BBH         LINE#         97
+  C:08BDH         LINE#         98
+  C:08BDH         LINE#         99
+  C:08BDH         LINE#         101
+  C:08C3H         LINE#         102
+  C:08C3H         LINE#         103
+  C:08C6H         LINE#         104
+  C:08C8H         LINE#         106
+  C:08C8H         LINE#         107
+  C:08CEH         LINE#         108
+  C:08CEH         LINE#         109
+  C:08D1H         LINE#         110
+  C:08D1H         LINE#         111
+  C:08D7H         LINE#         112
+  C:08D7H         LINE#         113
+  C:08DAH         LINE#         114
+  C:08DAH         LINE#         115
+  C:08E0H         LINE#         116
+  C:08E0H         LINE#         117
+  C:08E3H         LINE#         118
+  C:08E3H         LINE#         119
+  C:08E3H         LINE#         120
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00C9H BYTE ( 9%) *
+******************************************************************************
+
+Program Size: data=12.0 xdata=0 code=345
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

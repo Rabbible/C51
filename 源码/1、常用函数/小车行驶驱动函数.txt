@@ -1,0 +1,54 @@
+/*PWM控制使能 小车前进*/
+void forward()
+{
+	left_motor_go; //左电机前进
+	right_motor_go; //右电机前进
+}
+
+	
+/*PWM控制使能 小车后退*/
+void backward()
+{
+	left_motor_back; //左电机后退
+	right_motor_back; //右电机后退	
+}
+
+
+/*PWM控制使能 小车左转*/
+void left_run()
+{
+	left_motor_stops; //左电机停止
+	right_motor_go; //右电机前进	
+}
+
+
+/*PWM控制使能 小车右转*/
+void right_run()
+{
+	right_motor_stops;//右电机停止
+	left_motor_go;    //左电机前进
+}
+
+
+/*小车停止*/
+void stop()
+{
+	right_motor_stops;//右电机停止
+	left_motor_stops; //左电机停止	
+}
+
+
+/*PWM控制使能 小车高速左转*/
+void left_rapidly()
+{
+	right_motor_go;
+	left_motor_back;	
+}
+
+
+/*PWM控制使能 小车高速右转*/
+void right_rapidly()
+{
+	left_motor_go;
+	right_motor_back;	
+}

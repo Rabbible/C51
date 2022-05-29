@@ -1,0 +1,106 @@
+C51 COMPILER V9.00   MAIN                                                                  12/11/2016 17:52:10 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*********************************************************************************
+   2          * 【编写时间】： 2016年12月2日
+   3          * 【作    者】： 清翔电子:03
+   4          * 【版    本】： 1.0
+   5          * 【网    站】： http://www.qxmcu.com/ 
+   6          * 【淘宝店铺】： http://qxmcu.taobao.com/ (直销店)
+   7          * 【实验平台】： QX-MCS51 单片机开发板 & QX-A51智能小车
+   8          * 【外部晶振】： 11.0592mhz     
+   9          * 【主控芯片】： STC89C52
+  10          * 【编译环境】： Keil μVisio4
+  11          * ********************************【接线说明】********************************
+  12                       以下"A_"表示智能小车底板~~~"B_"表示开发板     
+  13          *开发板供电线  ：A_J5-VCC~~~B_VCC或5V0    A_J6-GND~~~B_GND （一共使用2根杜邦线）
+  14          *电机控制线    ：A_J10-P1.2至P1.7 对应接到B_P1.2至P1.7 （一共使用6根杜邦线）
+  15          *避障寻迹反馈线：A_J11-P3.2至P3.5 对应接到B_P3.2至P3.5 （一共使用4根杜邦线）
+  16          ******************************************************************************
+  17          * 【程序功能】：按键调节LED灯亮度20级调光                                                                           
+  18          * 【使用说明】：接线无误后，烧写程序打开电源开关，按S2按键LED灯光变弱、按S3按键LED光变亮
+  19          * 【注意事项】：P1口不能接任何设备，不能接杜邦线。
+  20                                          J9跳线帽必须接上。
+  21          **********************************************************************************/
+  22          
+  23          #include <reg52.h>
+  24          #include <..\CONFIG\QXA51.h>
+  25          unsigned char pwm_led_val = 0;//LED占空比值 0-20 0最亮
+  26          unsigned char pwm_t;//周期
+  27          
+  28          void delay(unsigned int z)//毫秒级延时
+  29          {
+  30   1              unsigned int x,y;
+  31   1              for(x = z; x > 0; x--)
+  32   1                      for(y = 114; y > 0 ; y--);
+  33   1      }       
+  34          
+  35          //定时器0中断
+  36          void timer0() interrupt 1
+  37          {
+  38   1              pwm_t++;
+  39   1              if(pwm_t == 20)
+  40   1              {
+  41   2                      pwm_t = 0; P1 = 0xff;
+  42   2              }
+  43   1              if(pwm_led_val == pwm_t)
+  44   1                      P1 = 0;                                  
+  45   1      }
+  46          void main()
+  47          {
+  48   1              TMOD |= 0x02;//8位自动重装模块
+  49   1              TH0 = 240;
+  50   1              TL0 = 240;//11.0592M晶振下占空比最大比值是20,输出2880HZ
+  51   1              TR0 = 1;//启动定时器0
+  52   1              ET0 = 1;//允许定时器0中断
+  53   1              EA      = 1;//总中断允许
+  54   1              while(1)
+  55   1              {
+C51 COMPILER V9.00   MAIN                                                                  12/11/2016 17:52:10 PAGE 2   
+
+  56   2                      if(key_s2 == 0)  //S2按下LED变暗
+  57   2                      {
+  58   3                              delay(5);
+  59   3                              if(key_s2 == 0)
+  60   3                              {
+  61   4                                      if(pwm_led_val < 20)
+  62   4                                      {
+  63   5                                              pwm_led_val++;
+  64   5                                      }
+  65   4                                      while(!key_s2);
+  66   4                              }
+  67   3                      }
+  68   2                      if(key_s3 == 0) //S3按键LED变亮
+  69   2                      {
+  70   3                              delay(5);
+  71   3                              if(key_s3 == 0)
+  72   3                              {
+  73   4                                      if(pwm_led_val > 0)
+  74   4                                      {
+  75   5                                              pwm_led_val--;
+  76   5                                      }
+  77   4                                      while(!key_s3);
+  78   4                              }
+  79   3                      }               
+  80   2              }
+  81   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    127    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
