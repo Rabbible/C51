@@ -1,0 +1,40 @@
+C51 COMPILER V9.00   MOVE2                                                                 08/24/2019 16:05:12 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MOVE2
+OBJECT MODULE PLACED IN move2.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE move2.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h> //包含单片机寄存器的定义头文件
+   2          #include<duoji.h>
+   3          //#include<AD.h>
+   4          //#include<ZS.h>
+   5          //#define uint unsigned int //宏定义uint 为unsigned int类型
+   6          //#define uchar unsigned char //宏定义uchar 为unsigned char 类型
+   7          
+   8          //主函数
+   9          void main(void)
+  10          {       
+  11   1              Right(7,200);
+  12   1              delay_nms(1000);
+  13   1              Right(7,200);
+  14   1              delay_nms(1000);
+  15   1              Right(7,200);
+  16   1              while(1);
+  17   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    483    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      24
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

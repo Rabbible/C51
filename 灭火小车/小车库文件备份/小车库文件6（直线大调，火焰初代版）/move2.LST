@@ -1,0 +1,112 @@
+C51 COMPILER V9.00   MOVE2                                                                 09/07/2019 11:05:54 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MOVE2
+OBJECT MODULE PLACED IN move2.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE move2.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h> //包含单片机寄存器的定义头文件
+   2          #include<zhixian.h>
+   3          #include<miehuo.h>
+   4          
+   5          //主函数
+   6          void main()
+   7          {       
+   8   1              //初始化
+   9   1              T0_INIT();
+  10   1              INT1_INIT();
+  11   1              trig = 0;
+  12   1              SIG=1;                  //风扇电机静止
+  13   1              SIG1=1;         //火焰传感器
+  14   1              SIG2=1;
+  15   1      
+  16   1              while(1)        //要加while传感器才会开始读取
+  17   1              {
+  18   2                      //第四个房间
+  19   2                      if((SIG1==0)&&(SIG2==0))        //第一个角落前进灭火并回家(最后是死循环)
+  20   2                      {
+  21   3                              Left(7,200);   // 3!    1.
+  22   3                              if((SIG1==0)&&(SIG2==0))
+  23   3                              {
+  24   4                                      Right(7,200); // 1!  2.
+  25   4                                      FF1J();  
+  26   4                              }
+  27   3                              else 
+  28   3                              {
+  29   4                                      Right(7,200);   // 1!   2.
+  30   4                                      FF2J();
+  31   4                              }
+  32   3                      }
+  33   2      
+  34   2                      else
+  35   2                      {
+  36   3                              Left(7,200);
+  37   3                              if((SIG1==0)&&(SIG2==0))
+  38   3                              {       
+  39   4                                      Right(7,200);
+  40   4                                      FF1J();
+  41   4                              }
+  42   3                              else
+  43   3                              {
+  44   4                                      uint i;
+  45   4                                      Right(7,200);
+  46   4                                      for(i=0;i<25;i++)                       //  20改了！
+  47   4                                      {
+  48   5                                              Right(1,200);   // 4!  3.        
+  49   5                                              if((SIG1==0)&&(SIG2==0))
+  50   5                                              {       
+  51   6                                                      Right(24-i,200);
+  52   6                                                      Right(15,200);   //  2!  4.
+  53   6                                                      if((SIG1==0)&&(SIG2==0))
+  54   6                                                      {
+  55   7                                                              Left(15,200);  //  5!  5.
+C51 COMPILER V9.00   MOVE2                                                                 09/07/2019 11:05:54 PAGE 2   
+
+  56   7                                                              FF3J();
+  57   7                                                      }
+  58   6                                                      else
+  59   6                                                      {
+  60   7                                                              Left(36,200);  //  1!  7.
+  61   7                                                              FF2J();
+  62   7                                                      }
+  63   6                                              }
+  64   5                                              else continue;
+  65   5                                      }
+  66   4                                      
+  67   4                                      for(i=0;i<23;i++)
+  68   4                                      {
+  69   5                                              Right(1,200);    //  2!  4.
+  70   5                                              if((SIG1==0)&&(SIG2==0))
+  71   5                                              {
+  72   6                                                      Right(22-i,200);
+  73   6                                                      Left(6,200);  //  5!  5.
+  74   6                                                      FF3J();
+  75   6                                              }
+  76   5                                      }
+  77   4                              }
+  78   3                              Right(23,200);
+  79   3                              Left(1,200);  
+  80   3                              //去下一个房间
+  81   3                              //ThreeFJF();
+  82   3                              while(1) Keep();
+  83   3                      }
+  84   2                      while(1) Keep();
+  85   2              }
+  86   1      }
+*** WARNING C291 IN LINE 43 OF MOVE2.C: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   4983    ----
+   CONSTANT SIZE    =    161    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15      93
+   IDATA SIZE       =   ----     186
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

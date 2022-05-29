@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"move3.obj" 
+TO "move" 
+RAMSIZE(256) 

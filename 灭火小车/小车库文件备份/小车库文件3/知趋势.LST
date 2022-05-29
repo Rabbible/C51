@@ -1,0 +1,74 @@
+C51 COMPILER V9.00   _ªÇ÷ÊÆ                                                                08/20/2019 09:08:56 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE _ªÇ÷ÊÆ
+OBJECT MODULE PLACED IN ÖªÇ÷ÊÆ.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE ÖªÇ÷ÊÆ.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>    //°üº¬µ¥Æ¬»ú¼Ä´æÆ÷µÄÍ·ÎÄ¼þ
+   2          #include<duoji.h>
+   3          #include<AD.h>
+   4          #include<zhixian.h>
+   5          
+   6          #define uint unsigned int //ºê¶¨Òåuint Îªunsigned intÀàÐÍ
+   7          #define uchar unsigned char //ºê¶¨Òåuchar Îªunsigned char ÀàÐÍ
+   8          #define  PCF8591 0x90    //PCF8591 µØÖ·
+   9           
+  10          uint i,a,b;
+  11          uint idata F[10]={0};
+  12          
+  13          void main()
+  14          {       
+  15   1              
+  16   1              delay_nms(500);
+  17   1      
+  18   1              //****** ÒÔÏÂÎªÊ¶±ð¾ÀÕýÐ¡³µ´óÆ«½Ç³ÌÐò   *****
+  19   1      delay_nms(500);
+  20   1              while(1)
+  21   1              {
+  22   2                      a=DRZS();                                       // Ö±×ßÒ»¶Î¾àÀë¸ÐÖªÐ¡³µÆ«ÒÆ×´Ì¬
+  23   2                      Forward(10,200);                        /** ¿´¿´ÄÜÔÙ¸ÄÐ¡Ò»µãÂð£¿ */                      
+  24   2                      b=DRZS();                                       
+  25   2                      if(abs(b-a)<0x02)                       // Ð¡Æ«×´Ì¬±È½Ï¾ÀÕýµ½Æ½ÐÐ£¨Ö±×ß³ÌÐò£©  ------
+  26   2                      {
+  27   3                      send_char(abs(b-a));                              /* 0x02¿ÉÄÜÒªµ÷ */
+  28   3                      a=DRZS();
+  29   3                      while(1)
+  30   3                              {
+  31   4                                      Keep();
+  32   4                                      //if(...) break;        
+  33   4                              }
+  34   3                      }
+  35   2                      else if(abs(b-a)>=0x02)         /* ´óÆ«×´Ì¬,¸ÄÕýºó½øÈëÏÂÒ»´ÎÑ­»·Ö±×ß¼ì²âÆ½ÐÐ¶È */
+  36   2                      {       send_char(abs(b-a));
+  37   3                              if(b>a)
+  38   3                              {
+  39   4                               Left(2,200);      /* PulseCountÐèÒª¸ù¾ÝF[9]-F[0]²îÖµµ÷ */
+  40   4                              }
+  41   3                              else if(b<a)                    
+  42   3                              {
+  43   4                               Right(2,200);     /* PulseCountÐèÒª¸ù¾ÝF[9]-F[0]²îÖµµ÷ */
+  44   4                              }
+  45   3                      } 
+  46   2                      //if(...) break;   /* ²»×ßÖ±ÏßÁË */
+  47   2              }          
+  48   1      }
+*** WARNING C291 IN LINE 39 OF ÖªÇ÷ÊÆ.C: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1451    ----
+   CONSTANT SIZE    =     30    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.00   _ªÇ÷ÊÆ                                                                08/20/2019 09:08:56 PAGE 2   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      7      90
+   IDATA SIZE       =     20    ----
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

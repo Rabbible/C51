@@ -1,0 +1,64 @@
+C51 COMPILER V9.00   沿譥墙                                                                08/20/2019 12:38:57 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE 沿譥墙
+OBJECT MODULE PLACED IN 沿左墙.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE 沿左墙.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>    //包含单片机寄存器的头文件
+   2          #include<duoji.h>
+   3          #include<AD.h>
+   4          #include<zhixian.h>
+   5          #include<chaoshengbo.h>
+   6          
+   7          void main()
+   8          {       
+   9   1              uint a,b,E=0x35;
+  10   1              delay_nms(200);
+  11   1              // 沿左墙走循环函数
+  12   1              while(E>0x31)
+  13   1              {       
+  14   2                      a=DRZS();                                       // 直走一段距离感知小车偏移状态
+  15   2                      Forward(20,200);                        /** 看看能再改小一点吗？ */                      
+  16   2                      b=DRZS();                                       
+  17   2                      if(abs(b-a)<0x02)                       // 小偏状态比较纠正到平行（直走程序）  ------
+  18   2                      {                                 /* 0x02可能要调 */
+  19   3                      a=DLZS();
+  20   3                      while(E>0x31)
+  21   3                              {
+  22   4                                      LZ(&E,a);
+  23   4                                      //if(E<0x2D) break;     
+  24   4                              }
+  25   3                      }
+  26   2                      else if(abs(b-a)>=0x02)         /* 大偏状态,改正后进入下一次循环直走检测平行度 */
+  27   2                      {
+  28   3                              if(b>a)
+  29   3                              {
+  30   4                               Right(2,200);     /* PulseCount需要根据F[9]-F[0]差值调 */
+  31   4                              }
+  32   3                              else if(b<a)                    
+  33   3                              {
+  34   4                               Left(2,200);      /* PulseCount需要根据F[9]-F[0]差值调 */
+  35   4                              }
+  36   3                      }
+  37   2              }
+  38   1              while(1)
+  39   1              Keep();
+  40   1      }
+*** WARNING C291 IN LINE 39 OF 沿左墙.C: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2107    ----
+   CONSTANT SIZE    =     50    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15     138
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

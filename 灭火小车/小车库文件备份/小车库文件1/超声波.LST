@@ -1,0 +1,44 @@
+C51 COMPILER V9.00   ³¬É_²¨                                                                08/15/2019 14:41:22 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE ³¬É_²¨
+OBJECT MODULE PLACED IN ³¬Éù²¨.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE ³¬Éù²¨.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>    //°üº¬µ¥Æ¬»ú¼Ä´æÆ÷µÄÍ·ÎÄ¼þ
+   2          #include<duoji.h>
+   3          #include<chaoshengbo.h>
+   4          
+   5          void main()
+   6          {  
+   7   1              init_9600();   /*³¬Éù²¨µÄ¶¨Òå*/
+   8   1              T0_INIT();
+   9   1              INT1_INIT();
+  10   1              trig = 0;
+  11   1              
+  12   1              while(1)
+  13   1              {                                
+  14   2              if (CSB()<=122)            /* ³¬Éù²¨ */
+  15   2              Right(1,200);                   
+  16   2              else Forward(1,200);     /*  ÓÒ×ª90¡ã  */                
+  17   2              }
+  18   1      
+  19   1              
+  20   1      
+  21   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    611    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     14      20
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

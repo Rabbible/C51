@@ -1,0 +1,45 @@
+C51 COMPILER V9.00   MOVE2                                                                 09/09/2019 13:58:01 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MOVE2
+OBJECT MODULE PLACED IN move2.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE move2.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h> //包含单片机寄存器的定义头文件
+   2          #include<zhixian.h>
+   3          #include<miehuo.h>
+   4          
+   5          //主函数
+   6          void main()
+   7          {       
+   8   1              //初始化
+   9   1              T0_INIT();
+  10   1              INT1_INIT();
+  11   1              trig = 0;
+  12   1              SIG=1;                  //风扇电机静止
+  13   1              SIG1=1;         //火焰传感器
+  14   1              SIG2=1;
+  15   1      
+  16   1              while(1)        //要加while传感器才会开始读取
+  17   1              {
+  18   2                      ThreeRoom();
+  19   2                      while(1) Stop();
+  20   2              }
+  21   1      }
+*** WARNING C291 IN LINE 43 OF MOVE2.C: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   6211    ----
+   CONSTANT SIZE    =    181    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15     127
+   IDATA SIZE       =   ----     206
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

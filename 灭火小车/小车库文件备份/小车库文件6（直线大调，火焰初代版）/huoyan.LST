@@ -1,0 +1,103 @@
+C51 COMPILER V9.00   HUOYAN                                                                07/23/2019 12:56:29 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE HUOYAN
+OBJECT MODULE PLACED IN huoyan.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE huoyan.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h> //包含单片机寄存器的定义头文件
+   2          #define uint unsigned int //宏定义uint 为unsigned int类型
+   3          #define uchar unsigned char //宏定义uchar 为unsigned char 类型
+   4          sbit P1_2 = P1^2;//定义舵机PWM控制端口
+   5          sbit P1_3 = P1^3;//定义舵机PWM控制端口
+   6          //延时n微妙
+   7          void delay_nus(unsigned int i)  
+   8          { 
+   9   1              i=i/10;
+  10   1              while(--i);
+  11   1      }   
+  12          //延时n毫妙
+  13          void delay_nms(unsigned int n)  
+  14          { 
+  15   1              n=n+1;
+  16   1              while(--n)  
+  17   1              delay_nus(900);         
+  18   1      }   
+  19          sbit SIG1=P0^0; //定义信号1接收引脚
+  20          sbit SIG2=P0^1; //定义信号2接收引脚
+  21          void main()
+  22          {
+  23   1               uint a,b,c;
+  24   1               SIG1=1;
+  25   1               SIG2=1;
+  26   1              while(1)
+  27   1              {
+  28   2                      if((SIG1==0)&&(SIG2==0)) //左右火焰传感器检测都检测到火焰
+  29   2                      {
+  30   3                      //前进
+  31   3                       for(a=0;a<100;a++)
+  32   3                         {
+  33   4                //静止基准时间t=1500us，大于或小于1500us将使对应端口的车轮正或反转起来
+  34   4                              P1_3=1;
+  35   4                              delay_nus(1700);
+  36   4                              P1_3=0;
+  37   4                                                               
+  38   4                              P1_2=1;
+  39   4                              delay_nus(1300);
+  40   4                              P1_2=0;
+  41   4                              delay_nms(20);
+  42   4                                      
+  43   4                         }//当左右火焰传感器都检测到火焰时对应的的操作
+  44   3                          }
+  45   2                      if((SIG1==1)&&(SIG2==0)) //左火焰传感器检测都检测到火焰
+  46   2                      {
+  47   3                       //左转 
+  48   3                      for(b=0;b<100;b++)
+  49   3                      {
+  50   4                   //静止基准时间t=1500us，大于或小于1500us将使对应端口的车轮正或反转起来
+  51   4                     P1_3=1;
+  52   4                             delay_nus(1700);
+  53   4                             P1_3=0;
+  54   4                                                               
+  55   4                                 P1_2=1;
+C51 COMPILER V9.00   HUOYAN                                                                07/23/2019 12:56:29 PAGE 2   
+
+  56   4                                 delay_nus(1500);
+  57   4                                 P1_2=0;
+  58   4                                 delay_nms(20);
+  59   4                      }
+  60   3                      }
+  61   2                  if((SIG1==0)&&(SIG2==1)) //右火焰传感器检测都检测到火焰
+  62   2                      {
+  63   3                          //右转
+  64   3                  for(c=0;c<100;c++)
+  65   3                          {
+  66   4                  //静止基准时间t=1500us，大于或小于1500us将使对应端口的车轮正或反转起来
+  67   4                    P1_3=1;
+  68   4                                delay_nus(1500);
+  69   4                                P1_3=0;
+  70   4                                                               
+  71   4                                P1_2=1;
+  72   4                                delay_nus(1300);
+  73   4                                P1_2=0;
+  74   4                                delay_nms(20);
+  75   4                          }
+  76   3                      }                       
+  77   2              }
+  78   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    186    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

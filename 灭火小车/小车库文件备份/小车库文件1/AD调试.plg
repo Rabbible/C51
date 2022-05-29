@@ -1,0 +1,94 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\小车库文件\AD调试.uvproj
+Project File Date:  08/17/2019
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling AD调试.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?AD调试
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DACCONVERSION?AD调试
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?CO?AD调试
+Program Size: data=79.2 xdata=32 code=357
+creating hex file from "AD调试"...
+"AD调试" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling AD调试.c...
+AD.H(32): warning C206: 'Start_I2c': missing function-prototype
+AD.H(33): warning C206: 'SendByte': missing function-prototype
+AD.H(33): error C267: 'SendByte': requires ANSI-style prototype
+AD.H(34): error C202: 'ack': undefined identifier
+AD.H(36): error C202: 'ack': undefined identifier
+AD.H(38): error C202: 'ack': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling AD调试.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?AD调试
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DACCONVERSION?AD调试
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?CO?AD调试
+Program Size: data=79.2 xdata=32 code=357
+creating hex file from "AD调试"...
+"AD调试" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling AD调试.c...
+AD.H(32): warning C206: 'Start_I2c': missing function-prototype
+AD.H(33): warning C206: 'SendByte': missing function-prototype
+AD.H(33): error C267: 'SendByte': requires ANSI-style prototype
+AD.H(34): error C202: 'ack': undefined identifier
+AD.H(36): error C202: 'ack': undefined identifier
+AD.H(38): error C202: 'ack': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling AD调试.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?AD调试
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DACCONVERSION?AD调试
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?CO?AD调试
+Program Size: data=79.2 xdata=32 code=357
+creating hex file from "AD调试"...
+"AD调试" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling AD调试.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?AD调试
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DACCONVERSION?AD调试
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?CO?AD调试
+Program Size: data=79.2 xdata=32 code=357
+creating hex file from "AD调试"...
+"AD调试" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling AD调试.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?AD调试
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DACCONVERSION?AD调试
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?CO?AD调试
+Program Size: data=79.2 xdata=32 code=357
+creating hex file from "AD调试"...
+"AD调试" - 0 Error(s), 3 Warning(s).

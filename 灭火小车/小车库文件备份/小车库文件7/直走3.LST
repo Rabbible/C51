@@ -1,0 +1,342 @@
+C51 COMPILER V9.00   _±×ß3                                                                 08/14/2019 12:39:13 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE _±×ß3
+OBJECT MODULE PLACED IN Ö±×ß3.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE Ö±×ß3.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>    //°üº¬µ¥Æ¬»ú¼Ä´æÆ÷µÄÍ·ÎÄ¼þ
+   2          #include <I2C.H>
+   3          #define  PCF8591 0x90    //PCF8591 µØÖ·
+   4          #define uint unsigned int //ºê¶¨Òåuint Îªunsigned intÀàÐÍ
+   5          #define uchar unsigned char //ºê¶¨Òåuchar Îªunsigned char ÀàÐÍ
+   6          
+   7          
+   8          // ±äÁ¿¶¨Òå
+   9          unsigned char AD_CHANNEL;
+  10          unsigned long xdata  LedOut[8];
+  11          unsigned int  D[32];
+  12          sbit P2_0 = P2^0;
+  13          sbit P2_1 = P2^1;
+  14          sbit P2_2 = P2^2;
+  15          sbit P2_3 = P2^3;
+  16          sbit P1_2 = P1^2;//¶¨Òå¶æ»úPWM¿ØÖÆ¶Ë¿Ú
+  17          sbit P1_3 = P1^3;//¶¨Òå¶æ»úPWM¿ØÖÆ¶Ë¿Ú
+  18          int PulseCount; int Velocity;
+  19          
+  20          unsigned char date;
+  21          
+  22          uchar code table[]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,
+  23                                  0xf8,0x80,0x90};
+  24          
+  25          
+  26            // º¯ÊýÉêÃ÷ 
+  27          
+  28          void display();
+  29          void delay(uchar i);
+  30          bit DACconversion(unsigned char sla,unsigned char c,  unsigned char Val);
+  31          bit ISendByte(unsigned char sla,unsigned char c);
+  32          unsigned char IRcvByte(unsigned char sla);
+  33          void Initial_com(void);
+  34          void delay_nus(unsigned int i);
+  35          void delay_nms(unsigned int n);
+  36          void Forward(PulseCount,Velocity);
+  37          void Right(PulseCount,Velocity);
+  38          void Left(PulseCount,Velocity);
+  39          void Backward(PulseCount,Velocity);
+  40          void R_F(PulseCount);
+  41          void L_F(PulseCount);
+  42          //******************************************************************/
+  43          void main()
+  44          {  
+  45   1      
+  46   1              Initial_com();
+  47   1              while(1)
+  48   1              {  
+  49   2      
+  50   2              /********ÒÔÏÂAD-DA´¦Àí*************/  
+  51   2              
+  52   2                  switch(AD_CHANNEL)
+  53   2                      {
+  54   3                              case 0: ISendByte(PCF8591,0x41);
+  55   3                                   D[0]=IRcvByte(PCF8591);  //ADC0 Ä£Êý×ª»»1      ¹âÃôµç×è
+C51 COMPILER V9.00   _±×ß3                                                                 08/14/2019 12:39:13 PAGE 2   
+
+  56   3                                       break;  
+  57   3                              
+  58   3                              case 1: ISendByte(PCF8591,0x42);
+  59   3                                   D[1]=IRcvByte(PCF8591);  //ADC1  Ä£Êý×ª»»2   ÈÈÃôµç×è
+  60   3                                       break;  
+  61   3                              
+  62   3                              case 2: ISendByte(PCF8591,0x43);
+  63   3                                   D[2]=IRcvByte(PCF8591);  //ADC2    Ä£Êý×ª»»3          Ðü¿Õ
+  64   3                                       break;  
+  65   3                              
+  66   3                              case 3: ISendByte(PCF8591,0x40);
+  67   3                                   D[3]=IRcvByte(PCF8591);  //ADC3   Ä£Êý×ª»»4           ¿Éµ÷0-5v
+  68   3                                       break;  
+  69   3                              
+  70   3                              case 4: DACconversion(PCF8591,0x40, D[4]); //DAC          ÊýÄ£×ª»»
+  71   3                                   break;
+  72   3                       
+  73   3                      }
+  74   2      
+  75   2      
+  76   2      
+  77   2      
+  78   2      //      D[4]=D[3];  //°ÑÄ£ÄâÊäÈë²ÉÑùµÄÐÅºÅ Í¨¹ýÊýÄ£×ª»»Êä³ö
+  79   2                              
+  80   2                 if(++AD_CHANNEL>4) AD_CHANNEL=0;
+  81   2              
+  82   2      //         /********ÒÔÏÂ½«ADµÄÖµÍ¨¹ý´®¿Ú·¢ËÍ³öÈ¥*************/
+  83   2      //       delay(200);    
+  84   2      //       SBUF=D[0];                        
+  85   2      //       delay(200);              
+  86   2      //       SBUF=D[1];                        
+  87   2      //       delay(200);    
+  88   2      //       SBUF=D[2];
+  89   2      //       delay(200);
+  90   2      //       SBUF=D[3];
+  91   2      //       delay(200);
+  92   2      //       if(RI)
+  93   2      //      {
+  94   2      //              date=SBUF;    //µ¥Æ¬»ú½ÓÊÜ
+  95   2      //              SBUF=date;    //µ¥Æ¬»ú·¢ËÍ
+  96   2      //              RI=0;
+  97   2      //      }                                                               
+  98   2               
+  99   2                                                                                /*  D[0]ÓÒ±ßºìÍâ´«¸ÐÆ÷¶ÁÊý   */
+ 100   2      //              if(D[0]>0x2D&&D[1]<0x2D)         /*  ¸Õ¿ªÊ¼Ö»ÓÐÓÒ±ßÑØÇ½£¬¿ØÖÆÔÚÖÐ¼ä·¶Î§   */
+ 101   2      //              {
+ 102   2                               if(D[0]<0x53)                   /*  Òªµ÷¿ØºÃ·¶Î§¡¢ºÍÑ­»·´ÎÊý   */
+ 103   2                              {
+ 104   3                                       R_F(1);
+ 105   3                              }
+ 106   2                              else if(D[0]>0x4F)
+ 107   2                              {
+ 108   3                                       L_F(1);
+ 109   3                              }
+ 110   2      //              }
+ 111   2      //              else if(D[0]>0x2D&&D[1]>0x2D)     /*  Á½±ßÓÐÇ½µÄ¹ýµÀ×ßÁ½Ç½ÖÐ¼ä   */
+ 112   2      //              {
+ 113   2      //                      if(D[0]>0x48 && D[0]<0x85)        /*ÖÐ¼ä·¶Î§µÄµ÷Õý*/
+ 114   2      //                      {
+ 115   2      //                              if(D[1]>D[0]-0x04)
+ 116   2      //                              {
+ 117   2      //                                      L_F(5);
+C51 COMPILER V9.00   _±×ß3                                                                 08/14/2019 12:39:13 PAGE 3   
+
+ 118   2      //                              }
+ 119   2      //                              else if(D[1]<D[0]+0x04)
+ 120   2      //                              {       
+ 121   2      //                                      R_F(5);
+ 122   2      //                              }                                 
+ 123   2      //                              else Forward(1,200);
+ 124   2      //                      }
+ 125   2      //                      else if(D[0]<0x48)
+ 126   2      //                      {
+ 127   2      //                               R_F(5);
+ 128   2      //                      }
+ 129   2      //                      else if(D[0]>0x85)
+ 130   2      //                      {
+ 131   2      //                               L_F(5);
+ 132   2      //                      }
+ 133   2      //              }
+ 134   2                      // ******   ¶æ»ú  ************   
+ 135   2         }
+ 136   1      }
+ 137          
+ 138          
+ 139          void delay(uchar i)
+ 140          {
+ 141   1        uchar j,k; 
+ 142   1        for(j=i;j>0;j--)
+ 143   1          for(k=125;k>0;k--);
+ 144   1      }
+ 145          
+ 146          /*******************************************************************
+ 147          DAC ±ä»», ×ª»¯º¯Êý               
+ 148          *******************************************************************/
+ 149          bit DACconversion(unsigned char sla,unsigned char c,  unsigned char Val)
+ 150          {
+ 151   1         Start_I2c();              //Æô¶¯×ÜÏß
+ 152   1         SendByte(sla);            //·¢ËÍÆ÷¼þµØÖ·
+ 153   1         if(ack==0)return(0);
+ 154   1         SendByte(c);              //·¢ËÍ¿ØÖÆ×Ö½Ú
+ 155   1         if(ack==0)return(0);
+ 156   1         SendByte(Val);            //·¢ËÍDACµÄÊýÖµ  
+ 157   1         if(ack==0)return(0);
+ 158   1         Stop_I2c();               //½áÊø×ÜÏß
+ 159   1         return(1);
+ 160   1      }
+ 161          
+ 162          /*******************************************************************
+ 163          ADC·¢ËÍ×Ö½Ú[ÃüÁî]Êý¾Ýº¯Êý               
+ 164          *******************************************************************/
+ 165          bit ISendByte(unsigned char sla,unsigned char c)
+ 166          {
+ 167   1         Start_I2c();              //Æô¶¯×ÜÏß
+ 168   1         SendByte(sla);            //·¢ËÍÆ÷¼þµØÖ·
+ 169   1         if(ack==0)return(0);
+ 170   1         SendByte(c);              //·¢ËÍÊý¾Ý
+ 171   1         if(ack==0)return(0);
+ 172   1         Stop_I2c();               //½áÊø×ÜÏß
+ 173   1         return(1);
+ 174   1      }
+ 175          
+ 176          /*******************************************************************
+ 177          ADC¶Á×Ö½ÚÊý¾Ýº¯Êý               
+ 178          *******************************************************************/
+ 179          unsigned char IRcvByte(unsigned char sla)
+C51 COMPILER V9.00   _±×ß3                                                                 08/14/2019 12:39:13 PAGE 4   
+
+ 180          {  unsigned char c;
+ 181   1      
+ 182   1         Start_I2c();          //Æô¶¯×ÜÏß
+ 183   1         SendByte(sla+1);      //·¢ËÍÆ÷¼þµØÖ·
+ 184   1         if(ack==0)return(0);
+ 185   1         c=RcvByte();          //¶ÁÈ¡Êý¾Ý0
+ 186   1      
+ 187   1         Ack_I2c(1);           //·¢ËÍ·Ç¾Í´ðÎ»
+ 188   1         Stop_I2c();           //½áÊø×ÜÏß
+ 189   1         return(c);
+ 190   1      }
+ 191          
+ 192          
+ 193          //*****´®¿Ú³õÊ¼»¯º¯Êý***********
+ 194          
+ 195          //******************************
+ 196          void Initial_com(void)
+ 197          {
+ 198   1       EA=1;        //¿ª×ÜÖÐ¶Ï
+ 199   1       ES=1;        //ÔÊÐí´®¿ÚÖÐ¶Ï
+ 200   1       ET1=1;        //ÔÊÐí¶¨Ê±Æ÷T1µÄÖÐ¶Ï
+ 201   1       TMOD=0x20;   //¶¨Ê±Æ÷T1£¬ÔÚ·½Ê½2ÖÐ¶Ï²úÉú²¨ÌØÂÊ
+ 202   1       PCON=0x00;   //SMOD=0
+ 203   1       SCON=0x50;   // ·½Ê½1 ÓÉ¶¨Ê±Æ÷¿ØÖÆ
+ 204   1       TH1=0xfd;    //²¨ÌØÂÊÉèÖÃÎª9600
+ 205   1       TL1=0xfd;
+ 206   1       TR1=1;       //¿ª¶¨Ê±Æ÷T1ÔËÐÐ¿ØÖÆÎ»
+ 207   1      
+ 208   1      }
+ 209          
+ 210          //***   ÑÓÊ±Óë¶æ»úÇý¶¯  ********************
+ 211          void delay_nus(unsigned int i)  //ÑÓÊ±:i>=12 ,iµÄ×îÐ¡ÑÓÊ±µ¥12 us
+ 212          { 
+ 213   1        i=i/10;
+ 214   1        while(--i);
+ 215   1      }   
+ 216          
+ 217          void delay_nms(unsigned int n)  //ÑÓÊ±n ms
+ 218          { 
+ 219   1        n=n+1;
+ 220   1        while(--n)  
+ 221   1        delay_nus(900);         //ÑÓÊ± 1ms,Í¬Ê±½øÐÐ²¹³¥
+ 222   1      }
+ 223          
+ 224          void Forward(PulseCount,Velocity)//¶¨ÒåÏòÇ°º¯Êý£¬´øÂö³å¼ÆÊý²ÎÊýPulseCountºÍÂö³å¿í¶È²ÎÊýVelocity
+ 225          {
+ 226   1          int i;
+ 227   1          for(i=1;i<= PulseCount;i++)//forÑ­»·¿ØÖÆÔËÐÐÊ±¼ä
+ 228   1              {
+ 229   2                      P1_3=1;
+ 230   2                      delay_nus(1500+ Velocity);
+ 231   2              P1_3=0;
+ 232   2                      P1_2=1;
+ 233   2                      delay_nus(1518- Velocity);
+ 234   2                      P1_2=0;
+ 235   2                      delay_nms(20);
+ 236   2              }
+ 237   1      }
+ 238          void Right(PulseCount,Velocity) //¶¨Òå×ó×ªº¯Êý£¬´øÂö³å¼ÆÊý²ÎÊýPulseCountºÍÂö³å¿í¶È²ÎÊýVelocity
+ 239          {   
+ 240   1          int i;
+ 241   1          for(i=1;i<= PulseCount;i++)//forÑ­»·¿ØÖÆÔËÐÐÊ±¼ä
+C51 COMPILER V9.00   _±×ß3                                                                 08/14/2019 12:39:13 PAGE 5   
+
+ 242   1              {
+ 243   2                      P1_3=1;
+ 244   2                      delay_nus(1500-Velocity);
+ 245   2              P1_3=0;
+ 246   2                      P1_2=1;
+ 247   2                      delay_nus(1518-Velocity);
+ 248   2                      P1_2=0;
+ 249   2                      delay_nms(20);
+ 250   2              }
+ 251   1      }
+ 252          void Left(PulseCount,Velocity) //¶¨ÒåÓÒ×ªº¯Êý£¬´øÂö³å¼ÆÊý²ÎÊýPulseCountºÍÂö³å¿í¶È²ÎÊýVelocity
+ 253          {
+ 254   1          int i;
+ 255   1          for(i=1;i<= PulseCount;i++)//forÑ­»·¿ØÖÆÔËÐÐÊ±¼ä
+ 256   1              {
+ 257   2                      P1_3=1;
+ 258   2                      delay_nus(1500+Velocity);
+ 259   2              P1_3=0;
+ 260   2                      P1_2=1;
+ 261   2                      delay_nus(1482+Velocity);
+ 262   2                      P1_2=0;
+ 263   2                      delay_nms(20);
+ 264   2              }
+ 265   1      }
+ 266          void Backward(PulseCount,Velocity)//¶¨ÒåÏòºóº¯Êý£¬´øÂö³å¼ÆÊý²ÎÊýPulseCountºÍÂö³å¿í¶È²ÎÊýVelocity
+ 267          {
+ 268   1          int i;
+ 269   1          for(i=1;i<= PulseCount;i++)//forÑ­»·¿ØÖÆÔËÐÐÊ±¼ä
+ 270   1              {
+ 271   2                      P1_3=1;
+ 272   2                      delay_nus(1500-Velocity);
+ 273   2              P1_3=0;
+ 274   2                      P1_2=1;
+ 275   2                      delay_nus(1482+ Velocity);
+ 276   2                      P1_2=0;
+ 277   2                      delay_nms(20);
+ 278   2              }
+ 279   1      }
+ 280          
+ 281          void R_F(PulseCount)//¶¨ÒåÏòÓÒÇ°·½ÐÐ×ßµ÷Õûº¯Êý£¬´øÂö³å¼ÆÊý²ÎÊýPulseCountºÍÂö³å¿í¶È²ÎÊýVelocity
+ 282          {
+ 283   1          int i;
+ 284   1          for(i=1;i<= PulseCount;i++)//forÑ­»·¿ØÖÆÔËÐÐÊ±¼ä
+ 285   1              {
+ 286   2                      P1_3=1;
+ 287   2                      delay_nus(1690);
+ 288   2              P1_3=0;
+ 289   2                      P1_2=1;
+ 290   2                      delay_nus(1300);
+ 291   2                      P1_2=0;
+ 292   2                      delay_nms(20);
+ 293   2              }
+ 294   1      }
+ 295          
+ 296          void L_F(PulseCount)//¶¨ÒåÏò×óÇ°·½ÐÐ×ßµ÷Õûº¯Êý£¬´øÂö³å¼ÆÊý²ÎÊýPulseCountºÍÂö³å¿í¶È²ÎÊýVelocity
+ 297          {
+ 298   1          int i;
+ 299   1          for(i=1;i<= PulseCount;i++)//forÑ­»·¿ØÖÆÔËÐÐÊ±¼ä
+ 300   1              {
+ 301   2                      P1_3=1;
+ 302   2                      delay_nus(1700);
+ 303   2              P1_3=0;
+C51 COMPILER V9.00   _±×ß3                                                                 08/14/2019 12:39:13 PAGE 6   
+
+ 304   2                      P1_2=1;
+ 305   2                      delay_nus(1350);
+ 306   2                      P1_2=0;
+ 307   2                      delay_nms(20);
+ 308   2              }
+ 309   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    716    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =     32    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     70      27
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

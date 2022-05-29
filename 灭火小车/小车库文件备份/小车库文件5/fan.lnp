@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"fan.obj" 
+TO "fan" 
+RAMSIZE(256) 

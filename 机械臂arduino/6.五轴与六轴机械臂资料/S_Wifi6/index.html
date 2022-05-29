@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>创客与编程</title>
+    <style type="text/css">
+        .btn{
+           width :60px;
+           height:60px;
+           font-style:黑体;
+           font-size:20px;
+           color:#FF0000;
+       }
+    </style>
+</head>
+<body>
+<center>
+    <h1>创客与编程-机械臂网页控制</h1>
+    <p>警告:舵机不防堵,不要长时间夹着物件不放,会发烫烧坏</br>按住不放舵机一秒可转动 10度; 每次点击转动 1度</br>
+    <button type="button" class="btn"   onmousedown="lastData('X-1')"  onclick="sendData('X--')">X--</button>
+    <button type="button" class="btn"   onmousedown="lastData('Y+1')"  onclick="sendData('Y++')">Y++</button>
+    <button type="button" class="btn"   onmousedown="lastData('Z-1')"  onclick="sendData('Z--')">Z--</button>
+    <button type="button" class="btn"   onmousedown="lastData('B+1')"  onclick="sendData('B++')">B++</button>
+    <button type="button" class="btn"   onmousedown="lastData('T-1')"  onclick="sendData('T--')">T--</button>
+    <button type="button" class="btn"   onmousedown="lastData('E+1')"  onclick="sendData('E++')">E++</button>
+    </p>
+    <p>
+    <button type="button" class="btn"   onmousedown="lastData('X+1')"  onclick="sendData('X++')">X++</button>
+    <button type="button" class="btn"   onmousedown="lastData('Y-1')"  onclick="sendData('Y--')">Y--</button>
+    <button type="button" class="btn"   onmousedown="lastData('Z+1')"  onclick="sendData('Z++')">Z++</button>
+    <button type="button" class="btn"   onmousedown="lastData('B-1')"  onclick="sendData('B--')">B--</button>
+    <button type="button" class="btn"   onmousedown="lastData('T+1')"  onclick="sendData('T++')">T++</button>
+    <button type="button" class="btn"   onmousedown="lastData('E-1')"  onclick="sendData('E--')">E--</button>
+    </p>
+    <p>指令
+    <input   type="text"  style="width:300px;height:30px;" name="command" id="command"  onkeydown="send()"  value="H" tabindex="1">
+    <button type="button" style="height:30px;" onclick="sendData(null)" autofocus>发送</button>
+  </p>
+  <P>
+    <button type="button" style="height:30px;" onclick="sendData('H')">H 全部归位</button>
+    <button type="button" style="height:30px;" onclick="sendData('S')">S 生成指令</button>
+    <button type="button" style="height:30px;" onclick="sendData('D')">D 删除指令</button>
+    <button type="button" style="height:30px;" onclick="sendData('C')">C 清空指令</button>
+    <button type="button" style="height:30px;" onclick="sendData('R')">R 执行指令</button>
+  </P>
+
+    <textarea id="txta" rows="30" cols="64" readonly="readonly">
+RE		重启ESP8266开发板
+DIR		列出开发板闪存里的所有文件
+? HELP.txt	查看指定文件内容 ? Auto.txt
+F Auto.txt	指定动作文件 SDRC默认操作此文件
+SH		保存所有舵机当前位置到 H.txt 文件
+S		往F指定文件添加 有动过的舵机现脉宽
+S X1500		往F指定文件添加 X1500 舵机动作指令
+S 1000		往F指定文件添加 delay 1000延时动作
+S delay 1000	往F指定文件添加 delay 1000延时动作
+D 1		在F指定文件删除 末尾 N条指令D=D1
+Auto		执行Auto动作文件里的指令R Auto.txt
+R 3		执行3次Auto动作文件
+R Auto.txt	执行指定动作文件里的所有指令
+C Auto.txt	删除开发板闪存里指定文件;格式化命令见源代码
+
+step 0		调整舵机转动速度,0为原速,1为慢速
+下面是舵机转动角度(0度-180度)控制.五轴舵机从底到顶命名为 XYZBE
+H		执行 H.txt 使 XYZBE 舵机全部归位
+X++		执行后 X舵机角度+1度;Y++;Z++
+X--		执行后 X舵机角度-1度;Y--;Z--
+X+?		执行后 X舵机相对+N度;Y+5;Z+22
+X-?		执行后 X舵机相对-N度;Y-6;Z-35
+X??		执行后 X舵机到绝对角度;Y90;Z120
+下面指令加空格.以高电平微秒(500-2500)脉宽控制舵机.1角度≈11微秒
+X ++		执行后 X舵机脉宽+1微秒;Y ++;Z ++
+X --		执行后 X舵机脉宽-1微秒;Y--;Z--
+X +?		执行后 X舵机脉宽相对+N微秒;Y+5;Z+22
+X -?		执行后 X舵机脉宽相对-N微秒;Y-6;Z-35
+X ??		执行后 X舵机脉宽到绝对微秒;Y500;Z2500
+
+
+</textarea>
+<p>
+    <a href='/index.html'   >[首页]</a>
+    <a href='/upload.html' >[上传文件]</a>
+    <a href='/Auto.txt'       >[Auto.txt]</a>
+    <a href='/config.json'  >[config.json]</a>
+    <a href='/upbin'          >[更新固件]</a>
+</p>
+</center>
+
+
+<script>
+	var lastT="",timeId,count=0;
+
+	function sendData(arg) {
+		if(lastT != "" && lastT !=arg) {
+			lastT="";  
+			clearTimeout(timeId);
+			if(count) {count=0;return;}
+		}
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = ready;
+		if(arg==null){
+			arg=document.getElementById('command').value;
+		}
+		arg=arg.replace(/\+/g ,"_");					//把'+'替换为'_'
+		xhttp.open("GET", "command?"+arg+"&time="+new Date().getTime(), true); 
+		xhttp.send();
+	}
+
+	function ready() {
+		if (this.readyState == 4 && this.status == 200) {
+			//使用 XMLHttpRequest 对象的 responseText 或 responseXML 接收响应数据
+			//var info = xhr.responseXML; info.getElementsByTagName("X");
+
+			var obj = document.getElementById("txta");
+			obj.append(this.responseText + '\n');		//追加文本框内容
+			obj.scrollTop = obj.scrollHeight;
+		}
+	}
+
+
+	function lastData(arg) {
+		if (lastT != "")  {count++,sendData(lastT)};
+		if (arg != null) lastT=arg;
+		timeId=setTimeout(function(){lastData(null);}, 100);
+	}
+
+	function  send() {
+		if(event.keyCode==13){
+			sendData(document.getElementById('command').value);
+			document.getElementById('command').value='';
+		}
+	}
+      
+               
+</script>
+</body>
+</html>

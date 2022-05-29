@@ -1,0 +1,226 @@
+C51 COMPILER V9.00   超蒧波瞋距                                                            08/08/2019 17:20:32 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE 超蒧波瞋距
+OBJECT MODULE PLACED IN 超声波测距.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE 超声波测距.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>//包含单片机寄存器的定义头文件
+   2          #include "intrins.h"
+   3          #define uint unsigned int//类型宏定义
+   4          #define uchar unsigned char//类型宏定义
+   5          
+   6          #define true  1//宏定义真
+   7          #define false 0 //宏定义假
+   8                  
+   9          sbit trig=P2^0;//定义触发信号端口
+  10          sbit echo=P3^3;//定义接收信号端口
+  11          sbit tes = P1^0;//测试信号端口
+  12          sbit P1_2 = P1^2;//定义舵机控制信号端口
+  13          sbit P1_3 = P1^3;//定义舵机控制信号端口
+  14          
+  15          uchar time_h,time_l;//定义时间值变量
+  16          uchar distance_h,distance_l;//定义距离值变量
+  17          uint time,distance;//定义时间总值变量，距离总值变量
+  18          uint d;//定义整型变量
+  19          uchar d0,d1,d2,d3;//定义字符型变量
+  20          
+  21          void init_9600(void)//定义串口初始化函数
+  22          {
+  23   1      TMOD = 0x20;                    
+  24   1              TH1 = 0xFD;             
+  25   1              TL1 = 0xFD;
+  26   1              SCON = 0x50;                    
+  27   1              PCON &= 0xef;           
+  28   1              TR1 = 1;                                
+  29   1              IE = 0x0;               
+  30   1      }
+  31          
+  32          void T0_INIT(void)//定义定时器0初始化函数
+  33          {
+  34   1              TMOD &= 0xF0; /* Timer 0 mode 1 with software gate */ 
+  35   1              TMOD |= 0x01; /* GATE0=0; C/T0#=0; M10=0; M00=1; */ 
+  36   1              TH0 = 0x00; /* init values */ 
+  37   1              TL0 = 0x00; 
+  38   1              ET0=1; /* enable timer0 interrupt */ 
+  39   1              //EA=1; /* enable interrupts */ 
+  40   1              //TR0=1; /* timer0 run */
+  41   1      }
+  42          
+  43          void send_char(unsigned char txd)// 发送一个字节
+  44          {
+  45   1              SBUF = txd;
+  46   1              while(!TI);                     
+  47   1              TI = 0;                                 
+  48   1      }
+  49          
+  50          void send_one_byte_to_char(unsigned char ch)//以字符的形式发送一个字节数据
+  51          {
+  52   1              if ((ch & 0xf0) > 0x90)
+  53   1              {
+  54   2                      send_char(((ch>>4)&0x0f) + 'A'-0x0a);
+  55   2              }
+C51 COMPILER V9.00   超蒧波瞋距                                                            08/08/2019 17:20:32 PAGE 2   
+
+  56   1              else
+  57   1              {
+  58   2                      send_char(((ch>>4)&0x0f) + '0'-0x00);
+  59   2              }
+  60   1              if ((ch & 0x0f) > 0x09)
+  61   1              {
+  62   2                      send_char((ch&0x0f) + 'A'-0x0a);
+  63   2              }
+  64   1              else
+  65   1              {
+  66   2                      send_char((ch&0x0f) + '0'-0x00);
+  67   2              }
+  68   1      }
+  69          
+  70          void send_two_byte_to_char(unsigned int ch)//以字符的形式发送两个字节数据
+  71          {
+  72   1              //3
+  73   1              if ((ch & 0xf000) > 0x9000)
+  74   1              {
+  75   2                      send_char(((ch>>12)&0x000f) + 'A'-0x0a);
+  76   2              }
+  77   1              else
+  78   1              {
+  79   2                      send_char(((ch>>12)&0x000f) + '0'-0x00);
+  80   2              }
+  81   1              //2
+  82   1              if ((ch & 0x0f00) > 0x0900)
+  83   1              {
+  84   2                      send_char(((ch>>8)&0x000f) + 'A'-0x0a);
+  85   2              }
+  86   1              else
+  87   1              {
+  88   2                      send_char(((ch>>8)&0x000f) + '0'-0x00);
+  89   2              }
+  90   1              //1
+  91   1              if ((ch & 0x00f0) > 0x0090)
+  92   1              {
+  93   2                      send_char(((ch>>4)&0x000f) + 'A'-0x0a);
+  94   2              }
+  95   1              else
+  96   1              {
+  97   2                      send_char(((ch>>4)&0x000f) + '0'-0x00);
+  98   2              }
+  99   1              //0
+ 100   1              if ((ch & 0x000f) > 0x0009)
+ 101   1              {
+ 102   2                      send_char((ch&0x000f) + 'A'-0x0a);
+ 103   2              }
+ 104   1              else
+ 105   1              {
+ 106   2                      send_char((ch&0x000f) + '0'-0x00);
+ 107   2              }
+ 108   1      }
+ 109          
+ 110          void send_four_byte_to_char(uchar a,uchar b,uchar c,uchar d)//以字符的形式发送四个字节数据
+ 111          {
+ 112   1              send_char(a+'0'-0x00);
+ 113   1              send_char(b+'0'-0x00);
+ 114   1              send_char(c+'0'-0x00);
+ 115   1              send_char(d+'0'-0x00);
+ 116   1      }
+ 117          
+C51 COMPILER V9.00   超蒧波瞋距                                                            08/08/2019 17:20:32 PAGE 3   
+
+ 118          void send_string(char *p)//发送字符串数据
+ 119          {
+ 120   1              char *pchar;
+ 121   1              pchar = p;
+ 122   1              while (*pchar != '\0')
+ 123   1              {
+ 124   2                      send_char(*pchar++);            
+ 125   2              }
+ 126   1      }
+ 127          
+ 128          void delay1ms()//定义延时1毫秒函数
+ 129          {
+ 130   1              unsigned char i,j;      
+ 131   1              for(i=0;i<10;i++)
+ 132   1                for(j=0;j<33;j++)
+ 133   1                 ;             
+ 134   1      }
+ 135          void delaynms(unsigned int n)//定义延时N毫秒函数
+ 136          {
+ 137   1              unsigned int i;
+ 138   1              for(i=0;i<n;i++)
+ 139   1              delay1ms();
+ 140   1      }
+ 141          
+ 142          void main(void)//主函数
+ 143          {
+ 144   1              init_9600();//串口初始化
+ 145   1      T0_INIT();//定时器0初始化
+ 146   1      trig = 0;//触发信号初始化
+ 147   1              //tes=0;
+ 148   1              //EA = 1;
+ 149   1              delaynms(1000);//延时1000ms
+ 150   1              while(1)
+ 151   1              {               
+ 152   2                      TH0 = 0x00;//清0定时器寄存器高8位
+ 153   2                      TL0 = 0x00;//清0定时器寄存器低8位
+ 154   2                      trig = 1;//触发开始
+ 155   2                      _nop_();
+ 156   2                      _nop_();
+ 157   2                      _nop_();
+ 158   2                      _nop_();
+ 159   2                      _nop_();
+ 160   2                      _nop_();
+ 161   2                      _nop_();
+ 162   2                      _nop_();
+ 163   2                      _nop_();
+ 164   2                      _nop_();
+ 165   2                      _nop_();
+ 166   2                      _nop_();
+ 167   2                      _nop_();
+ 168   2                      _nop_();
+ 169   2                      _nop_();
+ 170   2                      trig = 0;
+ 171   2                      while(0 == echo);
+ 172   2                      TR0=1;//启动定时器定时
+ 173   2                      while(1 == echo);
+ 174   2                      TR0=0;//关闭定时器定时
+ 175   2                      time_h = TH0;//读取定时器时间寄存器数值高8位
+ 176   2                      time_l = TL0;//读取定时器时间寄存器数值低8位
+ 177   2                      //send_char(time_h);
+ 178   2                      //send_char(time_l);
+ 179   2                      time = time_h*256+time_l;
+C51 COMPILER V9.00   超蒧波瞋距                                                            08/08/2019 17:20:32 PAGE 4   
+
+ 180   2                      distance =(int)(time*0.17);//根据时间计算距离
+ 181   2                      d0 = distance%10;//把距离值分解成单个字符发送给上位机
+ 182   2                      d  = distance/10;
+ 183   2                      d1 = d%10;
+ 184   2                      d  = d/10;
+ 185   2                      d2 = d%10;
+ 186   2                      d = d/10;
+ 187   2                      d3 = d%10;      
+ 188   2                      send_string("L = ");//通过串口发送距离数据出去
+ 189   2                      send_four_byte_to_char(d3,d2,d1,d0);
+ 190   2                      send_string("mm.\r\n");
+ 191   2              }
+ 192   1      }
+ 193          
+ 194          void it_timer0(void) interrupt 1//定时器0中断服务函数
+ 195          { 
+ 196   1              TF0 = 0; 
+ 197   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    530    ----
+   CONSTANT SIZE    =     11    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     14       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,98 @@
+C51 COMPILER V9.00   TIAOSHI                                                               08/12/2019 10:56:35 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE TIAOSHI
+OBJECT MODULE PLACED IN tiaoshi.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE tiaoshi.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h> //包含单片机寄存器的定义头文件
+   2          #define uint unsigned int //宏定义uint 为unsigned int类型
+   3          #define uchar unsigned char //宏定义uchar 为unsigned char 类型
+   4          sbit P1_2 = P1^2;//定义舵机PWM控制端口
+   5          sbit P1_3 = P1^3;//定义舵机PWM控制端口
+   6          
+   7          #include<BoeBot.h>//包含舵机脉冲延时函数头文件
+   8          int PulseCount; int Velocity;
+   9          void Forward(PulseCount,Velocity)//定义向前函数，带脉冲计数参数PulseCount和脉冲宽度参数Velocity
+  10          {
+  11   1          int i;
+  12   1          for(i=1;i<= PulseCount;i++)//for循环控制运行时间
+  13   1              {
+  14   2                      P1_3=1;
+  15   2                      delay_nus(1500+ Velocity);
+  16   2              P1_3=0;
+  17   2                      P1_2=1;
+  18   2                      delay_nus(1500- Velocity);
+  19   2                      P1_2=0;
+  20   2                      delay_nms(20);
+  21   2              }
+  22   1      }
+  23          void Right(PulseCount,Velocity) //定义左转函数，带脉冲计数参数PulseCount和脉冲宽度参数Velocity
+  24          {   
+  25   1          int i;
+  26   1          for(i=1;i<= PulseCount;i++)//for循环控制运行时间
+  27   1              {
+  28   2                      P1_3=1;
+  29   2                      delay_nus(1500-Velocity);
+  30   2              P1_3=0;
+  31   2                      P1_2=1;
+  32   2                      delay_nus(1500-Velocity);
+  33   2                      P1_2=0;
+  34   2                      delay_nms(20);
+  35   2              }
+  36   1      }
+  37          void Left(PulseCount,Velocity) //定义右转函数，带脉冲计数参数PulseCount和脉冲宽度参数Velocity
+  38          {
+  39   1          int i;
+  40   1          for(i=1;i<= PulseCount;i++)//for循环控制运行时间
+  41   1              {
+  42   2                      P1_3=1;
+  43   2                      delay_nus(1500+Velocity);
+  44   2              P1_3=0;
+  45   2                      P1_2=1;
+  46   2                      delay_nus(1500+Velocity);
+  47   2                      P1_2=0;
+  48   2                      delay_nms(20);
+  49   2              }
+  50   1      }
+  51          void Backward(PulseCount,Velocity)//定义向后函数，带脉冲计数参数PulseCount和脉冲宽度参数Velocity
+  52          {
+  53   1          int i;
+  54   1          for(i=1;i<= PulseCount;i++)//for循环控制运行时间
+  55   1              {
+C51 COMPILER V9.00   TIAOSHI                                                               08/12/2019 10:56:35 PAGE 2   
+
+  56   2                      P1_3=1;
+  57   2                      delay_nus(1500-Velocity);
+  58   2              P1_3=0;
+  59   2                      P1_2=1;
+  60   2                      delay_nus(1500+ Velocity);
+  61   2                      P1_2=0;
+  62   2                      delay_nms(20);
+  63   2              }
+  64   1      }
+  65          int main(void)//主函数
+  66          { 
+  67   1      
+  68   1              Forward(65,200);//向前
+  69   1              Left(26,200);//左转
+  70   1              Right(26,200);//右转
+  71   1              Backward(65,200);//向后
+  72   1              while(1);//程序等待
+  73   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    355    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4      16
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,24 @@
+C51 COMPILER V9.00   µÚÈý¸ö·¿¼_Ãð»ð2                                                       09/03/2019 21:55:57 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE µÚÈý¸ö·¿¼_Ãð»ð2
+OBJECT MODULE PLACED IN µÚÈý¸ö·¿¼äÃð»ð2.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE µÚÈý¸ö·¿¼äÃð»ð2.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+*** WARNING C291 IN LINE 43 OF µÚÈ¸ö·¿¼äÃð»ð2.C: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   4440    ----
+   CONSTANT SIZE    =    161    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15      85
+   IDATA SIZE       =   ----     186
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

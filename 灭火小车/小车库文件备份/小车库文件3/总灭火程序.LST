@@ -1,0 +1,96 @@
+C51 COMPILER V9.00   譥灭火程序                                                            09/05/2019 17:11:12 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE 譥灭火程序
+OBJECT MODULE PLACED IN 总灭火程序.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 总灭火程序.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>    //包含单片机寄存器的头文件
+   2          #include<zhixian.h>
+   3          #include<miehuo.h>
+   4          #define uint unsigned int //宏定义uint 为unsigned int类型
+   5          
+   6          void main()
+   7          {       //初始化
+   8   1              T0_INIT();
+   9   1              INT1_INIT();
+  10   1              trig = 0;
+  11   1              SIG=1;                  //风扇电机静止
+  12   1              SIG1=1;         //火焰传感器
+  13   1              SIG2=1;
+  14   1      
+  15   1              while(1)        //要加while传感器才会开始读取
+  16   1              {
+  17   2                      FFJF();
+  18   2                      //第四个房间
+  19   2                      if((SIG1==0)&&(SIG2==0))        //第一个角落前进灭火并回家(最后是死循环)
+  20   2                      {
+  21   3                              Left(7,200);   // 3!    1.
+  22   3                              if((SIG1==0)&&(SIG2==0))
+  23   3                              {
+  24   4                                      Right(7,200); // 1!  2.
+  25   4                                      FF1J();  
+  26   4                              }
+  27   3                              else 
+  28   3                              {
+  29   4                                      Right(7,200);   // 1!   2.
+  30   4                                      FF2J();
+  31   4                              }
+  32   3                      }
+  33   2      
+  34   2                      else
+  35   2                      {
+  36   3                              Right(15,200);  // 4!  3.        
+  37   3                              if((SIG1==0)&&(SIG2==0))
+  38   3                              {
+  39   4                                      Right(23,200);   //  2!  4.
+  40   4                                      if((SIG1==0)&&(SIG2==0))
+  41   4                                      {
+  42   5                                              Left(6,200);  //  5!  5.
+  43   5                                              FF3J();
+  44   5                                      }
+  45   4                                      else
+  46   4                                      {
+  47   5                                              Left(39,200);  //  1!  7.
+  48   5                                              FF2J();
+  49   5                                      }
+  50   4                              }
+  51   3                              else
+  52   3                              {
+  53   4                                      Right(23,200);   //  2!  4.
+  54   4                                      if((SIG1==0)&&(SIG2==0))
+  55   4                                      {
+C51 COMPILER V9.00   譥灭火程序                                                            09/05/2019 17:11:12 PAGE 2   
+
+  56   5                                              Left(6,200);  //  5!  5.
+  57   5                                              FF3J();
+  58   5                                      }
+  59   4                                      else
+  60   4                                      {
+  61   5                                              Right(30,200);  
+  62   5                                              //去下一个房间
+  63   5                                              ThreeFJF();
+  64   5                                              while(1) Keep();
+  65   5                                      }
+  66   4                              }
+  67   3                      }
+  68   2                      while(1) Keep();                        
+  69   2              }       
+  70   1      }
+*** WARNING C291 IN LINE 43 OF 总灭火程序.C: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   4820    ----
+   CONSTANT SIZE    =    161    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15      91
+   IDATA SIZE       =   ----     186
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

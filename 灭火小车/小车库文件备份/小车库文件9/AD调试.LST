@@ -1,0 +1,54 @@
+C51 COMPILER V9.00   AD调试                                                                09/17/2019 18:57:09 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE AD调试
+OBJECT MODULE PLACED IN AD调试.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE AD调试.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include<zhixian.h>
+   3          #define uint unsigned int //宏定义uint 为unsigned int类型
+   4          
+   5          void main()
+   6          {       uint a;
+   7   1              Initial_com();
+   8   1              while(1)
+   9   1              {
+  10   2                      a=DRZS();
+  11   2                      send_char(a);
+  12   2              }
+  13   1      //      float m;
+  14   1      //      Initial_com();
+  15   1      //      m=DRPJ();
+  16   1      //      send_char(m);
+  17   1      
+  18   1      //      uint i;
+  19   1      //      uchar idata G[10]={0x2D};
+  20   1      //      float idata F[10]={0};
+  21   1      //      for(i=0;i<10;i++)
+  22   1      //      {
+  23   1      //              ISendByte(PCF8591,0x40);
+  24   1      //              G[i]=IRcvByte(PCF8591);
+  25   1      //      }
+  26   1      //      NBZ(G,&F);         //转float
+  27   1      //      return Average(F);
+  28   1      
+  29   1      //      YRQ(45.0);
+  30   1      }
+*** WARNING C291 IN LINE 43 OF AD调试.C: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   3944    ----
+   CONSTANT SIZE    =     61    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15     104
+   IDATA SIZE       =   ----      86
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

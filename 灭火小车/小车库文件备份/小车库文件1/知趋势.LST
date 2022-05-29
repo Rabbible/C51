@@ -1,0 +1,96 @@
+C51 COMPILER V9.00   _ªÇ÷ÊÆ                                                                08/18/2019 09:58:29 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE _ªÇ÷ÊÆ
+OBJECT MODULE PLACED IN ÖªÇ÷ÊÆ.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE ÖªÇ÷ÊÆ.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>    //°üº¬µ¥Æ¬»ú¼Ä´æÆ÷µÄÍ·ÎÄ¼þ
+   2          #include<duoji.h>
+   3          #include<AD.h>
+   4          
+   5          #define uint unsigned int //ºê¶¨Òåuint Îªunsigned intÀàÐÍ
+   6          #define uchar unsigned char //ºê¶¨Òåuchar Îªunsigned char ÀàÐÍ
+   7          #define  PCF8591 0x90    //PCF8591 µØÖ· 
+   8          
+   9          void main()
+  10          {       uint i;
+  11   1              uint idata F[10];
+  12   1              delay_nms(1000);
+  13   1              //Initial_com();
+  14   1      
+  15   1              //****** ÒÔÏÂÎªÑØÓÒÇ½×ß³ÌÐò     *****
+  16   1              while(1)
+  17   1              {
+  18   2                      Forward(6,200);                                   // -----  Ö±×ßÒ»¶ÎÖªÐ¡³µÆ«ÒÆ×´Ì¬    ------  
+  19   2                      for(i=0;i<10;i++)
+  20   2                      {
+  21   3                              ISendByte(PCF8591,0x40);
+  22   3                              F[i]=IRcvByte(PCF8591);
+  23   3              //              send_char(D[0]);
+  24   3                      }
+  25   2              //      while (D[0]>0x4F||D[0]<0x53)
+  26   2                      if(F[9]==F[0]) Forward(2,200);
+  27   2                      else if(F[9]<F[0])                                         // -----  ±È½Ï¾ÀÕýµ½Æ½ÐÐ  ------
+  28   2                      {       
+  29   3                              if(F[9]-F[0]<0x02)                        /* 0x15¿ÉÄÜÒªµ÷,Ð¡Æ«×´Ì¬ */
+  30   3                                      {
+  31   4                                              while(F[9]<F[0])
+  32   4                                              {
+  33   5                                                      R_F(3);
+  34   5                                                      for(i=0;i<10;i++)
+  35   5                                                      {
+  36   6                                                      ISendByte(PCF8591,0x40);
+  37   6                                                      F[i]=IRcvByte(PCF8591);
+  38   6                                                      //send_char(D[0]);
+  39   6                                                      }
+  40   5                                              }
+  41   4                                              L_F(3);
+  42   4                                      }
+  43   3                              else //if(F[9]-F[0]>=0x02)                      /* ´óÆ«×´Ì¬ */
+  44   3                                      {
+  45   4                                       Right(6,200);     /* PulseCountÐèÒª¸ù¾ÝF[9]-F[0]²îÖµµ÷ */
+  46   4                                      }
+  47   3                      }          
+  48   2                      else //if(F[9]>F[0]) 
+  49   2                      {
+  50   3                              if(F[9]-F[0]<0x02)                        /* 0x15¿ÉÄÜÒªµ÷,Ð¡Æ«×´Ì¬ */
+  51   3                                      {
+  52   4                                              while(F[9]>F[0])
+  53   4                                              {
+  54   5                                                      L_F(3);
+  55   5                                                      for(i=0;i<10;i++)
+C51 COMPILER V9.00   _ªÇ÷ÊÆ                                                                08/18/2019 09:58:29 PAGE 2   
+
+  56   5                                                      {
+  57   6                                                      ISendByte(PCF8591,0x40);
+  58   6                                                      F[i]=IRcvByte(PCF8591);
+  59   6                                                      //send_char(D[0]);
+  60   6                                                      }
+  61   5                                              }
+  62   4                                              R_F(3);
+  63   4                                      }
+  64   3                              else //if(F[9]-F[0]>=0x02)                      /* ´óÆ«×´Ì¬ */
+  65   3                                      {
+  66   4                                       Left(6,200);      /* PulseCountÐèÒª¸ù¾ÝF[9]-F[0]²îÖµµ÷ */
+  67   4                                      }
+  68   3                      }
+  69   2              }
+  70   1      }
+  71                  
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1031    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =     32    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     70      22
+   IDATA SIZE       =   ----      20
+   BIT SIZE         =      1       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

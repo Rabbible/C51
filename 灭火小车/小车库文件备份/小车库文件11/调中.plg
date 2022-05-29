@@ -1,0 +1,14 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\Ğ¡³µ¿âÎÄ¼ş\µ÷ÖĞ.uvproj
+Project File Date:  08/18/2019
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ÕÒÖÚÊı.c...
+ÕÒÖÚÊ.C(2): error C129: missing ';' before 'ZS'
+Target not created

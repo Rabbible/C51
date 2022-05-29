@@ -1,0 +1,218 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/18/2019  20:31:11  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+E:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, ÕÒÖÚÊý.obj TO µ÷ÖÐ RAMSIZE (256)
+
+
+MEMORY MODEL: LARGE
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  ÕÒÖÚÊý.obj (ÕÒ_ÚÊý)
+  E:\KEIL\C51\LIB\C51L.LIB (?C?IILDX)
+  E:\KEIL\C51\LIB\C51L.LIB (PRINTF)
+  E:\KEIL\C51\LIB\C51L.LIB (?C?CLDPTR)
+  E:\KEIL\C51\LIB\C51L.LIB (?C?CLDOPTR)
+  E:\KEIL\C51\LIB\C51L.LIB (?C?CSTPTR)
+  E:\KEIL\C51\LIB\C51L.LIB (?C?PLDIXDATA)
+  E:\KEIL\C51\LIB\C51L.LIB (?C?PSTXDATA)
+  E:\KEIL\C51\LIB\C51L.LIB (?C?CCASE)
+  E:\KEIL\C51\LIB\C51L.LIB (PUTCHAR)
+
+
+LINK MAP OF MODULE:  µ÷ÖÐ (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0005H     UNIT         _DATA_GROUP_
+                    000DH     0013H                  *** GAP ***
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            IDATA   0022H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     004CH     UNIT         _XDATA_GROUP_
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0365H     UNIT         ?PR?PRINTF?PRINTF
+            CODE    0B65H     02BFH     UNIT         ?PR?MAIN?ÕÒ_ÚÊý
+            CODE    0E24H     00B4H     UNIT         ?C?LIB_CODE
+            CODE    0ED8H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    0EFFH     0017H     UNIT         ?CO?ÕÒ_ÚÊý
+            CODE    0F16H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   µ÷ÖÐ (?C_STARTUP)
+
+
+SEGMENT                           BIT_GROUP          DATA_GROUP          XDATA_GROUP
+  +--> CALLED SEGMENT          START    LENGTH     START    LENGTH     START    LENGTH
+--------------------------------------------------------------------------------------
+?C_C51STARTUP                  -----    -----      -----    -----      -----    -----
+  +--> ?PR?MAIN?ÕÒ_ÚÊý
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/18/2019  20:31:11  PAGE 2
+
+
+
+?PR?MAIN?ÕÒ_ÚÊý                -----    -----      -----    -----      0000H    0024H
+  +--> ?CO?ÕÒ_ÚÊý
+  +--> ?PR?PRINTF?PRINTF
+
+?PR?PRINTF?PRINTF              0020H.0  0001H.1    0008H    0005H      0024H    0028H
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+
+
+SYMBOL TABLE OF MODULE:  µ÷ÖÐ (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0F16H         SEGMENT       ?C_C51STARTUP
+  I:0022H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0F19H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0F16H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0F16H         LINE#         133
+  C:0F18H         LINE#         134
+  C:0F19H         LINE#         135
+  C:0F1AH         LINE#         136
+  C:0F1CH         LINE#         185
+  C:0F1FH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        ÕÒ_ÚÊý
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0B65H         PUBLIC        main
+  -------         PROC          MAIN
+  -------         DO            
+  X:0000H         SYMBOL        i
+  X:0002H         SYMBOL        j
+  X:0004H         SYMBOL        q
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/18/2019  20:31:11  PAGE 3
+
+
+  X:0006H         SYMBOL        D
+  X:0010H         SYMBOL        c
+  X:001AH         SYMBOL        d
+  -------         ENDDO         
+  C:0B65H         LINE#         2
+  C:0B65H         LINE#         3
+  C:0B65H         LINE#         9
+  C:0B6CH         LINE#         10
+  C:0B92H         LINE#         11
+  C:0B92H         LINE#         12
+  C:0BBCH         LINE#         13
+  C:0BBCH         LINE#         14
+  C:0BE0H         LINE#         15
+  C:0C05H         LINE#         16
+  C:0C1CH         LINE#         17
+  C:0C1CH         LINE#         18
+  C:0C4AH         LINE#         20
+  C:0C68H         LINE#         21
+  C:0C81H         LINE#         22
+  C:0C81H         LINE#         23
+  C:0CACH         LINE#         24
+  C:0CACH         LINE#         25
+  C:0CBAH         LINE#         26
+  C:0CD6H         LINE#         27
+  C:0D01H         LINE#         28
+  C:0D03H         LINE#         29
+  C:0D21H         LINE#         30
+  C:0D32H         LINE#         31
+  C:0D51H         LINE#         32
+  C:0D51H         LINE#         33
+  C:0D71H         LINE#         34
+  C:0D71H         LINE#         35
+  C:0DA8H         LINE#         36
+  C:0DAAH         LINE#         37
+  C:0DBCH         LINE#         38
+  C:0DFEH         LINE#         39
+  C:0E0FH         LINE#         40
+  C:0E20H         LINE#         41
+  C:0E23H         LINE#         42
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        ÕÒ_ÚÊý
+
+  -------         MODULE        ?C?IILDX
+  C:0E24H         PUBLIC        ?C?IILDX
+  -------         ENDMOD        ?C?IILDX
+
+  -------         MODULE        PRINTF
+  X:0024H         PUBLIC        ?_PRINTF517?BYTE
+  X:0024H         PUBLIC        ?_PRINTF?BYTE
+  X:0024H         PUBLIC        ?_SPRINTF517?BYTE
+  X:0024H         PUBLIC        ?_SPRINTF?BYTE
+  C:086BH         PUBLIC        _PRINTF
+  C:086BH         PUBLIC        _PRINTF517
+  C:0865H         PUBLIC        _SPRINTF
+  C:0865H         PUBLIC        _SPRINTF517
+  -------         ENDMOD        PRINTF
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/18/2019  20:31:11  PAGE 4
+
+
+  -------         MODULE        ?C?CLDPTR
+  C:0E3AH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0E53H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:0E80H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?PLDIXDATA
+  C:0E92H         PUBLIC        ?C?PLDIXDATA
+  -------         ENDMOD        ?C?PLDIXDATA
+
+  -------         MODULE        ?C?PSTXDATA
+  C:0EA9H         PUBLIC        ?C?PSTXDATA
+  -------         ENDMOD        ?C?PSTXDATA
+
+  -------         MODULE        ?C?CCASE
+  C:0EB2H         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:0ED8H         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 02E5H BYTE (36%) *
+******************************************************************************
+
+Program Size: data=15.1 xdata=76 code=1829
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

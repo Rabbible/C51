@@ -1,0 +1,178 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/15/2019  12:50:56  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+E:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, chaoshenbo.obj TO 串口调试 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL WITH FLOATING POINT ARITHMETIC
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  chaoshenbo.obj (CHAOSHENBO)
+  E:\KEIL\C51\LIB\C51FPS.LIB (?C?FPMUL)
+  E:\KEIL\C51\LIB\C51FPS.LIB (?C?FCAST)
+  E:\KEIL\C51\LIB\C51FPS.LIB (?C?CASTF)
+  E:\KEIL\C51\LIB\C51FPS.LIB (?C?FPGETOPN)
+  E:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
+  E:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+  E:\KEIL\C51\LIB\C51S.LIB (?C?LNEG)
+
+
+LINK MAP OF MODULE:  串口调试 (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000EH     UNIT         ?DT?CHAOSHENBO
+            DATA    0016H     0004H     UNIT         ?DT?_FORWARD?CHAOSHENBO
+            DATA    001AH     0004H     UNIT         ?DT?_LEFT?CHAOSHENBO
+            DATA    001EH     0004H     UNIT         ?DT?_BACKWARD?CHAOSHENBO
+            DATA    0022H     0004H     UNIT         _DATA_GROUP_
+            DATA    0026H     0002H     UNIT         ?DT?_R_F?CHAOSHENBO
+            DATA    0028H     0002H     UNIT         ?DT?_L_F?CHAOSHENBO
+            IDATA   002AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     0005H                  *** GAP ***
+            CODE    0013H     0003H     ABSOLUTE     
+                    0016H     07EAH                  *** GAP ***
+            CODE    0800H     0241H     UNIT         ?C?LIB_CODE
+            CODE    0A41H     00ECH     UNIT         ?PR?MAIN?CHAOSHENBO
+            CODE    0B2DH     007DH     UNIT         ?PR?_SEND_TWO_BYTE_TO_CHAR?CHAOSHENBO
+            CODE    0BAAH     0041H     UNIT         ?PR?_RIGHT?CHAOSHENBO
+            CODE    0BEBH     0040H     UNIT         ?PR?_FORWARD?CHAOSHENBO
+            CODE    0C2BH     003EH     UNIT         ?PR?_BACKWARD?CHAOSHENBO
+            CODE    0C69H     003DH     UNIT         ?PR?_LEFT?CHAOSHENBO
+            CODE    0CA6H     0032H     UNIT         ?PR?_SEND_ONE_BYTE_TO_CHAR?CHAOSHENBO
+            CODE    0CD8H     0030H     UNIT         ?PR?_R_F?CHAOSHENBO
+            CODE    0D08H     0030H     UNIT         ?PR?_L_F?CHAOSHENBO
+            CODE    0D38H     0028H     UNIT         ?PR?_DELAY_NMS?CHAOSHENBO
+            CODE    0D60H     0025H     UNIT         ?PR?_SEND_STRING?CHAOSHENBO
+            CODE    0D85H     001DH     UNIT         ?PR?KEEP?CHAOSHENBO
+            CODE    0DA2H     0019H     UNIT         ?PR?_DELAYNMS?CHAOSHENBO
+            CODE    0DBBH     0017H     UNIT         ?PR?_SEND_FOUR_BYTE_TO_CHAR?CHAOSHENBO
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2019  12:50:56  PAGE 2
+
+
+            CODE    0DD2H     0015H     UNIT         ?PR?INIT_9600?CHAOSHENBO
+            CODE    0DE7H     0011H     UNIT         ?PR?_DELAY_NUS?CHAOSHENBO
+            CODE    0DF8H     000EH     UNIT         ?PR?T0_INIT?CHAOSHENBO
+            CODE    0E06H     000DH     UNIT         ?PR?DELAY1MS?CHAOSHENBO
+            CODE    0E13H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0E1FH     000BH     UNIT         ?PR?_SEND_CHAR?CHAOSHENBO
+            CODE    0E2AH     000BH     UNIT         ?CO?CHAOSHENBO
+            CODE    0E35H     0005H     UNIT         ?PR?INT1_INIT?CHAOSHENBO
+            CODE    0E3AH     0003H     UNIT         ?PR?IT_INT1?CHAOSHENBO
+            CODE    0E3DH     0003H     UNIT         ?PR?IT_TIMER0?CHAOSHENBO
+
+
+
+OVERLAY MAP OF MODULE:   串口调试 (?C_STARTUP)
+
+
+SEGMENT                                          DATA_GROUP 
+  +--> CALLED SEGMENT                          START    LENGTH
+--------------------------------------------------------------
+?C_C51STARTUP                                  -----    -----
+  +--> ?PR?MAIN?CHAOSHENBO
+
+?PR?MAIN?CHAOSHENBO                            -----    -----
+  +--> ?PR?INIT_9600?CHAOSHENBO
+  +--> ?PR?T0_INIT?CHAOSHENBO
+  +--> ?PR?INT1_INIT?CHAOSHENBO
+  +--> ?PR?_DELAYNMS?CHAOSHENBO
+  +--> ?CO?CHAOSHENBO
+  +--> ?PR?_SEND_STRING?CHAOSHENBO
+  +--> ?PR?_SEND_FOUR_BYTE_TO_CHAR?CHAOSHENBO
+  +--> ?PR?_RIGHT?CHAOSHENBO
+
+?PR?_DELAYNMS?CHAOSHENBO                       -----    -----
+  +--> ?PR?DELAY1MS?CHAOSHENBO
+
+?PR?_SEND_STRING?CHAOSHENBO                    0022H    0003H
+  +--> ?PR?_SEND_CHAR?CHAOSHENBO
+
+?PR?_SEND_FOUR_BYTE_TO_CHAR?CHAOSHENBO         0022H    0004H
+  +--> ?PR?_SEND_CHAR?CHAOSHENBO
+
+?PR?_RIGHT?CHAOSHENBO                          0022H    0004H
+  +--> ?PR?_DELAY_NUS?CHAOSHENBO
+  +--> ?PR?_DELAY_NMS?CHAOSHENBO
+
+?PR?_DELAY_NMS?CHAOSHENBO                      -----    -----
+  +--> ?PR?_DELAY_NUS?CHAOSHENBO
+
+
+
+SYMBOL TABLE OF MODULE:  串口调试 (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C?FPMUL
+  C:0800H         PUBLIC        ?C?FPMUL
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2019  12:50:56  PAGE 3
+
+
+  -------         ENDMOD        ?C?FPMUL
+
+  -------         MODULE        ?C?FCAST
+  C:0910H         PUBLIC        ?C?FCASTC
+  C:090BH         PUBLIC        ?C?FCASTI
+  C:0906H         PUBLIC        ?C?FCASTL
+  -------         ENDMOD        ?C?FCAST
+
+  -------         MODULE        ?C?CASTF
+  C:0944H         PUBLIC        ?C?CASTF
+  -------         ENDMOD        ?C?CASTF
+
+  -------         MODULE        ?C?CLDPTR
+  C:09C5H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?UIDIV
+  C:09DEH         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+  -------         MODULE        ?C?LNEG
+  C:0A33H         PUBLIC        ?C?LNEG
+  -------         ENDMOD        ?C?LNEG
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FORWARD?CHAOSHENBO
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?CHAOSHENBO
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?CHAOSHENBO
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?CHAOSHENBO
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?CHAOSHENBO
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?CHAOSHENBO
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_ONE_BYTE_TO_CHAR?CHAOSHENBO
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SEND_TWO_BYTE_TO_CHAR?CHAOSHENBO
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0408H BYTE (50%) *
+******************************************************************************
+
+Program Size: data=43.0 xdata=0 code=1609
+LINK/LOCATE RUN COMPLETE.  8 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,688 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\Ğ¡³µ¿âÎÄ¼ş\³¬Éù²¨.uvproj
+Project File Date:  08/15/2019
+
+<h2>Output:</h2>
+compiling ³¬Éù²¨.c...
+³¬Éù²¨.C(7): warning C206: 'Initial_com': missing function-prototype
+³¬Éù²¨.C(15): warning C206: 'AD': missing function-prototype
+³¬Éù²¨.C(16): error C202: 'AD_CHANNEL': undefined identifier
+³¬Éù²¨.C(16): error C202: 'AD_CHANNEL': undefined identifier
+³¬Éù²¨.C(20): error C202: 'D': undefined identifier
+³¬Éù²¨.C(21): error C202: 'D': undefined identifier
+³¬Éù²¨.C(24): error C202: 'D': undefined identifier
+³¬Éù²¨.C(28): error C202: 'D': undefined identifier
+³¬Éù²¨.C(34): error C202: 'D': undefined identifier
+³¬Éù²¨.C(37): error C202: 'D': undefined identifier
+³¬Éù²¨.C(41): error C202: 'D': undefined identifier
+³¬Éù²¨.C(58): error C202: 'D': undefined identifier
+³¬Éù²¨.c - 10 Error(s), 2 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+³¬Éù²¨.C(7): warning C206: 'Initial_com': missing function-prototype
+³¬Éù²¨.C(28): error C141: syntax error near '36'
+³¬Éù²¨.C(28): error C231: '_Right': redefinition
+³¬Éù²¨.C(30): error C141: syntax error near 'do'
+³¬Éù²¨.C(30): error C141: syntax error near '40'
+³¬Éù²¨.C(30): error C231: '_Forward': redefinition
+³¬Éù²¨.C(31): error C141: syntax error near 'while'
+³¬Éù²¨.C(31): error C136: invalid dimension size: [0]
+³¬Éù²¨.C(31): error C141: syntax error near '<', expected ')'
+Target not created
+compiling ³¬Éù²¨.c...
+³¬Éù²¨.C(7): warning C206: 'Initial_com': missing function-prototype
+³¬Éù²¨.C(28): error C141: syntax error near '36'
+³¬Éù²¨.C(28): error C231: '_Right': redefinition
+³¬Éù²¨.C(30): error C141: syntax error near 'do'
+³¬Éù²¨.C(30): error C141: syntax error near '40'
+³¬Éù²¨.C(31): error C141: syntax error near 'while'
+³¬Éù²¨.C(31): error C136: invalid dimension size: [0]
+³¬Éù²¨.C(31): error C141: syntax error near '<', expected ')'
+³¬Éù²¨.c - 7 Error(s), 1 Warning(s).
+compiling ³¬Éù²¨.c...
+³¬Éù²¨.C(27): error C141: syntax error near '36'
+³¬Éù²¨.C(27): error C231: '_Right': redefinition
+³¬Éù²¨.C(29): error C141: syntax error near 'do'
+³¬Éù²¨.C(29): error C141: syntax error near '40'
+³¬Éù²¨.C(30): error C141: syntax error near 'while'
+³¬Éù²¨.C(30): error C136: invalid dimension size: [0]
+³¬Éù²¨.C(30): error C141: syntax error near '<', expected ')'
+³¬Éù²¨.c - 7 Error(s), 0 Warning(s).
+compiling ³¬Éù²¨.c...
+³¬Éù²¨.C(27): error C141: syntax error near '36'
+³¬Éù²¨.C(27): error C231: '_Right': redefinition
+³¬Éù²¨.C(29): error C141: syntax error near 'do'
+³¬Éù²¨.C(29): error C141: syntax error near '40'
+³¬Éù²¨.C(29): error C231: '_Forward': redefinition
+³¬Éù²¨.C(30): error C141: syntax error near 'while'
+³¬Éù²¨.C(30): error C136: invalid dimension size: [0]
+³¬Éù²¨.C(30): error C141: syntax error near '<', expected ')'
+³¬Éù²¨.c - 8 Error(s), 0 Warning(s).
+compiling ³¬Éù²¨.c...
+³¬Éù²¨.C(30): error C202: 'D': undefined identifier
+³¬Éù²¨.c - 1 Error(s), 0 Warning(s).
+compiling ³¬Éù²¨.c...
+³¬Éù²¨.c - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FORWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=43.0 xdata=0 code=1209
+"³¬Éù²¨" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FORWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=43.0 xdata=0 code=1209
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FORWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=43.0 xdata=0 code=1209
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FORWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=43.0 xdata=0 code=1209
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+CHAOSHENGBO.H(20): error C231: 'trig': redefinition
+CHAOSHENGBO.H(20): error C231: 'trig': redefinition
+CHAOSHENGBO.H(23): error C231: 'init_9600': redefinition
+CHAOSHENGBO.H(33): error C231: 'init_9600': redefinition
+CHAOSHENGBO.H(37): error C231: 'T0_INIT': redefinition
+CHAOSHENGBO.H(45): error C231: 'T0_INIT': redefinition
+CHAOSHENGBO.H(48): error C231: 'INT1_INIT': redefinition
+CHAOSHENGBO.H(52): error C231: 'INT1_INIT': redefinition
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FORWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INIT_9600?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?T0_INIT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INT1_INIT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=43.0 xdata=0 code=1198
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FORWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INIT_9600?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?T0_INIT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INT1_INIT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=43.0 xdata=0 code=1198
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FORWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INIT_9600?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?T0_INIT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INT1_INIT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=43.0 xdata=0 code=1198
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1220
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1220
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1220
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1222
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1233
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1170
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1222
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1170
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1222
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1222
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+³¬Éù²¨.C(19): warning C206: 'CBS': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CSB?³¬É_²¨
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  CBS
+    MODULE:  ³¬Éù²¨.obj (³¬É_²¨)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CBS
+    MODULE:  ³¬Éù²¨.obj (³¬É_²¨)
+    ADDRESS: 0B87H
+Program Size: data=39.0 xdata=0 code=1229
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+³¬Éù²¨.C(19): warning C206: 'CBS': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CSB?³¬É_²¨
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  CBS
+    MODULE:  ³¬Éù²¨.obj (³¬É_²¨)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CBS
+    MODULE:  ³¬Éù²¨.obj (³¬É_²¨)
+    ADDRESS: 0B87H
+Program Size: data=39.0 xdata=0 code=1229
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+³¬Éù²¨.C(19): warning C206: 'CBS': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CSB?³¬É_²¨
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  CBS
+    MODULE:  ³¬Éù²¨.obj (³¬É_²¨)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CBS
+    MODULE:  ³¬Éù²¨.obj (³¬É_²¨)
+    ADDRESS: 0B87H
+Program Size: data=39.0 xdata=0 code=1229
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+³¬Éù²¨.C(19): warning C206: 'CBS': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?CSB?³¬É_²¨
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  CBS
+    MODULE:  ³¬Éù²¨.obj (³¬É_²¨)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CBS
+    MODULE:  ³¬Éù²¨.obj (³¬É_²¨)
+    ADDRESS: 0B87H
+Program Size: data=39.0 xdata=0 code=1229
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYNMS?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1229
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1184
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1184
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1184
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RIGHT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+Program Size: data=43.0 xdata=0 code=1171
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RIGHT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+Program Size: data=43.0 xdata=0 code=1170
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1184
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling ³¬Éù²¨.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LEFT?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BACKWARD?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_R_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_L_F?³¬É_²¨
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KEEP?³¬É_²¨
+Program Size: data=39.0 xdata=0 code=1184
+creating hex file from "³¬Éù²¨"...
+"³¬Éù²¨" - 0 Error(s), 5 Warning(s).
